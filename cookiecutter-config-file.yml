@@ -1,0 +1,13 @@
+# This file contains values from Cookiecutter
+
+default_context:
+  project_name: "dragonroost"
+  project_description: "Dragonroost is an animal shelter/rescue management app, written in Python using the Django web framework."
+  organization: "leethobbit labs"
+  license: "MIT"
+  minimal_python_version: 3.9
+  github_name: "leethobbit"
+  email: "ddrevkpop@gmail.com"
+  version: "0.1.0"
+  line_length: "88"
+  create_example_template: "none"
