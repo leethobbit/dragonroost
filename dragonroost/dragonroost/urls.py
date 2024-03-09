@@ -27,6 +27,7 @@ from apps.people import views
 from .views import HomeListView
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
     path('admin/', admin.site.urls),
     path('', HomeListView.as_view(), name="home-list"),
     path('accounts/', include('apps.accounts.urls')),

@@ -4,7 +4,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from rescueapp.mixins import PageTitleViewMixin
+from dragonroost.mixins import PageTitleViewMixin
 from .models import Person
 
 # Create your views here.
