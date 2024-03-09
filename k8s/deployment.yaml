@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dragonroost-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dragonroost
+  template:
+    metadata:
+      labels:
+        app: dragonroost
+    spec:
+      containers:
+      - name: dragonroost
+        image: dragonroost
+        ports:
+        - containerPort: 8000

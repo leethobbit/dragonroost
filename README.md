@@ -380,7 +380,7 @@ This project is licensed under the terms of the `MIT` license. See [LICENSE](htt
 
 ```bibtex
 @misc{dragonroost,
-  author = {leethobbit labs},
+  author = {Dan King},
   title = {Dragonroost is an animal shelter/rescue management app, written in Python using the Django web framework.},
   year = {2024},
   publisher = {GitHub},
