@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  dragondb:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "apasswordforadb"
+      POSTGRES_DB: "dragondb"
+    volumes:
+      - ./db_data/:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"

@@ -15,7 +15,7 @@ Icon
 ._*
 
 # Dragonroost Ignores
-db-data/
+db_data/
 prod_db_data/
 migrations/
 
