@@ -16,6 +16,7 @@ Icon
 
 # Dragonroost Ignores
 db-data/
+prod_db_data/
 migrations/
 
 # Files that might appear in the root of a volume
