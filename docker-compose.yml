@@ -8,10 +8,12 @@ services:
       - db
     ports:
       - "8000:8000"
+    volumes:
+      - ./media:/app/media
   # this service will use same image, and once the migration is done it will be stopped
-  app_migrations:
-    build: .
-    command: manage.py migrate
+  # app_migrations:
+  #   build: .
+  #   command: ./manage.py migrate
   db:
     image: postgres:latest
     restart: always
