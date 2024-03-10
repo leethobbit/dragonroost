@@ -1,4 +1,4 @@
-# dragonroost
+# Dragonroost is under heavy development and is very feature-light right now. You can currently add/edit/delete animals (and their associated species, status, and location) and add basic person entries.
 
 <div align="center">
 
