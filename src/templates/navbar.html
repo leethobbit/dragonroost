@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Dragonroost</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/animals">Animals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'people:person-list' %}">People</a>
+          </li>
+          <li>
+            <a class="nav-link" >Medical</a>
+          </li>
+          <li>
+            <a class="nav-link" href="{% url 'business:location-list' %}">Business</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+              <span class="navbar-text px-2">
+                Hello, {{ user.username }}!    
+              </span>
+
+          <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-sm">Logout</button>
+          </form>
+          {% else %}
+          <li class ="nav-link">
+          <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-sm" role="button">Login</a>
+          </li>
+          <li class="nav-link">
+            <a href="{% url 'accounts:register' %}" class="btn btn-secondary btn-sm" role="button">Register</a>
+          </li>
+          {% endif %} 
+
+        </ul>
+      </div>
+    </div>
+  </nav>

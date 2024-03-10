@@ -1,13 +1,41 @@
 version: '3.8'
 services:
-  dragondb:
+  app:
+    build: .
+    environment:
+      SECRET_KEY: test
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+  # this service will use same image, and once the migration is done it will be stopped
+  app_migrations:
+    build: .
+    command: manage.py migrate
+  db:
     image: postgres:latest
     restart: always
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "apasswordforadb"
-      POSTGRES_DB: "dragondb"
     volumes:
-      - ./db-data/:/var/lib/postgresql/data/
+      - ./prod_db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: apasswordforadb
+      POSTGRES_DB: dragondb
+
+  redis:
+    image: redis:latest
     ports:
-      - "5432:5432"
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"  # SMTP server
+      - "8025:8025"  # Web UI
+
+volumes:
+  prod_db_data:
+  redis_data:

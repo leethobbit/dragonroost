@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Species List</h1>
+<ul>
+{% for species in species %}
+<li>
+<a href="{% url 'animals:species-detail' species.id %}">{{ species.name }}</a>
+</li>
+{% empty %}
+<li>No animals available.</li>
+{% endfor %}
+</ul>
+{% endblock %}
