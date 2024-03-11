@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-12 text-center">
+    <h1>Dragonroost - Animals</h1>
+    <h5>Animals currently at the rescue</h5>
+</div>
+<a href="{% url 'animals:animal-create' %}" class="btn btn-primary btn-sm">Add New Animal</a>
+<a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-sm">Add New Species</a>
+<a href="{% url 'animals:status-create' %}" class="btn btn-primary btn-sm">Add New Status</a>
+<a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
+<a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
+<br></br>
+{% include "animals/_animal-table.html" with animals=animals %}
+{% include "animals/_species-table.html" with species=species %}
+{% include "people/_person-table.html" with people=people %}
+{% include "business/_location-table.html" with locations=locations %}
+<br></br>
+<div class="container mt-4">
+    <div class="card">
+    <div class="card-header">
+    Help Page
+    </div>
+    <div class="card-body">
+    <h5 class="card-title">What is a shelter manager?</h5>
+    <p class="card-text">A shelter management app helps manage intakes, adoptions, medical treatments, etc.
+    </p>
+    <a href="{% url 'animals:animal-list' %}" class="btn btn-primary">Go Home</a>
+    </div>
+    </div>
+    </div>
+{% endblock %}

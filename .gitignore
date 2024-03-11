@@ -15,8 +15,8 @@ Icon
 ._*
 
 # Dragonroost Ignores
-db-data/
-migrations/
+dev_db_data/
+prod_db_data/
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100

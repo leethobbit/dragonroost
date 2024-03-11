@@ -1,0 +1,19 @@
+<table class="table table-dark table-bordered table-hover table-striped" style="margin-bottom:0;">
+    <thead>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Notes</th>
+    </thead>
+    {% for person in people %}
+    <tbody>
+        <td style="text-align: center; vertical-align: middle;"><a href="{% url 'people:person-detail' person.id %}">{{ person.first_name }}</a></td>
+        <td style="text-align: center; vertical-align: middle;">{{ person.last_name }}</td>
+        <td style="text-align: center; vertical-align: middle;">{{ person.get_type_display }}</td>
+        <td style="text-align: center; vertical-align: middle;">{{ person.phone_number }}</td>
+        <td style="text-align: center; vertical-align: middle;">{{ person.notes }}</td>
+    </tbody>
+    {% endfor %}
+</table>
+<br></br>

@@ -1,6 +1,8 @@
-# dragonroost
+
 
 <div align="center">
+
+# Dragonroost is under heavy development and is very feature-light right now. You can currently add/edit/delete animals (and their associated species, status, and location) and add basic person entries.
 
 [![Build status](https://github.com/leethobbit/dragonroost/workflows/build/badge.svg?branch=master&event=push)](https://github.com/leethobbit/dragonroost/actions?query=workflow%3Abuild)
 [![Python Version](https://img.shields.io/pypi/pyversions/dragonroost.svg)](https://pypi.org/project/dragonroost/)

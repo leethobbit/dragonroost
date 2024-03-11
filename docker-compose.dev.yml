@@ -1,0 +1,14 @@
+version: '3.8'
+name: dragonroost-dev
+services:
+  dragondb-dev:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "apasswordforadb"
+      POSTGRES_DB: "dragondb"
+    volumes:
+      - ./dev_db_data/:/var/lib/postgresql/data/
+    ports:
+      - "5482:5432"
