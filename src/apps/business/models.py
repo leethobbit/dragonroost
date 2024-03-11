@@ -2,6 +2,7 @@ from django.db import models
 
 from apps.people.models import Person
 
+
 # Create your models here.
 class Location(models.Model):
     name = models.CharField(max_length=80, unique=True)

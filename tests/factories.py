@@ -1,7 +1,9 @@
 import factory
+from django.contrib.auth import get_user_model
+
 from apps.animals.models import Animal, Species, Status
 from apps.business.models import Location
-from django.contrib.auth import get_user_model
+
 
 class SpeciesFactory(factory.django.DjangoModelFactory):
     class Meta:

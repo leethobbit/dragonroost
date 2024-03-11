@@ -1,9 +1,9 @@
 import pytest
-from apps.accounts.services import issue_jwt_token
 from django.contrib.auth.models import AbstractUser, Permission
 from django.contrib.contenttypes.models import ContentType
 
 from tests.factories import UserFactory
+
 
 @pytest.fixture
 def user() -> AbstractUser:
@@ -29,8 +29,3 @@ def user() -> AbstractUser:
     # user.user_permissions.add(change_task_permission)
     # user.user_permissions.add(add_task_permission)
     return user
-
-@pytest.fixture
-def jwt_token(user: AbstractUser) -> dict[str, str]:
-    token = issue_jwt_token(user)
-    return {"Authorization": f"Bearer {token}"}

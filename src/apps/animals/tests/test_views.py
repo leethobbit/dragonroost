@@ -1,9 +1,14 @@
 import pytest
-from pytest_django.asserts import assertRedirects, assertContains
 from django.urls import reverse
+from pytest_django.asserts import assertContains, assertRedirects
 
-from tests.factories import AnimalFactory, SpeciesFactory, StatusFactory, LocationFactory
 from apps.animals.models import Animal, Species, Status
+from tests.factories import (
+    AnimalFactory,
+    LocationFactory,
+    SpeciesFactory,
+    StatusFactory,
+)
 
 # MISC TESTS #
 

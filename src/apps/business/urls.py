@@ -1,7 +1,13 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from apps.business.views import LocationCreateView, LocationDeleteView, LocationDetailView, LocationListView, LocationUpdateView
+from apps.business.views import (
+    LocationCreateView,
+    LocationDeleteView,
+    LocationDetailView,
+    LocationListView,
+    LocationUpdateView,
+)
 
 app_name = 'business' # This is for namespacing the URLs later
 

@@ -1,9 +1,9 @@
 import pytest
-from pytest_django.asserts import assertRedirects
 from django.urls import reverse
+from pytest_django.asserts import assertRedirects
 
-from tests.factories import LocationFactory
 from apps.business.models import Location
+from tests.factories import LocationFactory
 
 # LOCATION TESTS #
     

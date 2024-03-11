@@ -13,9 +13,9 @@ from apps.animals.views import (
     SpeciesListView,
     SpeciesUpdateView,
     StatusCreateView,
+    StatusDeleteView,
     StatusDetailView,
     StatusUpdateView,
-    StatusDeleteView
 )
 
 app_name = 'animals' # This is for namespacing the URLs later

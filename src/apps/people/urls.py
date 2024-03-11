@@ -3,10 +3,10 @@ from django.views.generic import TemplateView
 
 from apps.people.views import (
     PersonCreateView,
-    PersonDetailView,
-    PersonUpdateView,
     PersonDeleteView,
-    PersonListView
+    PersonDetailView,
+    PersonListView,
+    PersonUpdateView,
 )
 
 app_name = 'people' # This is for namespacing the URLs later

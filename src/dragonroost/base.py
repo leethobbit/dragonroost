@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,8 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv(
     "SECRET_KEY", "django-insecure-z=o1cqi^f*#70fs!e#f2l5jmk!4m2i8@)a)a37@v@*7^ih*cke"
 )
-
-JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "temp_jwt_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 

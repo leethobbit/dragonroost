@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Animal, Status, Species
+from .models import Animal, Species, Status
+
 
 # Register your models here.
 class AnimalAdmin(admin.ModelAdmin):

@@ -1,13 +1,14 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from dragonroost.mixins import PageTitleViewMixin
 from apps.animals.models import Animal, Species, Status
 from apps.business.models import Location
 from apps.people.models import Person
+from dragonroost.mixins import PageTitleViewMixin
+
 
 # Create your views here.
 class HomeListView(LoginRequiredMixin, ListView):

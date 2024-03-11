@@ -1,11 +1,13 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from dragonroost.mixins import PageTitleViewMixin
+
 from .models import Person
+
 
 # Create your views here.
 class PersonListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
