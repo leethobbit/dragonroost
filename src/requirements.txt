@@ -32,7 +32,7 @@ poetry==1.8.1
 poetry-core==1.9.0
 poetry-plugin-export==1.6.0
 ptyprocess==0.7.0
-pydantic==1.10.5
+pydantic==2.6.3
 pyproject_hooks==1.0.0
 pytest==8.0.2
 pywin32-ctypes==0.2.2
