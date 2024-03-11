@@ -128,6 +128,8 @@ warn_unused_ignores = true
 norecursedirs =["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
 doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
 DJANGO_SETTINGS_MODULE = "dragonroost.production"
+django_find_project = false
+pythonpath = . src
 
 # Extra options:
 addopts = [
