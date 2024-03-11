@@ -15,7 +15,7 @@ Icon
 ._*
 
 # Dragonroost Ignores
-db_data/
+dev_db_data/
 prod_db_data/
 
 # Files that might appear in the root of a volume
