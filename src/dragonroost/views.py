@@ -15,14 +15,15 @@ class HomeListView(LoginRequiredMixin, ListView):
     """
     This custom ListView gathers context from many models to display on the index page.
     """
-    context_object_name = 'animals'
-    template_name = 'index.html'
+
+    context_object_name = "animals"
+    template_name = "index.html"
     queryset = Animal.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(HomeListView, self).get_context_data(**kwargs)
-        context['species'] = Species.objects.all()
-        context['people'] = Person.objects.all()
-        context['locations'] = Location.objects.all()
+        context["species"] = Species.objects.all()
+        context["people"] = Person.objects.all()
+        context["locations"] = Location.objects.all()
 
         return context

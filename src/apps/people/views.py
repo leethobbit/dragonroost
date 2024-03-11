@@ -16,26 +16,50 @@ class PersonListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
     title = "People List"
     context_object_name = "people"
 
+
 class PersonDetailView(LoginRequiredMixin, DetailView):
     model = Person
     template_name = "people/person-detail.html"
     context_object_name = "person"
 
+
 class PersonCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Person
     template_name = "people/person-form.html"
     title = "Add Person"
-    fields = ("first_name", "last_name", "email", "phone_number", "type", "address", "zip_code", "notes")
+    fields = (
+        "first_name",
+        "last_name",
+        "email",
+        "phone_number",
+        "type",
+        "address",
+        "zip_code",
+        "notes",
+    )
+
     def get_success_url(self):
         return reverse_lazy("people:person-detail", kwargs={"pk": self.object.id})
+
 
 class PersonUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Person
     template_name = "people/person-form.html"
     title = "Edit Person"
-    fields = ("first_name", "last_name", "email", "phone_number", "type", "address", "zip_code", "notes")
+    fields = (
+        "first_name",
+        "last_name",
+        "email",
+        "phone_number",
+        "type",
+        "address",
+        "zip_code",
+        "notes",
+    )
+
     def get_success_url(self):
         return reverse_lazy("people:person-detail", kwargs={"pk": self.object.id})
+
 
 class PersonDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Person

@@ -12,7 +12,7 @@ def user() -> AbstractUser:
     user.save()
 
     # Fetch the content type for the Task model
-    #content_type = ContentType.objects.get_for_model(Task)
+    # content_type = ContentType.objects.get_for_model(Task)
 
     # Fetch the 'change_task' permission
     # change_task_permission = Permission.objects.get(

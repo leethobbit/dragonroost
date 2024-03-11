@@ -11,25 +11,28 @@ class SpeciesFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker("word")
     description = factory.Faker("sentence")
-    
+
+
 class LocationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Location
-    
+
     name = factory.Faker("word")
     description = factory.Faker("sentence")
+
 
 class StatusFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Status
-    
+
     name = factory.Faker("word")
     description = factory.Faker("sentence")
+
 
 class AnimalFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Animal
-    
+
     name = factory.Sequence(lambda n: "BD %03d" % n)
     description = factory.Faker("sentence")
     donation_fee = 10.50
@@ -41,9 +44,10 @@ class AnimalFactory(factory.django.DjangoModelFactory):
     location = factory.SubFactory(LocationFactory)
     status = factory.SubFactory(StatusFactory)
 
+
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = get_user_model()
-    
+
     username = factory.Faker("user_name")
     email = factory.Faker("email")

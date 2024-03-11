@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -28,20 +29,19 @@ from apps.people import views
 from .views import HomeListView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', HomeListView.as_view(), name="home-list"),
-    path('accounts/', include('apps.accounts.urls')),
-    path('animals/', include('apps.animals.urls', namespace='animals')),
-    path('business/', include('apps.business.urls', namespace='business')),
-    path('medical/', include('apps.medical.urls', namespace='medical')),
-    path('people/', include('apps.people.urls', namespace='people'))
-
-    #path('hello/', hello_django, name='hello_django')
-    #path("/", views.animal_list, name='animal_list')
+    path("admin/", admin.site.urls),
+    path("", HomeListView.as_view(), name="home-list"),
+    path("accounts/", include("apps.accounts.urls")),
+    path("animals/", include("apps.animals.urls", namespace="animals")),
+    path("business/", include("apps.business.urls", namespace="business")),
+    path("medical/", include("apps.medical.urls", namespace="medical")),
+    path("people/", include("apps.people.urls", namespace="people")),
+    # path('hello/', hello_django, name='hello_django')
+    # path("/", views.animal_list, name='animal_list')
 ]
 
 if settings.DEBUG:
-    urlpatterns.append(path('__debug__/', include('debug_toolbar.urls')))
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # else:

@@ -8,8 +8,10 @@ class AnimalAdmin(admin.ModelAdmin):
     """
     This customized admin view makes reviewing things in the site easier - make more of these!
     """
-    list_display = ('name', 'description', 'status', 'species', 'age', 'donation_fee')
-    list_filter = ('status',)
+
+    list_display = ("name", "description", "status", "species", "age", "donation_fee")
+    list_filter = ("status",)
+
 
 admin.site.register(Animal, AnimalAdmin)
 admin.site.register(Species)

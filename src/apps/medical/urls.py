@@ -9,6 +9,6 @@ from apps.animals.views import (
     AnimalUpdateView,
 )
 
-app_name = 'medical' # This is for namespacing the URLs later
+app_name = "medical"  # This is for namespacing the URLs later
 
 urlpatterns = []
