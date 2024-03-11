@@ -32,12 +32,12 @@ classifiers = [  #! Update me
 python = "^3.10"
 django = "^5.0.3"
 pillow = "^10.2.0"
-gunicorn = "^21.2.0"
 django-extensions = "^3.2.3"
 django-redis = "^5.4.0"
 django-storages = "^1.14.2"
 psycopg = {version = "3.1.12", extras = ["binary"]}
 isort = {extras = ["colors"], version = "^5.13.2"}
+waitress = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^4.3.0"
@@ -127,7 +127,7 @@ warn_unused_ignores = true
 # Directories that are not visited by pytest collector:
 norecursedirs =["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
 doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
-DJANGO_SETTINGS_MODULE = "dragonroost.production"
+DJANGO_SETTINGS_MODULE = "dragonroost.dev"
 django_find_project = false
 pythonpath = [".", "src",]
 

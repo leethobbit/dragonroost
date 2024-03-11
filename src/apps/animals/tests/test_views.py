@@ -31,7 +31,7 @@ def test_animal_list_view_success(client, admin_user):
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert "Animal List" in content
+    assert "Animals currently" in content
 
 
 def test_animal_list_view_fail(client):

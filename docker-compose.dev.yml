@@ -8,6 +8,7 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "apasswordforadb"
       POSTGRES_DB: "dragondb"
+      DJANGO_SETTINGS_MODULE: "dragonroost.dev"
     volumes:
       - ./dev_db_data/:/var/lib/postgresql/data/
     ports:

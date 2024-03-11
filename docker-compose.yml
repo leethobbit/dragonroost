@@ -4,6 +4,7 @@ services:
     build: .
     environment:
       SECRET_KEY: test
+      DJANGO_SETTINGS_MODULE: "dragonroost.production"
     depends_on:
       - db
     ports:

@@ -49,8 +49,8 @@ RUN groupadd -r django && useradd --no-log-init -r -g django django && \
     chown -R django:django /app
 USER django
 
-# Start Gunicorn with a configuration file
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--preload", "dragonroost.wsgi"]
+# Start Waitress with a configuration file
+CMD ["waitress-serve", "--port=8000", "--url-scheme=http", "dragonroost.wsgi:application"]
 
 # Testing runserver due to errors
 # runs the production server
