@@ -8,7 +8,7 @@ cleo==2.1.0
 colorama==0.4.6
 crashtest==0.4.1
 distlib==0.3.8
-Django==5.0.2
+Django==5.0.3
 dulwich==0.21.7
 et-xmlfile==1.1.0
 fastapi==0.92.0
