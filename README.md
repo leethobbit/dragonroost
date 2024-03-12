@@ -32,30 +32,20 @@ cd dragonroost && git init
 2. If you don't have `Poetry` installed run:
 
 ```bash
-make poetry-download
+task poetry-download
 ```
 
 3. Initialize poetry and install `pre-commit` hooks:
 
 ```bash
-make install
-make pre-commit-install
+task install
+task pre-commit-install
 ```
 
 4. Run the codestyle:
 
 ```bash
-make codestyle
-```
-
-5. Upload initial code to GitHub:
-
-```bash
-git add .
-git commit -m ":tada: Initial commit"
-git branch -M main
-git remote add origin https://github.com/leethobbit/dragonroost.git
-git push -u origin main
+task codestyle
 ```
 
 ### Set up bots
@@ -95,13 +85,13 @@ Building a new version of the application contains steps:
 Well, that's up to you 💪🏻. I can only recommend the packages and articles that helped me.
 
 - [`Typer`](https://github.com/tiangolo/typer) is great for creating CLI applications.
-- [`Rich`](https://github.com/willmcgugan/rich) makes it easy to add beautiful formatting in the terminal.
+- [`Rich`](https://github.com/willmcgugan/rich) tasks it easy to add beautiful formatting in the terminal.
 - [`Pydantic`](https://github.com/samuelcolvin/pydantic/) – data validation and settings management using Python type hinting.
-- [`Loguru`](https://github.com/Delgan/loguru) makes logging (stupidly) simple.
+- [`Loguru`](https://github.com/Delgan/loguru) tasks logging (stupidly) simple.
 - [`tqdm`](https://github.com/tqdm/tqdm) – fast, extensible progress bar for Python and CLI.
 - [`IceCream`](https://github.com/gruns/icecream) is a little library for sweet and creamy debugging.
 - [`orjson`](https://github.com/ijl/orjson) – ultra fast JSON parsing library.
-- [`Returns`](https://github.com/dry-python/returns) makes you function's output meaningful, typed, and safe!
+- [`Returns`](https://github.com/dry-python/returns) tasks you function's output meaningful, typed, and safe!
 - [`Hydra`](https://github.com/facebookresearch/hydra) is a framework for elegantly configuring complex applications.
 - [`FastAPI`](https://github.com/tiangolo/fastapi) is a type-driven asynchronous web framework.
 
@@ -128,7 +118,7 @@ Articles:
 
 - `GitHub` integration: issue and pr templates.
 - `Github Actions` with predefined [build workflow](https://github.com/leethobbit/dragonroost/blob/master/.github/workflows/build.yml) as the default CI/CD.
-- Everything is already set up for security checks, codestyle checks, code formatting, testing, linting, docker builds, etc with [`Makefile`](https://github.com/leethobbit/dragonroost/blob/master/Makefile#L89). More details in [makefile-usage](#makefile-usage).
+- Everything is already set up for security checks, codestyle checks, code formatting, testing, linting, docker builds, etc with [`Taskfile`](https://github.com/leethobbit/dragonroost/blob/master/taskfile#L89). More details in [taskfile-usage](#taskfile-usage).
 - [Dockerfile](https://github.com/leethobbit/dragonroost/blob/master/docker/Dockerfile) for your package.
 - Always up-to-date dependencies with [`@dependabot`](https://dependabot.com/). You will only [enable it](https://docs.github.com/en/github/administering-a-repository/enabling-and-disabling-version-updates#enabling-github-dependabot-version-updates).
 - Automatic drafts of new releases with [`Release Drafter`](https://github.com/marketplace/actions/release-drafter). You may see the list of labels in [`release-drafter.yml`](https://github.com/leethobbit/dragonroost/blob/master/.github/release-drafter.yml). Works perfectly with [Semantic Versions](https://semver.org/) specification.
@@ -154,9 +144,9 @@ poetry add dragonroost
 
 
 
-### Makefile usage
+### Taskfile usage
 
-[`Makefile`](https://github.com/leethobbit/dragonroost/blob/master/Makefile) contains a lot of functions for faster development.
+[`taskfile`](https://github.com/leethobbit/dragonroost/blob/master/taskfile) contains a lot of functions for faster development.
 
 <details>
 <summary>1. Download and remove Poetry</summary>
@@ -165,13 +155,13 @@ poetry add dragonroost
 To download and install Poetry run:
 
 ```bash
-make poetry-download
+task poetry-download
 ```
 
 To uninstall
 
 ```bash
-make poetry-remove
+task poetry-remove
 ```
 
 </p>
@@ -184,13 +174,13 @@ make poetry-remove
 Install requirements:
 
 ```bash
-make install
+task install
 ```
 
 Pre-commit hooks coulb be installed after `git init` via
 
 ```bash
-make pre-commit-install
+task pre-commit-install
 ```
 
 </p>
@@ -203,16 +193,16 @@ make pre-commit-install
 Automatic formatting uses `pyupgrade`, `isort` and `black`.
 
 ```bash
-make codestyle
+task codestyle
 
 # or use synonym
-make formatting
+task formatting
 ```
 
 Codestyle checks only, without rewriting files:
 
 ```bash
-make check-codestyle
+task check-codestyle
 ```
 
 > Note: `check-codestyle` uses `isort`, `black` and `darglint` library
@@ -220,7 +210,7 @@ make check-codestyle
 Update all dev libraries to the latest version using one comand
 
 ```bash
-make update-dev-deps
+task update-dev-deps
 ```
 
 <details>
@@ -228,13 +218,13 @@ make update-dev-deps
 <p>
 
 ```bash
-make check-safety
+task check-safety
 ```
 
 This command launches `Poetry` integrity checks as well as identifies security issues with `Safety` and `Bandit`.
 
 ```bash
-make check-safety
+task check-safety
 ```
 
 </p>
@@ -250,7 +240,7 @@ make check-safety
 Run `mypy` static type checker
 
 ```bash
-make mypy
+task mypy
 ```
 
 </p>
@@ -263,7 +253,7 @@ make mypy
 Run `pytest`
 
 ```bash
-make test
+task test
 ```
 
 </p>
@@ -276,13 +266,13 @@ make test
 Of course there is a command to ~~rule~~ run all linters in one:
 
 ```bash
-make lint
+task lint
 ```
 
 the same as:
 
 ```bash
-make test && make check-codestyle && make mypy && make check-safety
+task test && task check-codestyle && task mypy && task check-safety
 ```
 
 </p>
@@ -293,58 +283,22 @@ make test && make check-codestyle && make mypy && make check-safety
 <p>
 
 ```bash
-make docker-build
+task docker-build
 ```
 
 which is equivalent to:
 
 ```bash
-make docker-build VERSION=latest
+task docker-build VERSION=latest
 ```
 
 Remove docker image with
 
 ```bash
-make docker-remove
+task docker-remove
 ```
 
 More information [about docker](https://github.com/leethobbit/dragonroost/tree/master/docker).
-
-</p>
-</details>
-
-<details>
-<summary>9. Cleanup</summary>
-<p>
-Delete pycache files
-
-```bash
-make pycache-remove
-```
-
-Remove package build
-
-```bash
-make build-remove
-```
-
-Delete .DS_STORE files
-
-```bash
-make dsstore-remove
-```
-
-Remove .mypycache
-
-```bash
-make mypycache-remove
-```
-
-Or to remove all above run:
-
-```bash
-make cleanup
-```
 
 </p>
 </details>
