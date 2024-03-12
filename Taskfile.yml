@@ -31,7 +31,7 @@ tasks:
     cmds:
       - poetry lock -n && poetry export --without-hashes > requirements.txt
       - poetry install -n
-      - poetry run mypy --install-types --non-interactive
+      - poetry run mypy --install-types --non-interactive .
   
   pre-commit-install:
     cmds:
@@ -40,24 +40,24 @@ tasks:
 # Linting tasks
   test:
     cmds:
-      - poetry run pytest -c pyproject.toml
+      - poetry run pytest -c pyproject.toml .
       - poetry run coverage-badge -o assets/images/coverage.svg -f
 
   codestyle:
     cmds:
       - poetry run pyupgrade --exit-zero-even-if-changed --py39-plus **/*.py
-      - poetry run isort --settings-path pyproject.toml ./
-      - poetry run black --config pyproject.toml ./
+      - poetry run isort --settings-path pyproject.toml .
+      - poetry run black --config pyproject.toml .
 
   check-codestyle:
     cmds:
-      - poetry run isort --diff --check-only --settings-path pyproject.toml
-      - poetry run black --diff --check --config pyproject.toml
+      - poetry run isort --diff --check-only --settings-path pyproject.toml .
+      - poetry run black --diff --check --config pyproject.toml .
       - poetry run darglint --verbosity 2 dragonroost tests
 
   mypy:
     cmds:
-      - poetry run mypy --config-file pyproject.toml
+      - poetry run mypy --config-file pyproject.toml .
   
   check-safety:
     cmds:
@@ -92,8 +92,9 @@ tasks:
     desc: Builds and runs the prod containers for Dragonroost.
     cmds:
       - docker-compose up --build -d
-
-
-# CLeanup tasks
-  pycache-remove:
-    desc: Removes pycache directory
+  
+  docker-run-dev:
+    desc: Runs the dev Postgres container and then does runserver.
+    cmds:
+      - docker-compose -f docker-compose-dev.yml up -d
+      - python src/manage.py runserver
