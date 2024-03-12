@@ -12,10 +12,6 @@ from apps.animals.views import (
     SpeciesDetailView,
     SpeciesListView,
     SpeciesUpdateView,
-    StatusCreateView,
-    StatusDeleteView,
-    StatusDetailView,
-    StatusUpdateView,
 )
 
 app_name = "animals"  # This is for namespacing the URLs later
@@ -34,8 +30,4 @@ urlpatterns = [
     path(
         "species/<int:pk>/delete/", SpeciesDeleteView.as_view(), name="species-delete"
     ),
-    path("status/new/", StatusCreateView.as_view(), name="status-create"),
-    path("status/<int:pk>/detail/", StatusDetailView.as_view(), name="status-detail"),
-    path("status/<int:pk>/edit/", StatusUpdateView.as_view(), name="status-update"),
-    path("status/<int:pk>/delete/", StatusDeleteView.as_view(), name="status-delete"),
 ]

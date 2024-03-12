@@ -1,7 +1,7 @@
 import factory
 from django.contrib.auth import get_user_model
 
-from apps.animals.models import Animal, Species, Status
+from apps.animals.models import Animal, Species
 from apps.business.models import Location
 
 
@@ -20,11 +20,6 @@ class LocationFactory(factory.django.DjangoModelFactory):
     name = factory.Faker("word")
     description = factory.Faker("sentence")
 
-
-class StatusFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Status
-
     name = factory.Faker("word")
     description = factory.Faker("sentence")
 
@@ -42,7 +37,7 @@ class AnimalFactory(factory.django.DjangoModelFactory):
     diet = "VEGGIES"
     species = factory.SubFactory(SpeciesFactory)
     location = factory.SubFactory(LocationFactory)
-    status = factory.SubFactory(StatusFactory)
+    status = "ADOPTABLE"
 
 
 class UserFactory(factory.django.DjangoModelFactory):

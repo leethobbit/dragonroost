@@ -6,13 +6,16 @@
 </div>
 <a href="{% url 'animals:animal-create' %}" class="btn btn-primary btn-sm">Add New Animal</a>
 <a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-sm">Add New Species</a>
-<a href="{% url 'animals:status-create' %}" class="btn btn-primary btn-sm">Add New Status</a>
 <a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
 <a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
 <br></br>
+<h1>Animal List</h1>
 {% include "animals/_animal-table.html" with animals=animals %}
+<h1>Species List</h1>
 {% include "animals/_species-table.html" with species=species %}
+<h1>People List</h1>
 {% include "people/_person-table.html" with people=people %}
+<h1>Location List</h1>
 {% include "business/_location-table.html" with locations=locations %}
 <br></br>
 <div class="container mt-4">

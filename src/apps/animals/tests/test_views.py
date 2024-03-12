@@ -2,13 +2,8 @@ import pytest
 from django.urls import reverse
 from pytest_django.asserts import assertContains, assertRedirects
 
-from apps.animals.models import Animal, Species, Status
-from tests.factories import (
-    AnimalFactory,
-    LocationFactory,
-    SpeciesFactory,
-    StatusFactory,
-)
+from apps.animals.models import Animal, Species
+from tests.factories import AnimalFactory, LocationFactory, SpeciesFactory
 
 # MISC TESTS #
 
@@ -46,7 +41,6 @@ def test_animal_create_view(client, admin_user):
     client.force_login(admin_user)
 
     species = SpeciesFactory()
-    status = StatusFactory()
     location = LocationFactory()
 
     response = client.post(
@@ -60,7 +54,7 @@ def test_animal_create_view(client, admin_user):
             "age": 73,
             "diet": "MIXED",
             "species": species.id,
-            "status": status.id,
+            "status": "PENDING",
             "location": location.id,
         },
     )
@@ -99,7 +93,7 @@ def test_animal_update_view(client, admin_user):
             "age": 73,
             "diet": "MIXED",
             "species": animal.species.id,
-            "status": animal.status.id,
+            "status": "ADOPTED",
             "location": animal.location.id,
         },
     )
@@ -195,35 +189,3 @@ def test_species_delete_view(client, admin_user):
         reverse("animals:species-delete", kwargs={"pk": species.id})
     )
     assertRedirects(post_response, reverse("home-list"), status_code=302)
-
-
-# STATUS TESTS #
-
-
-@pytest.mark.django_db
-def test_status_create_view(client, admin_user):
-    client.force_login(admin_user)
-    response = client.post(
-        "/animals/status/new/",
-        {"name": "Test Status", "description": "Test status description"},
-    )
-    assert response.status_code == 302
-    assert Status.objects.last().name == "Test Status"
-
-
-@pytest.mark.django_db
-@pytest.mark.skip(reason="Not implemented yet")
-def test_status_detail_view(client, admin_user):
-    pass
-
-
-@pytest.mark.django_db
-@pytest.mark.skip(reason="Not implemented yet")
-def test_status_update_view(client, admin_user):
-    pass
-
-
-@pytest.mark.django_db
-@pytest.mark.skip(reason="Not implemented yet")
-def test_status_delete_view(client, admin_user):
-    pass

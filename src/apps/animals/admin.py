@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Animal, Species, Status
+from .models import Animal, Species
 
 
 # Register your models here.
@@ -15,4 +15,3 @@ class AnimalAdmin(admin.ModelAdmin):
 
 admin.site.register(Animal, AnimalAdmin)
 admin.site.register(Species)
-admin.site.register(Status)

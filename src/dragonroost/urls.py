@@ -18,13 +18,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
-
-from apps.animals import views
-from apps.business import views
-from apps.medical import views
-from apps.people import views
 
 from .views import HomeListView
 
@@ -43,6 +37,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# else:
-#     urlpatterns += staticfiles_urlpatterns()

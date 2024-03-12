@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from dragonroost.mixins import PageTitleViewMixin
 
-from .models import Animal, Species, Status
+from .models import Animal, Species
 
 
 # Create your views here.
@@ -104,39 +104,3 @@ class SpeciesDeleteView(LoginRequiredMixin, DeleteView):
     model = Species
     template_name = "animals/species-confirm-delete.html"
     success_url = reverse_lazy("home-list")
-
-
-class StatusListView(LoginRequiredMixin, ListView):
-    model = Status
-    template_name = "animals/status-list.html"
-    context_object_name = "statuses"
-
-
-class StatusDetailView(LoginRequiredMixin, DetailView):
-    model = Status
-    template_name = "animals/status-detail.html"
-    context_object_name = "status"
-
-
-class StatusCreateView(LoginRequiredMixin, CreateView):
-    model = Status
-    template_name = "animals/status-form.html"
-    fields = ("name", "description")
-
-    def get_success_url(self):
-        return reverse_lazy("animals:status-detail", kwargs={"pk": self.object.id})
-
-
-class StatusUpdateView(LoginRequiredMixin, UpdateView):
-    model = Status
-    template_name = "animals/status-form.html"
-    fields = ("name", "description")
-
-    def get_success_url(self):
-        return reverse_lazy("animals:status-detail", kwargs={"pk": self.object.id})
-
-
-class StatusDeleteView(LoginRequiredMixin, DeleteView):
-    model = Status
-    template_name = "animals/status-confirm-delete.html"
-    success_url = reverse_lazy("animals:status-list")

@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from apps.animals.models import Animal, Species, Status
+from apps.animals.models import Animal, Species
 from apps.business.models import Location
 from apps.people.models import Person
 from dragonroost.mixins import PageTitleViewMixin
