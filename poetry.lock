@@ -1912,4 +1912,4 @@ testing = ["coverage (>=5.0)", "pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "8ae0fcce48f8d0bd5d87b5799f67a929629521a60be8daaeae40aaf6ece23196"
+content-hash = "505f1a45e6e90998be94568e8f799d50c8c79d276b6bf946dc22f1658525451d"
