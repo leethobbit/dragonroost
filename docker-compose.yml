@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     ports:
-      - "8000:8000"
+      - 8000:8000
     volumes:
       - ./media:/app/media
   # this service will use same image, and once the migration is done it will be stopped
@@ -31,7 +31,7 @@ services:
     image: redis:latest
     container_name: redis
     ports:
-      - "6379:6379"
+      - 6379:6379
     volumes:
       - redis_data:/data
 
@@ -39,8 +39,8 @@ services:
     image: mailhog/mailhog
     container_name: mailhog
     ports:
-      - "1025:1025"  # SMTP server
-      - "8025:8025"  # Web UI
+      - 1025:1025  # SMTP server
+      - 8025:8025  # Web UI
 
 volumes:
   prod_db_data:

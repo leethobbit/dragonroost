@@ -9,14 +9,8 @@
 <a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
 <a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
 <br></br>
-<h1>Animal List</h1>
-{% include "animals/_animal-table.html" with animals=animals %}
-<h1>Species List</h1>
-{% include "animals/_species-table.html" with species=species %}
-<h1>People List</h1>
-{% include "people/_person-table.html" with people=people %}
-<h1>Location List</h1>
-{% include "business/_location-table.html" with locations=locations %}
+<h1>Animal Cards</h1>
+{% include "animals/_animal-cards.html" with animals=animals %}
 <br></br>
 <div class="container mt-4">
     <div class="card">

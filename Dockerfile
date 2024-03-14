@@ -50,7 +50,7 @@ RUN groupadd -r django && useradd --no-log-init -r -g django django && \
 USER django
 
 # Start Waitress with a configuration file
-CMD ["waitress-serve", "--port=8000", "--url-scheme=http", "dragonroost.wsgi:application"]
+CMD ["waitress-serve", "--listen=*:8000", "--url-scheme=http", "dragonroost.wsgi:application"]
 
 # Testing runserver due to errors
 # runs the production server

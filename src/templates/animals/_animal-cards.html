@@ -1,0 +1,24 @@
+{% load status_filters %}
+
+<div class="card-group">
+{% for animal in animals %}
+<div class="card" style="width: 18rem;">
+    
+    <div class="card h-100">
+    {% if animal.animal_photo %}
+    <img src="{{ animal.animal_photo.url }}" class="card-img-top" style="height: 20vh; object-fit: cover;" alt="No Photo">
+    {% else %}
+    <img src="" class="card-img-top" style="height: 20vh; width: 20vh; object-fit: cover;" alt="No Photo">
+    {% endif %}    
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><a href="{% url 'animals:animal-detail' animal.id %}">{{ animal.name }}</a></h5>
+      <p class="card-text">{{ animal.description }}</p>
+      <a href="{% url 'business:location-detail' animal.location.id %}" class="btn btn-primary">{{ animal.location.name }}</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+<br></br>
+<h1>Testing Adoption Counts</h1>
+<p>{{ animals|percent_adopted }}% adopted</p>

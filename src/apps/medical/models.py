@@ -8,13 +8,16 @@ EVENT_CHOICES = [
     ("DIAGNOSIS", "Diagnosis"),
     ("MEDICATION / TREATMENT", "Medication / Treatment"),
 ]
+
+
 # Create your models here.
 class Treatment(models.Model):
     name = models.CharField(max_length=80, null=False)
     description = models.TextField(blank=True, null=False, default="")
-    
+
     def __str__(self):
         return self.name
+
 
 class MedicalRecord(models.Model):
     name = models.CharField(max_length=80, null=False, unique=True)

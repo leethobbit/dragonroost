@@ -57,4 +57,4 @@ CACHES = {
     }
 }
 
-ALLOWED_CIDR_NETS = ["10.1.0.0/16"]
+# ALLOWED_CIDR_NETS = ["10.1.0.0/16"]

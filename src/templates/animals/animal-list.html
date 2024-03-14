@@ -4,13 +4,26 @@
     <h1>Dragonroost - Animals</h1>
     <h5>Animals currently at the rescue</h5>
 </div>
-<a href="{% url 'animals:animal-create' %}" class="btn btn-primary btn-sm">Add New Animal</a>
-<a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-sm">Add New Species</a>
-<a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
-<a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
+
+<div class="btn-group btn-group-lg" role="group" aria-label="Button group with nested dropdown">
+    <div class="btn-group btn-group-lg" role="group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Add New
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="{% url 'animals:animal-create' %}" class="btn btn-primary">Add New Animal</a></li>
+        <li><a href="{% url 'animals:species-create' %}" class="btn btn-primary">Add New Species</a></li>
+        <li><a href="{% url 'business:location-create' %}" class="btn btn-primary">Add New Location</a></li>
+        <li><a href="{% url 'people:person-create' %}" class="btn btn-primary">Add New Person</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
 <br></br>
 <h1>{{ title }}</h1>
-{% include "animals/_animal-table.html" %}
+{% include "animals/_animal-cards.html" %}
 <br></br>
 <div class="container mt-4">
     <div class="card">

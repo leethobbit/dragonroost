@@ -1,7 +1,7 @@
 from .base import *  # noqa
 
 DEBUG = True
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS += ["localhost", "127.0.0.1"]
 SECRET_KEY = os.getenv("SECRET_KEY", "dont_use_this_default_key_ever")
 
 # Development-specific apps and middlewares
