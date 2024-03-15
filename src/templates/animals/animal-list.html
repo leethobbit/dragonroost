@@ -10,16 +10,14 @@
       <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         Add New
       </button>
-      <ul class="dropdown-menu">
-        <li><a href="{% url 'animals:animal-create' %}" class="btn btn-primary">Add New Animal</a></li>
-        <li><a href="{% url 'animals:species-create' %}" class="btn btn-primary">Add New Species</a></li>
-        <li><a href="{% url 'business:location-create' %}" class="btn btn-primary">Add New Location</a></li>
-        <li><a href="{% url 'people:person-create' %}" class="btn btn-primary">Add New Person</a></li>
+      <ul class="dropdown-menu" style="min-width: 100%;">
+        <li><a href="{% url 'animals:animal-create' %}" class="btn btn-primary">New Animal</a></li>
+        <li><a href="{% url 'animals:species-create' %}" class="btn btn-primary">New Species</a></li>
+        <li><a href="{% url 'business:location-create' %}" class="btn btn-primary">New Location</a></li>
+        <li><a href="{% url 'people:person-create' %}" class="btn btn-primary">New Person</a></li>
       </ul>
     </div>
   </div>
-
-
 
 <br></br>
 <h1>{{ title }}</h1>
