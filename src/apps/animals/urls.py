@@ -7,6 +7,7 @@ from apps.animals.views import (
     AnimalDetailView,
     AnimalListView,
     AnimalUpdateView,
+    AnimalHTMxTableView,
     SpeciesCreateView,
     SpeciesDeleteView,
     SpeciesDetailView,
@@ -22,6 +23,7 @@ urlpatterns = [
     path("<int:pk>/detail/", AnimalDetailView.as_view(), name="animal-detail"),
     path("<int:pk>/edit/", AnimalUpdateView.as_view(), name="animal-update"),
     path("<int:pk>/delete/", AnimalDeleteView.as_view(), name="animal-delete"),
+    path("search/", AnimalHTMxTableView.as_view(), name="animal-table"),
     path("species/new/", SpeciesCreateView.as_view(), name="species-create"),
     path(
         "species/<int:pk>/detail/", SpeciesDetailView.as_view(), name="species-detail"

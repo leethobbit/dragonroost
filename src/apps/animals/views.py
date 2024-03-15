@@ -3,10 +3,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django_tables2 import SingleTableMixin
+from django_filters.views import FilterView
 
 from dragonroost.mixins import PageTitleViewMixin
 
 from .models import Animal, Species
+from apps.animals.tables import AnimalHTMxTable
+from apps.animals.filters import AnimalFilter
 
 
 # Create your views here.
@@ -104,3 +108,18 @@ class SpeciesDeleteView(LoginRequiredMixin, DeleteView):
     model = Species
     template_name = "animals/species-confirm-delete.html"
     success_url = reverse_lazy("home-list")
+
+
+class AnimalHTMxTableView(SingleTableMixin, FilterView):
+    table_class = AnimalHTMxTable
+    queryset = Animal.objects.all()
+    filterset_class = AnimalFilter
+    paginate_by = 15
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "animals/animal-table-partial.html"
+        else:
+            template_name = "animals/animal-table-htmx.html"
+
+        return template_name
