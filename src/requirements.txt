@@ -19,7 +19,7 @@ importlib-metadata==7.0.1
 iniconfig==2.0.0
 installer==0.7.0
 jaraco.classes==3.3.1
-keyring==24.3.0
+keyring==24.3.1
 more-itertools==10.2.0
 msgpack==1.0.7
 openpyxl==3.0.10
