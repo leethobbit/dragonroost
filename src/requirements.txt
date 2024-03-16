@@ -21,7 +21,7 @@ installer==0.7.0
 jaraco.classes==3.3.1
 keyring==24.3.0
 more-itertools==10.2.0
-msgpack==1.0.7
+msgpack==1.0.8
 openpyxl==3.0.10
 packaging==23.2
 pexpect==4.9.0
