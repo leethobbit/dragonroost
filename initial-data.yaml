@@ -23,6 +23,13 @@
   fields:
     name: Cat Corner
     description: Corner of cats.
+  
+  # Medical record initial data
+- model: medical.medicalrecord
+  pk: 1
+  fields:
+    name: Temp Record
+
 
 # Animal initial data
 - model: animals.animal

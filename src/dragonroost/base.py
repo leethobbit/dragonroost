@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     "crispy_bootstrap5",
+    "viewflow",
     "apps.accounts",
     "apps.animals",
     "apps.business",

@@ -1,6 +1,7 @@
 from django.db import models
 
 from apps.business.models import Location
+from apps.medical.models import MedicalRecord
 
 # Create your models here.
 
@@ -37,7 +38,7 @@ class Animal(models.Model):
         ("ADOPTABLE", "Adoptable"),
         ("QUARANTINED", "Quarantined"),
         ("FOSTERED", "Fostered"),
-        ("NEED VET CHECK", "Need Vet Check"),
+        ("MEDICAL_HOLD", "Medical Hold"),
         ("ADOPTED", "Adopted"),
     ]
 
@@ -56,6 +57,7 @@ class Animal(models.Model):
     status = models.CharField(
         max_length=80, choices=STATUS_CHOICES, default="ADOPTABLE"
     )
+    medical_record = models.OneToOneField(MedicalRecord, related_name="medical_record", on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table_comment = "Holds information about animals"
@@ -79,3 +81,22 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.medical_record = MedicalRecord.objects.create(name = f"Medical_{self.name}")
+        super().save(*args, **kwargs)
+
+# class AnimalComment(models.Model):
+#     TYPE_CHOICES = [
+#         ("MEDICAL", "Medical"),
+#         ("BEHAVIORAL", "Behavioral"),
+#         ("COMMENT", "Comment"),
+#         ("WARNING", "Warning"),
+#     ]
+
+#     animal = models.ForeignKey(Animal, related_name="comments",on_delete=models.CASCADE, null=False)
+#     type = models.CharField(max_length=20, choices=TYPE_CHOICES, default="COMMENT")
+#     comment = models.TextField(max_length=255, null=False, blank=True, default="")
+#     initials = models.CharField(max_length=20, default="zz", null=False)
+#     created = models.DateTimeField(auto_now_add=True)

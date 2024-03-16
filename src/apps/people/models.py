@@ -30,4 +30,4 @@ class Person(models.Model):
         """
         Required method to see the name field when a form is created with this model
         """
-        return self.name
+        return (self.first_name + ' ' + self.last_name)

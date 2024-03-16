@@ -1,7 +1,5 @@
 from django.db import models
 
-from apps.animals.models import Animal
-
 EVENT_CHOICES = [
     ("WELLNESS / VACCINE", "Wellness / Vaccine"),
     ("SURGERY", "Surgery"),
@@ -20,11 +18,11 @@ class Treatment(models.Model):
 
 
 class MedicalRecord(models.Model):
-    name = models.CharField(max_length=80, null=False, unique=True)
-    animal = models.ForeignKey(Animal, on_delete=models.PROTECT, null=False)
-    event_type = models.CharField(max_length=80, choices=EVENT_CHOICES)
-    description = models.TextField(blank=True, null=False, default="")
-    needs_treatment = models.BooleanField(default=False)
+    name = models.CharField(max_length=80, null=False)
+    health_report = models.TextField(max_length=500, null=False, blank=True, default="")
+    treatment_history = models.TextField(max_length=500, null=False, blank=True, default="")
+    notes = models.TextField(max_length=500, blank=True, null=False, default="")
+    is_vet_cleared = models.BooleanField(default=False)
 
     class Meta:
         db_table_comment = "Table holds medical record entries."
