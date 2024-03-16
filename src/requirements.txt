@@ -36,7 +36,7 @@ pydantic==1.10.5
 pyproject_hooks==1.0.0
 pytest==8.0.2
 pywin32-ctypes==0.2.2
-PyYAML==6.0
+PyYAML==6.0.1
 rapidfuzz==3.6.1
 requests==2.28.2
 requests-toolbelt==1.0.0
