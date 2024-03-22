@@ -1,0 +1,26 @@
+{% extends 'viewflow/base_page.html' %}
+
+{% block content %}
+<div class="mdc-layout-grid vf-page__grid">
+  <div class="mdc-layout-grid__inner vf-page__grid-inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10-desktop">
+      <div class="mdc-card vf-card">
+        <div class="mdc-card__primary-action">
+          <h2 class="mdc-typography mdc-typography--headline6">Sample</h2>
+        </div>
+        <div class="mdc-typography mdc-typography--body2">
+          Lorem ipsum...
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block page-toolbar-extra %}
+<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+    <a class="mdc-icon-button material-icons mdc-top-app-bar__action-item"
+         href="{% url settings %}"
+         aria-label="Settings">settings</a>
+    </section>
+{% endblock %}

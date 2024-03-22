@@ -1,0 +1,17 @@
+{% extends 'viewflow/base.html' %}
+{% load i18n static %}
+
+{% block title %}{{ site.title |default:"Corp. Ink." }}{% endblock %}
+
+{% block favicon %}
+  <link rel="icon" href="{% static 'viewflow/favicon.png' %}" type="image/png" />
+{% endblock %}
+
+{% block body %}
+  <aside class="mdc-drawer">
+    Drawer content
+  </aside>
+  <div class="mdc-drawer-app-content">
+     Lorem ipsum...
+  </div>
+{% endblock %}

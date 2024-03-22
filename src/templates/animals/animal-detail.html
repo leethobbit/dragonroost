@@ -9,4 +9,35 @@
 {% endif %}
 <a href="{% url 'animals:animal-update' animal.id %}">Edit</a>
 <a href="{% url 'animals:animal-delete' animal.id %}">Delete</a>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ medical_record_form }}
+      <button class="btn btn-info" type="submit">Add record <i class="fas fa-comments"></i></button>
+    </div>
+  </form>
+
+{% if medical_records %}
+<strong class="text-secondary">{{ object.number_of_medical_records }} Medical Record{{ object.number_of_medical_records|pluralize }}</strong>
+<hr>
+<ul>
+  {% for record in medical_records %}
+  <li>           
+   <div>
+      <span>
+        <strong class="text-info">{{ record.notes }} </strong>
+        <small class="text-muted">{{ record.date }}</small>
+      </span>
+      <p>
+        {{ record.content|safe }}
+      </p>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <strong class="text-secondary">No records yet...</strong>
+{% endif %}
+</div>
 {% endblock %}

@@ -1,7 +1,6 @@
 from django.db import models
 
 from apps.business.models import Location
-from apps.medical.models import MedicalRecord
 
 # Create your models here.
 
@@ -57,7 +56,7 @@ class Animal(models.Model):
     status = models.CharField(
         max_length=80, choices=STATUS_CHOICES, default="ADOPTABLE"
     )
-    medical_record = models.OneToOneField(MedicalRecord, related_name="medical_record", on_delete=models.SET_NULL, null=True)
+    
 
     class Meta:
         db_table_comment = "Holds information about animals"
@@ -79,13 +78,17 @@ class Animal(models.Model):
         # Might be able to use Django timesince, like intake_date|timesince
         pass
 
+    @property
+    def number_of_medical_records(self):
+        return MedicalRecord.objects.filter(animal=self).count()
+
     def __str__(self):
         return self.name
     
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.medical_record = MedicalRecord.objects.create(name = f"Medical_{self.name}")
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.pk is None:
+    #         self.medical_record = MedicalRecord.objects.create(name = f"Medical_{self.name}")
+    #     super().save(*args, **kwargs)
 
 # class AnimalComment(models.Model):
 #     TYPE_CHOICES = [

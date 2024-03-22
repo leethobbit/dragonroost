@@ -14,11 +14,15 @@
 }
 
 .table-container table td:nth-child(2) {
-    width: 20%;
+    width: 5%;
 }
 
 .table-container table td:nth-child(4) {
     width: 50%;
+}
+
+.table-container table td:nth-child(6) {
+    width: 10%;
 }
 
 /* Progress bar */

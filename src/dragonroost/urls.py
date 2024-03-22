@@ -18,59 +18,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.models import User
 from django.urls import include, path
-from viewflow.contrib.auth import AuthViewset
-from viewflow.urls import Application, Site, ModelViewset, AppMenuMixin
 
 from .views import HomeListView
-from apps.animals.viewsets import AnimalViewSet, SpeciesViewSet
-from apps.people.viewsets import PersonViewSet
-from apps.business.viewsets import LocationViewSet
-
-site = Site(
-    title="Dragonroost",
-    primary_color="#03989e",
-    secondary_color="#015b5e",
-    viewsets=[
-        Application(
-            title="Animals",
-            icon="pets",
-            app_name="animals",
-            viewsets=[
-                AnimalViewSet(),
-                SpeciesViewSet(),
-                ]
-            ),
-        Application(
-            title="People",
-            icon="group",
-            app_name="people",
-            viewsets=[
-                PersonViewSet()
-                ]
-            ),
-        Application(
-            title="Business",
-            icon="money",
-            app_name="business",
-            viewsets=[
-                LocationViewSet()
-            ]
-        )
-        ]
-    )
 
 urlpatterns = [
-    path("", site.urls),
     path("admin/", admin.site.urls),
     path("", HomeListView.as_view(), name="home-list"),
     path("accounts/", include("apps.accounts.urls")),
-    path("old/animals/", include("apps.animals.urls", namespace="old-animals")),
-    path("old/business/", include("apps.business.urls", namespace="old-business")),
-    path("old/medical/", include("apps.medical.urls", namespace="old-medical")),
-    path("old/people/", include("apps.people.urls", namespace="old-people")),
-    # path('hello/', hello_django, name='hello_django')
-    # path("/", views.animal_list, name='animal_list')
+    path("animals/", include("apps.animals.urls", namespace="old-animals")),
+    path("business/", include("apps.business.urls", namespace="old-business")),
+    path("medical/", include("apps.medical.urls", namespace="old-medical")),
+    path("people/", include("apps.people.urls", namespace="old-people")),
 ]
 
 if settings.DEBUG:

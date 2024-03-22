@@ -4,11 +4,19 @@
     <h1>Dragonroost - Animals</h1>
     <h5>Animals currently at the rescue</h5>
 </div>
-<a href="{% url 'animals:animal-create' %}" class="btn btn-primary btn-sm">Add New Animal</a>
-<a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-sm">Add New Species</a>
-<a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
-<a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
-<br></br>
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Add New
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'animals:animal-create' %}">New Animal</a></li>
+      <li><a class="dropdown-item" href="{% url 'animals:species-create' %}">New Species</a></li>
+      <li><a class="dropdown-item" href="{% url 'business:location-create' %}">New Location</a></li>
+      <li><a class="dropdown-item" href="{% url 'people:person-create' %}">New Person</a></li>
+    </ul>
+  </div>
+
 <h1>Animal Cards</h1>
 {% include "animals/_animal-cards.html" with animals=animals %}
 <br></br>

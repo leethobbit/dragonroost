@@ -9,6 +9,8 @@ from django_filters.views import FilterView
 from dragonroost.mixins import PageTitleViewMixin
 
 from .models import Animal, Species
+from apps.medical.models import MedicalRecord
+from apps.medical.forms import MedicalRecordForm
 from apps.animals.tables import AnimalHTMxTable
 from apps.animals.filters import AnimalFilter
 
@@ -24,6 +26,26 @@ class AnimalDetailView(LoginRequiredMixin, DetailView):
     model = Animal
     template_name = "animals/animal-detail.html"
     context_object_name = "animal"
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        medical_records = MedicalRecord.objects.filter(
+            animal=self.get_object()).order_by("-created")
+        data["medical_records"] = medical_records
+        data["medical_record_form"] = MedicalRecordForm(instance=self.get_object())
+        return data
+    
+    def post(self, request, *args, **kwargs):
+        new_medical_record = MedicalRecord(
+            animal=self.get_object(),
+            name=request.POST.get("name"),
+            health_report=request.POST.get("health_report"),
+            treatment_history=request.POST.get("treatment_history"),
+            notes=request.POST.get("notes"),
+            is_vet_cleared = request.POST.get("is_vet_cleared") == "on"
+        )
+        new_medical_record.save()
+        return self.get(self, request, *args, **kwargs)
 
 
 class AnimalCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
