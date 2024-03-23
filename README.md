@@ -19,6 +19,10 @@ Dragonroost is an animal shelter/rescue management app, written in Python using 
 
 </div>
 
+## Roadmap
+
+This app is in the early stages of development.  For a general idea of what I'm trying to do, please check out the [roadmap](ROADMAP.md).
+
 ## Very first steps
 
 ### Initialize your code
@@ -79,21 +83,6 @@ Building a new version of the application contains steps:
 - Make a commit to `GitHub`.
 - Create a `GitHub release`.
 - And... publish 🙂 `poetry publish --build`
-
-## 🎯 What's next
-
-Well, that's up to you 💪🏻. I can only recommend the packages and articles that helped me.
-
-- [`Typer`](https://github.com/tiangolo/typer) is great for creating CLI applications.
-- [`Rich`](https://github.com/willmcgugan/rich) tasks it easy to add beautiful formatting in the terminal.
-- [`Pydantic`](https://github.com/samuelcolvin/pydantic/) – data validation and settings management using Python type hinting.
-- [`Loguru`](https://github.com/Delgan/loguru) tasks logging (stupidly) simple.
-- [`tqdm`](https://github.com/tqdm/tqdm) – fast, extensible progress bar for Python and CLI.
-- [`IceCream`](https://github.com/gruns/icecream) is a little library for sweet and creamy debugging.
-- [`orjson`](https://github.com/ijl/orjson) – ultra fast JSON parsing library.
-- [`Returns`](https://github.com/dry-python/returns) tasks you function's output meaningful, typed, and safe!
-- [`Hydra`](https://github.com/facebookresearch/hydra) is a framework for elegantly configuring complex applications.
-- [`FastAPI`](https://github.com/tiangolo/fastapi) is a type-driven asynchronous web framework.
 
 Articles:
 

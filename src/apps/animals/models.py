@@ -84,11 +84,6 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.name
-    
-    # def save(self, *args, **kwargs):
-    #     if self.pk is None:
-    #         self.medical_record = MedicalRecord.objects.create(name = f"Medical_{self.name}")
-    #     super().save(*args, **kwargs)
 
 # class AnimalComment(models.Model):
 #     TYPE_CHOICES = [
