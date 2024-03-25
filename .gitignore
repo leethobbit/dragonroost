@@ -17,6 +17,7 @@ Icon
 # Dragonroost Ignores
 dev_db_data/
 prod_db_data/
+deployment.yaml
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
