@@ -27,10 +27,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomeListView.as_view(), name="home-list"),
     path("accounts/", include("apps.accounts.urls")),
-    path("animals/", include("apps.animals.urls", namespace="old-animals")),
-    path("business/", include("apps.business.urls", namespace="old-business")),
-    path("medical/", include("apps.medical.urls", namespace="old-medical")),
-    path("people/", include("apps.people.urls", namespace="old-people")),
+    path("animals/", include("apps.animals.urls", namespace="animals")),
+    path("business/", include("apps.business.urls", namespace="business")),
+    path("medical/", include("apps.medical.urls", namespace="medical")),
+    path("people/", include("apps.people.urls", namespace="people")),
 ]
 
 if settings.DEBUG:

@@ -84,17 +84,16 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.name
+    
+class MedicalRecord(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    notes = models.TextField(max_length=500, blank=True, null=False, default="")
+    is_vet_cleared = models.BooleanField(default=False)
+    initials = models.CharField(max_length=20, default="zz", null=False)
+    animal = models.ForeignKey(Animal, related_name="medical_records", on_delete=models.CASCADE, default=1)
 
-# class AnimalComment(models.Model):
-#     TYPE_CHOICES = [
-#         ("MEDICAL", "Medical"),
-#         ("BEHAVIORAL", "Behavioral"),
-#         ("COMMENT", "Comment"),
-#         ("WARNING", "Warning"),
-#     ]
+    class Meta:
+        db_table_comment = "Table holds medical record entries."
 
-#     animal = models.ForeignKey(Animal, related_name="comments",on_delete=models.CASCADE, null=False)
-#     type = models.CharField(max_length=20, choices=TYPE_CHOICES, default="COMMENT")
-#     comment = models.TextField(max_length=255, null=False, blank=True, default="")
-#     initials = models.CharField(max_length=20, default="zz", null=False)
-#     created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.name
