@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://herps.ddrev.org']
 
 # Application definition
 
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     "crispy_bootstrap5",
-    "viewflow",
+    "django_bootstrap5",
     "apps.accounts",
     "apps.animals",
     "apps.business",
@@ -144,3 +144,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Settings for django-bootstrap5
+BOOTSTRAP5 = {
+    "error_css_class": "django_bootstrap5-error",
+    "required_css_class": "django_bootstrap5-required",
+    "javascript_in_head": True,
+    "theme_url": "https://bootswatch.com/5/vapor/bootstrap.min.css", # Other options are quartz, solar
+}

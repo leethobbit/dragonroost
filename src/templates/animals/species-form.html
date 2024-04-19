@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
 {% block content %}
-<h1>New Species</h1>
-<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Save</button>
-</form>
+<form class="align-items-center flex-column" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  
+    {% bootstrap_form form %}
+  
+    {% bootstrap_button button_type="submit" content="Save" %}
+    {% bootstrap_button button_type="reset" content="Cancel" %}
+  </form>
 {% endblock %}

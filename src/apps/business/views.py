@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
+from dragonroost.mixins import PageTitleViewMixin
+
 from .models import Location
 
 
@@ -29,9 +31,10 @@ class LocationCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy("business:location-detail", kwargs={"pk": self.object.id})
 
 
-class LocationUpdateView(LoginRequiredMixin, UpdateView):
+class LocationUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Location
     template_name = "business/location-form.html"
+    title = "Edit Location"
     fields = ("name", "description")
 
     def get_success_url(self):
