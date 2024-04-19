@@ -15,6 +15,8 @@
 [![License](https://img.shields.io/github/license/leethobbit/dragonroost)](https://github.com/leethobbit/dragonroost/blob/master/LICENSE)
 ![Coverage Report](assets/images/coverage.svg)
 
+![Dragonroost Home](media/images/dragonroost-homepage.png)
+
 Dragonroost is an animal shelter/rescue management app, written in Python using the Django web framework.
 
 </div>
