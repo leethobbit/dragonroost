@@ -1741,13 +1741,13 @@ files = [
 
 [[package]]
 name = "nicegui"
-version = "1.4.18"
+version = "1.4.23"
 description = "Create web-based user interfaces with Python. The nice way."
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "nicegui-1.4.18-py3-none-any.whl", hash = "sha256:67a3c73196badf7da86bb40a5bb7afb9ab0a2532b21b7c3e0f5c8d3e9969f653"},
-    {file = "nicegui-1.4.18.tar.gz", hash = "sha256:01b2865a257a7ddd38f791ff104058e13392834399096f3a126946d59d7f4b12"},
+    {file = "nicegui-1.4.23-py3-none-any.whl", hash = "sha256:ff4c31c05c344f66567ce90e2149ce2ceaa6cad6d4eb1484edf8b438dbd2e30d"},
+    {file = "nicegui-1.4.23.tar.gz", hash = "sha256:abfa1183822a43ec297cc14028de40a05672c8daea8ecf1b3c805b81ad45766f"},
 ]
 
 [package.dependencies]
@@ -1774,6 +1774,7 @@ highcharts = ["nicegui-highcharts (>=1.0.1,<2.0.0)"]
 matplotlib = ["matplotlib (>=3.5.0,<4.0.0)"]
 native = ["pywebview (>=4.4.0,<5.0.0)"]
 plotly = ["plotly (>=5.13.0,<6.0.0)"]
+sass = ["libsass (>=0.23.0,<0.24.0)"]
 
 [[package]]
 name = "nodeenv"
