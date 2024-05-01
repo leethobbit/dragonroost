@@ -13,7 +13,7 @@ dulwich==0.21.7
 et-xmlfile==1.1.0
 fastapi==0.92.0
 fastjsonschema==2.19.1
-filelock==3.13.1
+filelock==3.14.0
 idna==3.4
 importlib-metadata==7.0.1
 iniconfig==2.0.0
