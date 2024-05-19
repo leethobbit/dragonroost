@@ -30,7 +30,27 @@
   fields:
     name: Temp Record
 
-
+# Base roles for people
+- model: people.role
+  pk: 1
+  fields:
+    name: Volunteer
+    description: A person who volunteers for the rescue.
+- model: people.role
+  pk: 2
+  fields:
+    name: Adopter
+    description: A person who adopts animals from the rescue.
+- model: people.role
+  pk: 3
+  fields:
+    name: Donor
+    description: A person who makes donations to the rescue.
+- model: people.role
+  pk: 4
+  fields:
+    name: Foster
+    description: A person who fosters animals for the rescue.
 # Animal initial data
 - model: animals.animal
   pk: 1

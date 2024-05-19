@@ -14,7 +14,7 @@
     <div class="card-body">
       <h5 class="card-title"><a href="{% url 'animals:animal-detail' animal.id %}">{{ animal.name }}</a></h5>
       <p class="card-text">{{ animal.species.name }}</p>
-      <p class="card-text">Status: {{ animal.get_status_display }}</p>
+      <p class="card-text">{{ animal.get_status_display }}</p>
       <a href="{% url 'business:location-detail' animal.location.id %}" class="btn btn-primary">{{ animal.location.name }}</a>
     </div>
   </div>
