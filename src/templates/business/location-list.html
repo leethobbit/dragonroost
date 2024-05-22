@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
 <h1>Location List</h1>
 <ul>
 {% for location in locations %}

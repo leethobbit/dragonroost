@@ -20,6 +20,6 @@ class AnimalHTMxTable(tables.Table):
 
     class Meta:
         model = Animal
-        fields = ('id', 'animal_photo', 'name', 'description', 'age','donation_fee', 'species', 'location', 'status')
+        fields = ('id', 'animal_photo', 'name', 'description', 'age','donation_fee', 'species', 'location', 'status', 'intake_date')
         template_name = "tables/_animal-table-htmx.html"
 

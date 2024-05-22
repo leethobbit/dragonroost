@@ -3,17 +3,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Add New
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="{% url 'animals:animal-create' %}">New Animal</a></li>
-    <li><a class="dropdown-item" href="{% url 'animals:species-create' %}">New Species</a></li>
-    <li><a class="dropdown-item" href="{% url 'business:location-create' %}">New Location</a></li>
-    <li><a class="dropdown-item" href="{% url 'people:person-create' %}">New Person</a></li>
-  </ul>
-</div>
+
 
 <br></br>
 {% include "animals/_animal-cards.html" %}

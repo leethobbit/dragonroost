@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<a href="{% url 'animals:animal-create' %}" class="btn btn-primary btn-sm">Add New Animal</a>
-<a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-sm">Add New Species</a>
-<a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
 <a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
 <br></br>
 {% include "people/_person-table.html" %}

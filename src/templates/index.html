@@ -3,20 +3,16 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Add New
-    </button>
-    <br></br>
-    <h2>Recent Intakes</h2>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="{% url 'animals:animal-create' %}">New Animal</a></li>
-      <li><a class="dropdown-item" href="{% url 'animals:species-create' %}">New Species</a></li>
-      <li><a class="dropdown-item" href="{% url 'business:location-create' %}">New Location</a></li>
-      <li><a class="dropdown-item" href="{% url 'people:person-create' %}">New Person</a></li>
-    </ul>
-  </div>
+<div class="container mt-4">
+  <br></br>
+  <h3>What would you like to do?</h3>
+  <a href="{% url 'animals:animal-create' %}" class="btn btn-success btn-lg">New Animal</a>
+  <a href="{% url 'people:person-create' %}" class="btn btn-secondary btn-lg">New Person</a>
+  <a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-lg">New Species</a>
+  <a href="{% url 'business:location-create' %}" class="btn btn-light btn-lg">New Location</a>
+</div>
 <br></br>
+<h3>Recent Intakes</h3>
 {% include "animals/_animal-cards.html" with animals=animals %}
 <br></br>
 <div class="container mt-4">

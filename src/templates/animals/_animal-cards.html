@@ -1,6 +1,6 @@
 {% load status_filters %}
 <div class="row row-cols-1 row-cols-md-5 g-1">
-  {% for animal in animals|slice:"5" %}
+  {% for animal in animals|dictsortreversed:"intake_date"|slice:":5" %}
   <div class="col">
     <div class="card" style="width: 18rem;">
       <div class="card h-100">

@@ -13,7 +13,7 @@
             <th scope="col">Donation Fee</th>
             <th scope="col">Intake Date</th>
     </thead>
-    {% for animal in animals %}
+    {% for animal in animals|dictsortreversed:"intake_date" %}
     <tbody>
         <td style="text-align: center; vertical-align: middle;">{{ animal.animal_tag }}</td>
         <td style="text-align: center;">
