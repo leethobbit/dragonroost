@@ -11,13 +11,14 @@ from dragonroost.mixins import PageTitleViewMixin
 
 
 # Create your views here.
-class HomeListView(LoginRequiredMixin, ListView):
+class HomeListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
     """
     This custom ListView gathers context from many models to display on the index page.
     """
 
     context_object_name = "animals"
     template_name = "index.html"
+    title = "Dashboard"
     queryset = Animal.objects.all()
 
     def get_context_data(self, **kwargs):

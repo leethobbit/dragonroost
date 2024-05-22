@@ -15,15 +15,17 @@ from apps.animals.filters import AnimalFilter
 
 
 # Create your views here.
-class AnimalListView(LoginRequiredMixin, ListView):
+class AnimalListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
     model = Animal
     template_name = "animals/animal-list.html"
+    title = "Recent Intakes"
     context_object_name = "animals"
 
 
-class AnimalDetailView(LoginRequiredMixin, DetailView):
+class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Animal
     template_name = "animals/animal-detail.html"
+    title = "Animal Details"
     context_object_name = "animal"
 
     def get_context_data(self, **kwargs):
@@ -88,9 +90,10 @@ class AnimalUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
         return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
 
 
-class AnimalDeleteView(LoginRequiredMixin, DeleteView):
+class AnimalDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Animal
     template_name = "animals/animal-confirm-delete.html"
+    title = "Animal Delete Confirmation"
     success_url = reverse_lazy("animals:animal-list")
 
 class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
@@ -101,19 +104,20 @@ class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
         return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.animal.id})
 
 
-class SpeciesListView(LoginRequiredMixin, ListView):
+class SpeciesListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
     model = Species
     template_name = "animals/species-list.html"
+    title = "Species List"
     context_object_name = "species"
 
 
-class SpeciesDetailView(LoginRequiredMixin, DetailView):
+class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Species
     template_name = "animals/species-detail.html"
     context_object_name = "species"
 
 
-class SpeciesCreateView(LoginRequiredMixin, CreateView):
+class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Species
     template_name = "animals/species-form.html"
     fields = ("name", "class_name", "description")
@@ -122,7 +126,7 @@ class SpeciesCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy("animals:species-detail", kwargs={"pk": self.object.id})
 
 
-class SpeciesUpdateView(LoginRequiredMixin, UpdateView):
+class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Species
     template_name = "animals/species-form.html"
     fields = ("name", "class_name", "description")
@@ -131,17 +135,18 @@ class SpeciesUpdateView(LoginRequiredMixin, UpdateView):
         return reverse_lazy("animals:species-detail", kwargs={"pk": self.object.id})
 
 
-class SpeciesDeleteView(LoginRequiredMixin, DeleteView):
+class SpeciesDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Species
     template_name = "animals/species-confirm-delete.html"
     success_url = reverse_lazy("home-list")
 
 
-class AnimalHTMxTableView(SingleTableMixin, FilterView):
+class AnimalHTMxTableView(SingleTableMixin, PageTitleViewMixin, FilterView):
     table_class = AnimalHTMxTable
     queryset = Animal.objects.all()
     filterset_class = AnimalFilter
     paginate_by = 15
+    title = "Animal Search"
 
     def get_template_names(self):
         if self.request.htmx:

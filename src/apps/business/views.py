@@ -22,7 +22,7 @@ class LocationDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "location"
 
 
-class LocationCreateView(LoginRequiredMixin, CreateView):
+class LocationCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Location
     template_name = "business/location-form.html"
     fields = ("name", "description")
@@ -41,7 +41,7 @@ class LocationUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
         return reverse_lazy("business:location-detail", kwargs={"pk": self.object.id})
 
 
-class LocationDeleteView(LoginRequiredMixin, DeleteView):
+class LocationDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Location
     template_name = "business/location-confirm-delete.html"
     success_url = reverse_lazy("business:location-list")

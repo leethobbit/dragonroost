@@ -51,8 +51,8 @@ class Animal(models.Model):
     sex = models.CharField(max_length=20, choices=SEX_CHOICES, default="UNKNOWN")
     age = models.IntegerField(default=0)
     diet = models.CharField(max_length=80, choices=DIET_CHOICES, default="MIXED")
-    species = models.ForeignKey(Species, on_delete=models.SET_NULL, null=True)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+    species = models.ForeignKey(Species, on_delete=models.SET_NULL, related_name="animals", null=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, related_name="animals", null=True)
     status = models.CharField(
         max_length=80, choices=STATUS_CHOICES, default="ADOPTABLE"
     )

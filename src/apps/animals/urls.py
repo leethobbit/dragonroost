@@ -25,6 +25,7 @@ urlpatterns = [
     path("<int:pk>/edit/", AnimalUpdateView.as_view(), name="animal-update"),
     path("<int:pk>/delete/", AnimalDeleteView.as_view(), name="animal-delete"),
     path("search/", AnimalHTMxTableView.as_view(), name="animal-table"),
+    path("species/", SpeciesListView.as_view(), name="species-list"),
     path("species/new/", SpeciesCreateView.as_view(), name="species-create"),
     path(
         "species/<int:pk>/detail/", SpeciesDetailView.as_view(), name="species-detail"

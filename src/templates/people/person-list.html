@@ -1,14 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="col-md-12 text-center">
-    <h1>Dragonroost - People</h1>
-</div>
 <a href="{% url 'animals:animal-create' %}" class="btn btn-primary btn-sm">Add New Animal</a>
 <a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-sm">Add New Species</a>
 <a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
 <a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
 <br></br>
-<h1>{{ title }}</h1>
 {% include "people/_person-table.html" %}
 <br></br>
 <div class="container mt-4">

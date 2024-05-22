@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dragonroost</title>
   </head>
   <body>
 {% extends 'bootstrap.html' %}
@@ -21,7 +20,7 @@
   
   {% include 'navbar.html' %}
     <div class="container">
-        <h2>{% block title %}{{ title }}{% endblock %}</h2>
+        <h2 class="text-center">{% block title %}Dragonroost - {{ title }}{% endblock %}</h2>
 
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
         

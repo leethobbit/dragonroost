@@ -4,12 +4,11 @@
 
 {% block content %}
 
-<h1>{{ animal.name }} - Detail</h1>
-<p>{{ animal.description }}</p>
 {% if animal.animal_photo %}
 <div>
 <img width="25%" height="25%" src="{{ animal.animal_photo.url }}">
 </div>
+<p>Description: {{ animal.description }}</p>
 {% endif %}
 <a href="{% url 'animals:animal-update' animal.id %}">Edit</a>
 <a href="{% url 'animals:animal-delete' animal.id %}">Delete</a>

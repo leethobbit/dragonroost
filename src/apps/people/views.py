@@ -17,9 +17,10 @@ class PersonListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
     context_object_name = "people"
 
 
-class PersonDetailView(LoginRequiredMixin, DetailView):
+class PersonDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Person
     template_name = "people/person-detail.html"
+    title = "Person Details"
     context_object_name = "person"
 
 

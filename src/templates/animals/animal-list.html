@@ -1,10 +1,8 @@
 {% extends "base.html" %}
-{% block content %}
-<div class="col-md-12 text-center">
-    <h1>Dragonroost - Animals</h1>
-    <h5>Animals currently at the rescue</h5>
-</div>
 
+{% load django_bootstrap5 %}
+
+{% block content %}
 <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Add New
@@ -18,7 +16,6 @@
 </div>
 
 <br></br>
-<h1>{{ title }}</h1>
 {% include "animals/_animal-cards.html" %}
 <br></br>
 <div class="container mt-4">

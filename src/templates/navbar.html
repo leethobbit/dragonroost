@@ -9,20 +9,38 @@
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/animals">Animals</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Animals
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'animals:animal-table' %}">Animal Search</a></li>
+              <li><a class="dropdown-item" href="{% url 'animals:species-list' %}">Species List</a></li>
+              <li><a class="dropdown-item" href="#">Start Adoption</a></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'people:person-list' %}">People</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              People
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'people:person-list' %}">People List</a></li>
+              <li><a class="dropdown-item" href="#">Volunteers</a></li>
+              <li><a class="dropdown-item" href="#">Donors</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Business
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'business:location-list' %}">Locations</a></li>
+              <li><a class="dropdown-item" href="#">Financials</a></li>
+              <li><a class="dropdown-item" href="#">Meetings</a></li>
+            </ul>
           </li>
           <li>
             <a class="nav-link" >Medical</a>
-          </li>
-          <li>
-            <a class="nav-link" href="{% url 'business:location-list' %}">Business</a>
-          </li>
-          <li>
-            <a class="nav-link" href="{% url 'animals:animal-table' %}">Search Animals</a>
           </li>
         </ul>
         <ul class="navbar-nav">
