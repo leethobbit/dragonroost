@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
@@ -26,5 +27,6 @@ class HomeListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
         context["species"] = Species.objects.all()
         context["people"] = Person.objects.all()
         context["locations"] = Location.objects.all()
+        context["animal_count"] = Animal.objects.filter(~Q(status="ADOPTED")).count()
 
         return context

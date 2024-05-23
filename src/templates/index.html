@@ -12,20 +12,28 @@
   <a href="{% url 'business:location-create' %}" class="btn btn-light btn-lg">New Location</a>
 </div>
 <br></br>
+<div class="card border-secondary mb-3" style="max-width: 30rem;">
+  <div class="card-header">Shelter Stats</div>
+  <div class="card-body">
+    <h4 class="card-title">Animals at the rescue: {{ animal_count }}</h4>
+    <p class="card-text">Adoptions this year/month/week: Not Done</p>
+  </div>
+</div>
+<br></br>
 <h3>Recent Intakes</h3>
 {% include "animals/_animal-cards.html" with animals=animals %}
 <br></br>
 <div class="container mt-4">
-    <div class="card">
+  <div class="card">
     <div class="card-header">
-    Help Page
+      Help Page
     </div>
     <div class="card-body">
-    <h5 class="card-title">What is a shelter manager?</h5>
-    <p class="card-text">A shelter management app helps manage intakes, adoptions, medical treatments, etc.
-    </p>
-    <a href="{% url 'animals:animal-list' %}" class="btn btn-primary">Go Home</a>
+      <h5 class="card-title">What is a shelter manager?</h5>
+      <p class="card-text">A shelter management app helps manage intakes, adoptions, medical treatments, etc.
+      </p>
+      <a href="{% url 'animals:animal-list' %}" class="btn btn-primary">Go Home</a>
     </div>
-    </div>
-    </div>
+  </div>
+</div>
 {% endblock %}

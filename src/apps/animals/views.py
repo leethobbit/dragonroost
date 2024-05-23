@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django_tables2 import SingleTableMixin
+from django_tables2 import SingleTableMixin, SingleTableView
 from django_filters.views import FilterView
 
 from dragonroost.mixins import PageTitleViewMixin
