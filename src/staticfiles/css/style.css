@@ -1,28 +1,97 @@
-/* Table style */
-.table-container th.asc:after {
+/* Table of content */
+.toc nav ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.toc nav li {
+    margin-bottom: 0.25rem;
+}
+
+.toc nav a:not(:hover) {
+    text-decoration: none;
+}
+
+.toc nav a {
+    color: inherit;
+}
+
+.toc nav li.active a{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+/* Table column width */
+.table-container td:nth-child(1) {
+    width: 8%;
+}
+
+.table-container td:nth-child(2) {
+    width: 34%;
+}
+
+.table-container td:nth-child(3) {
+    width: 32%;
+}
+
+.table-container td:nth-child(4),
+.table-container td:nth-child(5),
+.table-container td:nth-child(6) {
+    width: 8%;
+}
+
+.checkcolumn-table td:nth-child(1),
+.checkcolumn-table th:nth-child(1) {
+    width: 1%;
+}
+
+.checkcolumn-table td:nth-child(2),
+.checkcolumn-table th:nth-child(2) {
+    width: 8%;
+}
+
+.checkcolumn-table td:nth-child(3),
+.checkcolumn-table th:nth-child(3) {
+    width: 34%;
+}
+
+.checkcolumn-table td:nth-child(4),
+.checkcolumn-table th:nth-child(4) {
+    width: 32%;
+}
+
+.checkcolumn-table td:nth-child(5),
+.checkcolumn-table td:nth-child(6), 
+.checkcolumn-table td:nth-child(7),
+.checkcolumn-table th:nth-child(5),
+.checkcolumn-table th:nth-child(6),
+.checkcolumn-table th:nth-child(7) {
+    width: 8%;
+}
+
+/* Table sorting icon */
+th.asc:after {
     content: '\0000a0\0025b2';
     float: right;
+    width: 10%;
 }
 
-.table-container th.desc:after {
+th.desc:after {
     content: '\0000a0\0025bc';
     float: right;
-}
-
-.table-container table td:nth-child(1) {
-    width: 5%;
-}
-
-.table-container table td:nth-child(2) {
-    width: 5%;
-}
-
-.table-container table td:nth-child(4) {
-    width: 50%;
-}
-
-.table-container table td:nth-child(6) {
     width: 10%;
+}
+
+/* Table multi column */
+
+.multi-col-header {
+    margin-bottom: 0;
+}
+
+/* Table bulk action */
+.checkcolumn-table.header {
+    margin-bottom: 0;
 }
 
 /* Progress bar */
@@ -33,15 +102,10 @@
     background-clip: padding-box;
     overflow: hidden;
     position: relative;
-}
-
-.progress {
     opacity: 0;
 }
 
-.htmx-request .progress {
-    opacity: 1;
-}
+.htmx-request .progress,
 .htmx-request.progress {
     opacity: 1;
 }
@@ -50,6 +114,7 @@
     background-color: blue;
 }
 
+.progress .indeterminate:after,
 .progress .indeterminate:before {
     content: '';
     position: absolute;
@@ -58,49 +123,43 @@
     left: 0;
     bottom: 0;
     will-change: left, right;
-    -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+.progress .indeterminate:before {
     animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
+
 .progress .indeterminate:after {
-    content: '';
-    position: absolute;
-    background-color: inherit;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    will-change: left, right;
-    -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
     animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-    -webkit-animation-delay: 1.15s;
-    animation-delay: 1.15s;
 }
 
 @keyframes indeterminate {
-    0% {
-        left: -35%;
-        right: 100%;
-    }
-    60% {
-        left: 100%;
-        right: -90%;
-    }
-    100% {
-        left: 100%;
-        right: -90%;
-    }
+    0% { left: -35%; right: 100%; }
+    60% { left: 100%; right: -90%; }
+    100% {  left: 100%;  right: -90%; }
 }
 
 @keyframes indeterminate-short {
-    0% {
-        left: -200%;
-        right: 100%;
-    }
-    60% {
-        left: 107%;
-        right: -8%;
-    }
-    100% {
-        left: 107%;
-        right: -8%;
-    }
+    0% { left: -200%; right: 100%; }
+    60% { left: 107%; right: -8%; }
+    100% { left: 107%; right: -8%; }
+}
+
+@keyframes blink {
+  0% { background-color: orange; color: white;}
+  50% { background-color: orange; color: white; }
+  51% { background-color: white; }
+  100% { background-color: white; }
+}
+
+.highlight-me {
+    background-color: white;
+    animation-name: blink;
+    animation-duration: 2s;
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+}
+
+ul.pagination {
+    justify-content: end !important;
 }

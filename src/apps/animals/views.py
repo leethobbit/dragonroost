@@ -1,3 +1,5 @@
+from datetime import datetime
+from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -56,6 +58,8 @@ class AnimalCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
         "name",
         "animal_photo",
         "description",
+        "intake_type",
+        "intake_condition",
         "donation_fee",
         "color",
         "sex",
@@ -77,6 +81,7 @@ class AnimalUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
         "name",
         "animal_photo",
         "description",
+        "current_condition",
         "donation_fee",
         "color",
         "sex",
@@ -89,6 +94,33 @@ class AnimalUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
 
+class AnimalOutcomeForm(forms.ModelForm):
+    """
+    Custom form for animal outcomes - sets the status to "Adopted" and outcome_date to today.
+    """
+    outcome_date = forms.DateTimeField(widget=forms.SelectDateWidget)
+    def __init__(self, *args, **kwargs):
+        kwargs["initial"]["status"] = "ADOPTED"
+        kwargs["initial"]["outcome_date"] = datetime.now()
+        super().__init__(*args, **kwargs)
+    class Meta:
+        model = Animal
+        fields = [
+            "name",
+            "outcome_type",
+            "outcome_date",
+            "donation_fee",
+            "status",
+        ]
+
+class AnimalOutcomeView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
+    form_class = AnimalOutcomeForm
+    model = Animal
+    template_name = "animals/animal-form.html"
+    title = "Animal Outcome"
+
+    def get_success_url(self):
+        return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
 
 class AnimalDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Animal
@@ -120,7 +152,7 @@ class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Species
     template_name = "animals/species-form.html"
-    fields = ("name", "class_name", "description")
+    fields = ("name", "diet", "class_name", "description")
 
     def get_success_url(self):
         return reverse_lazy("animals:species-detail", kwargs={"pk": self.object.id})
@@ -129,7 +161,7 @@ class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Species
     template_name = "animals/species-form.html"
-    fields = ("name", "class_name", "description")
+    fields = ("name", "diet", "class_name", "description")
 
     def get_success_url(self):
         return reverse_lazy("animals:species-detail", kwargs={"pk": self.object.id})

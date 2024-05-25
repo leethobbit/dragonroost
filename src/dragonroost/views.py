@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
@@ -28,5 +29,6 @@ class HomeListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
         context["people"] = Person.objects.all()
         context["locations"] = Location.objects.all()
         context["animal_count"] = Animal.objects.filter(~Q(status="ADOPTED")).count()
+        context["adopted_past_30_days"] = Animal.objects.filter(status="ADOPTED").filter(outcome_date__gte=(datetime.datetime.now() - datetime.timedelta(days=(30)))).count()
 
         return context

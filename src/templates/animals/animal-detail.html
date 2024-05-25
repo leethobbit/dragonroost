@@ -9,7 +9,9 @@
 <img width="25%" height="25%" src="{{ animal.animal_photo.url }}">
 </div>
 <p>Description: {{ animal.description }}</p>
+<p>Diet: {{ animal.species.get_diet_display }}</p>
 {% endif %}
+<a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a>
 <a href="{% url 'animals:animal-update' animal.id %}">Edit</a>
 <a href="{% url 'animals:animal-delete' animal.id %}">Delete</a>
 <br></br>
@@ -28,16 +30,12 @@
 <hr>
 <ul>
   {% for record in medical_records %}
-  <li>           
-   <div>
-      <span>
-        <strong class="text-info">{{ record.notes }} </strong>
-        <small class="text-muted">{{ record.created }}</small>
-        <strong class="text-secondary">{{ record.initials }} </strong>
-        <a href="{% url 'animals:medical-record-delete' record.id %}">Delete</a>
-      </span>
+  <div class="card border-success mb-3" style="max-width: 60rem;">
+    <h5 class="card-header">Notes: {{ record.notes }}</h5>
+    <div class="card-body">
+      <p class="card-title text-secondary">{{ record.initials }} - {{ record.created }}</p>
     </div>
-  </li>
+  </div>
   {% endfor %}
 </ul>
 {% else %}

@@ -59,8 +59,8 @@ The animal module is going to be the core of the app, and will be fleshed out fi
 
 Here are some things not planned for the 1.0.0 release, but are ideas that could make the cut if there is interest.
 
-- [ ] **Volunteer / Task Management**: Dashboard that features some task and volunteering scheduling information.
-- [ ] **Finances Management**: 1.0.0 will feature a very basic donations or income tracking feature.  If there is a need, a more comprehensive financial management section could be added to the business module.
-- [ ] **Multi-image and multi-doc uploads**: Not currently planned, but if there is a lot of interest in uploading things like x-rays and other images or docs, this could be added.
+- [ ] **Volunteer / Task Management**: Dashboard that features some task and volunteering scheduling information. Could use this to show a daily task list, or which volunteers are on today, etc.
+- [ ] **Finances Management**: 1.0.0 will feature a very basic donations or income tracking feature.  A more comprehensive financial management section could be added to the business module. For example, tracking sales of merch, supplies - and more useful reporting.
+- [ ] **Multi-image and multi-doc uploads**: Not currently planned, but uploading things like x-rays and other images or docs could be added.
 - [ ] **Robust permissions for Users**: The initial release will only have basic authentication, and all views will require the user to be logged in.  This may be expanded in the future to allow more granular access to viewing/editing/creating records based on group or role membership (Say, vet team role vs part-time volunteer role)
 - [ ] **Widget-ized Dashboards**: What I mean by this - Dashboards that are "drag and drop" and allow you to easily customize what you see.  This will be a lot of work (I think) and won't be done unless there is an interest in it, or if I find a somewhat easy way of implementing them.

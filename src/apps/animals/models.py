@@ -16,11 +16,19 @@ class Species(models.Model):
         ("AMPHIBIAN", "Amphibian"),
         ("INSECT", "Insect"),
     ]
+    DIET_CHOICES = [
+        ("VEGGIE", "Veggie"),
+        ("CARNIVORE", "Carnivore"),
+        ("MIXED", "Mixed"),
+        ("INSECT", "Insect"),
+        ("UNKNOWN", "Unknown"),
+    ]
     name = models.CharField(max_length=80, unique=True)
     class_name = models.CharField(
         max_length=20, choices=CLASS_CHOICES, default="REPTILE"
     )  # Choices should be Mammal, Reptile, Bird, Insect, and Amphibian
     description = models.TextField()
+    diet = models.CharField(max_length=80, choices=DIET_CHOICES, default="UNKNOWN")
     is_ohio_native = models.BooleanField(default=False)
 
     def __str__(self):
@@ -31,7 +39,6 @@ class Animal(models.Model):
     # TODO Decide if Creator of an animal should be tracked via ForeignKey
 
     SEX_CHOICES = [("MALE", "Male"), ("FEMALE", "Female"), ("UNKNOWN", "Unknown")]
-    DIET_CHOICES = [("VEGGIE", "Veggie"), ("MIXED", "Mixed"), ("INSECT", "Insect")]
     STATUS_CHOICES = [
         ("PENDING", "Pending"),
         ("ADOPTABLE", "Adoptable"),
@@ -39,18 +46,46 @@ class Animal(models.Model):
         ("FOSTERED", "Fostered"),
         ("MEDICAL_HOLD", "Medical Hold"),
         ("ADOPTED", "Adopted"),
+        ("DECEASED", "Deceased"),
+    ]
+    INTAKE_CHOICES = [
+        ("UNKNOWN", "Unknown"),
+        ("OWNER_SURRENDER", "Owner Surrender"),
+        ("STRAY", "Stray"),
+        ("RETURN_TO_RESCUE", "Return to Rescue"),
+        ("BORN_IN_CARE", "Born in Care"),
+    ]
+    CONDITION_CHOICES = [
+        ("UNKNOWN", "Unknown"),
+        ("HEALTHY", "Healthy"),
+        ("SICK", "Sick"),
+        ("INJURED", "Injured"),
+    ]
+    OUTCOME_CHOICES = [
+        ("ADOPTION", "Adoption"),
+        ("DIED_IN_CARE", "Died in Care"),
+        ("TRANSFER", "Transfer"),
+        ("RETURN_TO_OWNER", "Return to Owner"),
     ]
 
     name = models.CharField(max_length=80, null=False, unique=True)
     description = models.TextField(blank=True, null=False, default="")
     donation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=5.00)
     intake_date = models.DateTimeField(auto_now_add=True)
+    outcome_date = models.DateTimeField(null=True)
+    outcome_type = models.CharField(max_length=80, choices=OUTCOME_CHOICES, default="ADOPTION")
+    intake_type = models.CharField(max_length=80, choices=INTAKE_CHOICES, default="OWNER_SURRENDER")
+    intake_condition = models.CharField(
+        max_length=80, choices=CONDITION_CHOICES, default="HEALTHY"
+    )
+    current_condition = models.CharField(
+        max_length=80, choices=CONDITION_CHOICES, default="UNKNOWN"
+    )
     updated_at = models.DateTimeField(auto_now=True)
     animal_photo = models.ImageField(upload_to="images/", null=True, blank=True)
     color = models.CharField(max_length=80, null=False, default="None")
     sex = models.CharField(max_length=20, choices=SEX_CHOICES, default="UNKNOWN")
     age = models.IntegerField(default=0)
-    diet = models.CharField(max_length=80, choices=DIET_CHOICES, default="MIXED")
     species = models.ForeignKey(Species, on_delete=models.SET_NULL, related_name="animals", null=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, related_name="animals", null=True)
     status = models.CharField(

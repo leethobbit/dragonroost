@@ -11,18 +11,36 @@
     name: Bearded Dragon
     class_name: REPTILE
     description: Little beardie!
+- model: animals.species
+  pk: 3
+  fields:
+    name: Chameleon
+    class_name: REPTILE
+    description: Chameleon
+- model: animals.species
+  pk: 4
+  fields:
+    name: Parrot
+    class_name: BIRD
+    description: Parrot
+- model: animals.species
+  pk: 5
+  fields:
+    name: Savannah Monitor
+    class_name: REPTILE
+    description: Savannah monitor
 
 # Location initial data
 - model: business.location
   pk: 1
   fields:
-    name: Snake Shack
-    description: A fun place for snakes.
+    name: Sales Floor
+    description: Basically the whole first floor.
 - model: business.location
   pk: 2
   fields:
-    name: Cat Corner
-    description: Corner of cats.
+    name: Q Room
+    description: Quarantine room for sick and/or new animals.
   
   # Medical record initial data
 - model: medical.medicalrecord
@@ -77,7 +95,7 @@
     color: White
     sex: FEMALE
     age: 9
-    species: 2
+    species: 4
     location: 1
     status: "ADOPTABLE"
 - model: animals.animal
@@ -91,6 +109,6 @@
     color: Yellow
     sex: FEMALE
     age: 90
-    species: 2
+    species: 1
     location: 2
     status: "ADOPTABLE"
