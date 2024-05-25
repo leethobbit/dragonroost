@@ -72,7 +72,7 @@ class Animal(models.Model):
     description = models.TextField(blank=True, null=False, default="")
     donation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=5.00)
     intake_date = models.DateTimeField(auto_now_add=True)
-    outcome_date = models.DateTimeField(null=True)
+    outcome_date = models.DateField(null=True)
     outcome_type = models.CharField(max_length=80, choices=OUTCOME_CHOICES, default="ADOPTION")
     intake_type = models.CharField(max_length=80, choices=INTAKE_CHOICES, default="OWNER_SURRENDER")
     intake_condition = models.CharField(

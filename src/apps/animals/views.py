@@ -98,10 +98,9 @@ class AnimalOutcomeForm(forms.ModelForm):
     """
     Custom form for animal outcomes - sets the status to "Adopted" and outcome_date to today.
     """
-    outcome_date = forms.DateTimeField(widget=forms.SelectDateWidget)
     def __init__(self, *args, **kwargs):
         kwargs["initial"]["status"] = "ADOPTED"
-        kwargs["initial"]["outcome_date"] = datetime.now()
+        kwargs["initial"]["outcome_date"] = datetime.now().strftime("%Y-%m-%d")
         super().__init__(*args, **kwargs)
     class Meta:
         model = Animal
@@ -112,6 +111,9 @@ class AnimalOutcomeForm(forms.ModelForm):
             "donation_fee",
             "status",
         ]
+        widgets = {
+            "outcome_date": forms.widgets.DateInput(attrs={"type": "date"}),
+        }
 
 class AnimalOutcomeView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     form_class = AnimalOutcomeForm

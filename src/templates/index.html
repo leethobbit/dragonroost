@@ -15,8 +15,9 @@
 <div class="card border-secondary mb-3" style="max-width: 30rem;">
   <h3 class="card-header text-center text-light">Shelter Stats</h3>
   <div class="card-body">
-    <h4 class="card-title">Animals at the rescue: {{ animal_count }}</h4>
-    <h4 class="card-text">Adoptions this month: {{ adopted_past_30_days }}</h4>
+    <h4 class="card-title">Animals at the rescue: <span class="text-light">{{ animal_count }}</span></h4>
+    <h4 class="card-text">Adoptions this month: <span class="text-light">{{ adopted_past_30_days }}</span></h4>
+    <h4 class="card-text">Adoption income this year: <span class="text-success">${{ donation_total_365_days }}</span></h4>
   </div>
 </div>
 <br></br>
