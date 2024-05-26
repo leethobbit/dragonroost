@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://herps.ddrev.org']
+CSRF_TRUSTED_ORIGINS = ["https://herps.ddrev.org"]
 
 # Application definition
 
@@ -132,9 +132,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
-STATICFILES_DIRS = [
-    (os.path.join(BASE_DIR, "static"))
-]
+STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static"))]
 
 # Base url to serve media files
 MEDIA_URL = "/media/"
@@ -150,5 +148,5 @@ BOOTSTRAP5 = {
     "error_css_class": "django_bootstrap5-error",
     "required_css_class": "django_bootstrap5-required",
     "javascript_in_head": True,
-    "theme_url": "https://bootswatch.com/5/vapor/bootstrap.css", # Other options are quartz, solar
+    "theme_url": "https://bootswatch.com/5/vapor/bootstrap.css",  # Other options are quartz, solar
 }

@@ -6,6 +6,7 @@ from django.db import models
 
 # class UserRole
 
+
 # class Role
 class Role(models.Model):
     name = models.CharField(max_length=80, unique=True)
@@ -16,6 +17,7 @@ class Role(models.Model):
         Required method to see the name field when a form is created with this model
         """
         return self.name
+
 
 # class Person
 # TODO Sort out how to link donations to a person, and sum them
@@ -41,4 +43,4 @@ class Person(models.Model):
         """
         Required method to see the name field when a form is created with this model
         """
-        return (self.first_name + ' ' + self.last_name)
+        return self.first_name + " " + self.last_name

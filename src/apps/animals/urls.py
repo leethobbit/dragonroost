@@ -5,16 +5,16 @@ from apps.animals.views import (
     AnimalCreateView,
     AnimalDeleteView,
     AnimalDetailView,
-    AnimalListView,
-    AnimalUpdateView,
-    AnimalOutcomeView,
     AnimalHTMxTableView,
+    AnimalListView,
+    AnimalOutcomeView,
+    AnimalUpdateView,
+    MedicalRecordDeleteView,
     SpeciesCreateView,
     SpeciesDeleteView,
     SpeciesDetailView,
     SpeciesListView,
     SpeciesUpdateView,
-    MedicalRecordDeleteView
 )
 
 app_name = "animals"  # This is for namespacing the URLs later
@@ -36,5 +36,9 @@ urlpatterns = [
     path(
         "species/<int:pk>/delete/", SpeciesDeleteView.as_view(), name="species-delete"
     ),
-    path("medical-records/<int:pk>/delete/", MedicalRecordDeleteView.as_view(), name="medical-record-delete"),
+    path(
+        "medical-records/<int:pk>/delete/",
+        MedicalRecordDeleteView.as_view(),
+        name="medical-record-delete",
+    ),
 ]

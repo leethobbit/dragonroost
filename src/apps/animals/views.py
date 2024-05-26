@@ -1,19 +1,20 @@
 from datetime import datetime
+
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django_tables2 import SingleTableMixin, SingleTableView
 from django_filters.views import FilterView
+from django_tables2 import SingleTableMixin, SingleTableView
 
+from apps.animals.filters import AnimalFilter
+from apps.animals.tables import AnimalHTMxTable
+from apps.medical.forms import MedicalRecordForm
 from dragonroost.mixins import PageTitleViewMixin
 
-from .models import Animal, Species, MedicalRecord
-from apps.medical.forms import MedicalRecordForm
-from apps.animals.tables import AnimalHTMxTable
-from apps.animals.filters import AnimalFilter
+from .models import Animal, MedicalRecord, Species
 
 
 # Create your views here.
@@ -33,18 +34,19 @@ class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         medical_records = MedicalRecord.objects.filter(
-            animal=self.get_object()).order_by("-created")
+            animal=self.get_object()
+        ).order_by("-created")
         data["medical_records"] = medical_records
         data["medical_record_form"] = MedicalRecordForm(instance=self.get_object())
         return data
-    
+
     def post(self, request, *args, **kwargs):
         new_medical_record = MedicalRecord(
             animal=self.get_object(),
             notes=request.POST.get("notes"),
             created=request.POST.get("created"),
             initials=request.POST.get("initials"),
-            is_vet_cleared = request.POST.get("is_vet_cleared") == "on"
+            is_vet_cleared=request.POST.get("is_vet_cleared") == "on",
         )
         new_medical_record.save()
         return self.get(self, request, *args, **kwargs)
@@ -94,14 +96,17 @@ class AnimalUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
 
+
 class AnimalOutcomeForm(forms.ModelForm):
     """
     Custom form for animal outcomes - sets the status to "Adopted" and outcome_date to today.
     """
+
     def __init__(self, *args, **kwargs):
         kwargs["initial"]["status"] = "ADOPTED"
         kwargs["initial"]["outcome_date"] = datetime.now().strftime("%Y-%m-%d")
         super().__init__(*args, **kwargs)
+
     class Meta:
         model = Animal
         fields = [
@@ -115,6 +120,7 @@ class AnimalOutcomeForm(forms.ModelForm):
             "outcome_date": forms.widgets.DateInput(attrs={"type": "date"}),
         }
 
+
 class AnimalOutcomeView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     form_class = AnimalOutcomeForm
     model = Animal
@@ -124,18 +130,22 @@ class AnimalOutcomeView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
 
+
 class AnimalDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Animal
     template_name = "animals/animal-confirm-delete.html"
     title = "Animal Delete Confirmation"
     success_url = reverse_lazy("animals:animal-list")
 
+
 class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
     model = MedicalRecord
     template_name = "animals/record-confirm-delete.html"
-    
+
     def get_success_url(self):
-        return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.animal.id})
+        return reverse_lazy(
+            "animals:animal-detail", kwargs={"pk": self.object.animal.id}
+        )
 
 
 class SpeciesListView(LoginRequiredMixin, PageTitleViewMixin, ListView):

@@ -73,8 +73,12 @@ class Animal(models.Model):
     donation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=5.00)
     intake_date = models.DateTimeField(auto_now_add=True)
     outcome_date = models.DateField(null=True)
-    outcome_type = models.CharField(max_length=80, choices=OUTCOME_CHOICES, default="ADOPTION")
-    intake_type = models.CharField(max_length=80, choices=INTAKE_CHOICES, default="OWNER_SURRENDER")
+    outcome_type = models.CharField(
+        max_length=80, choices=OUTCOME_CHOICES, default="ADOPTION"
+    )
+    intake_type = models.CharField(
+        max_length=80, choices=INTAKE_CHOICES, default="OWNER_SURRENDER"
+    )
     intake_condition = models.CharField(
         max_length=80, choices=CONDITION_CHOICES, default="HEALTHY"
     )
@@ -86,12 +90,15 @@ class Animal(models.Model):
     color = models.CharField(max_length=80, null=False, default="None")
     sex = models.CharField(max_length=20, choices=SEX_CHOICES, default="UNKNOWN")
     age = models.IntegerField(default=0)
-    species = models.ForeignKey(Species, on_delete=models.SET_NULL, related_name="animals", null=True)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, related_name="animals", null=True)
+    species = models.ForeignKey(
+        Species, on_delete=models.SET_NULL, related_name="animals", null=True
+    )
+    location = models.ForeignKey(
+        Location, on_delete=models.SET_NULL, related_name="animals", null=True
+    )
     status = models.CharField(
         max_length=80, choices=STATUS_CHOICES, default="ADOPTABLE"
     )
-    
 
     class Meta:
         db_table_comment = "Holds information about animals"
@@ -119,13 +126,16 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class MedicalRecord(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(max_length=500, blank=True, null=False, default="")
     is_vet_cleared = models.BooleanField(default=False)
     initials = models.CharField(max_length=20, default="zz", null=False)
-    animal = models.ForeignKey(Animal, related_name="medical_records", on_delete=models.CASCADE, default=1)
+    animal = models.ForeignKey(
+        Animal, related_name="medical_records", on_delete=models.CASCADE, default=1
+    )
 
     class Meta:
         db_table_comment = "Table holds medical record entries."
