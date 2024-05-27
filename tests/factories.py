@@ -28,13 +28,12 @@ class AnimalFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Animal
 
-    name = factory.Sequence(lambda n: "BD %03d" % n)
+    name = factory.Faker("word")
     description = factory.Faker("sentence")
     donation_fee = 10.50
     color = factory.Faker("color_name")
     sex = "FEMALE"
     age = 69
-    diet = "VEGGIES"
     species = factory.SubFactory(SpeciesFactory)
     location = factory.SubFactory(LocationFactory)
     status = "ADOPTABLE"

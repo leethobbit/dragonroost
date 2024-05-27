@@ -26,14 +26,14 @@ def test_animal_list_view_success(client, admin_user):
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert "Animals currently" in content
+    assert "Recent Intakes" in content
 
 
 def test_animal_list_view_fail(client):
     uri = reverse("animals:animal-list")
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert "Animal List" not in content
+    assert "Wabbajack" not in content
 
 
 @pytest.mark.django_db
@@ -48,11 +48,12 @@ def test_animal_create_view(client, admin_user):
         {
             "name": "Test Animal",
             "description": "Test animal description",
+            "intake_type": "STRAY",
+            "intake_condition": "HEALTHY",
             "donation_fee": 10.22,
             "color": "Blue",
             "sex": "MALE",
             "age": 73,
-            "diet": "MIXED",
             "species": species.id,
             "status": "PENDING",
             "location": location.id,
@@ -87,11 +88,11 @@ def test_animal_update_view(client, admin_user):
         {
             "name": "Test Animal",
             "description": "Test animal description EDITED",
+            "current_condition": "HEALTHY",
             "donation_fee": 10.22,
             "color": "Blue",
             "sex": "MALE",
             "age": 73,
-            "diet": "MIXED",
             "species": animal.species.id,
             "status": "ADOPTED",
             "location": animal.location.id,
@@ -132,6 +133,7 @@ def test_species_create_view(client, admin_user):
         {
             "name": "Test Species",
             "description": "Test species description",
+            "diet": "CARNIVORE",
             "class_name": "BIRD",
         },
     )
@@ -165,6 +167,7 @@ def test_species_update_view(client, admin_user):
         {
             "name": "Test Species",
             "description": "Edited test description",
+            "diet": "VEGGIE",
             "class_name": "MAMMAL",
         },
     )
