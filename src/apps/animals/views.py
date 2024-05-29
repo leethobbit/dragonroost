@@ -9,8 +9,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin, SingleTableView
 
-from apps.animals.filters import AnimalFilter
-from apps.animals.tables import AnimalHTMxTable
+from apps.animals.filters import AnimalFilter, SpeciesFilter
+from apps.animals.tables import AnimalHTMxTable, SpeciesListTable
 from apps.medical.forms import MedicalRecordForm
 from dragonroost.mixins import PageTitleViewMixin
 
@@ -148,8 +148,11 @@ class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
         )
 
 
-class SpeciesListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
+class SpeciesListView(SingleTableMixin,LoginRequiredMixin, PageTitleViewMixin, ListView):
     model = Species
+    table_class = SpeciesListTable
+    queryset = Species.objects.all()
+    filterset_class = SpeciesFilter
     template_name = "animals/species-list.html"
     title = "Species List"
     context_object_name = "species"

@@ -1,7 +1,7 @@
 import django_tables2 as tables
 from django.utils.html import format_html
 
-from apps.animals.models import Animal
+from apps.animals.models import Animal, Species
 
 
 class AnimalImageColumn(tables.Column):
@@ -46,3 +46,11 @@ class AnimalHTMxTable(tables.Table):
             "intake_date",
         )
         template_name = "tables/_animal-table-htmx.html"
+
+class SpeciesListTable(tables.Table):
+    name = tables.TemplateColumn(
+        "<a href=\"{% url 'animals:species-detail' record.id %}\">{{record.name}}</a>"
+    )
+    class Meta:
+        model = Species
+        fields = ("name", "description", "diet", "class_name")

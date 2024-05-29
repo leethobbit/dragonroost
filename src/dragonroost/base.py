@@ -148,5 +148,5 @@ BOOTSTRAP5 = {
     "error_css_class": "django_bootstrap5-error",
     "required_css_class": "django_bootstrap5-required",
     "javascript_in_head": True,
-    "theme_url": "https://bootswatch.com/5/vapor/bootstrap.css",  # Other options are quartz, solar
+    "theme_url": "https://bootswatch.com/5/darkly/bootstrap.css",  # Other options are minty, quartz, solar
 }

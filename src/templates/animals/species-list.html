@@ -1,12 +1,6 @@
 {% extends "base.html" %}
+{% load django_tables2 %}
 {% block content %}
-<ul>
-{% for species in species %}
-<li>
-<a href="{% url 'animals:species-detail' species.id %}">{{ species.name }}</a>
-</li>
-{% empty %}
-<li>No animals available.</li>
-{% endfor %}
-</ul>
+
+{% render_table table %}
 {% endblock %}

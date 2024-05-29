@@ -4,7 +4,7 @@ from decimal import Decimal
 import django_filters
 from django.db.models import Q
 
-from apps.animals.models import Animal
+from apps.animals.models import Animal, Species
 
 
 class AnimalFilter(django_filters.FilterSet):
@@ -28,3 +28,13 @@ class AnimalFilter(django_filters.FilterSet):
             | Q(location__name__icontains=value)
             | Q(status__icontains=value)
         )
+
+class SpeciesFilter(django_filters.FilterSet):
+    query = django_filters.CharFilter(method="universal_search", label="")
+
+    class Meta:
+        model = Species
+        fields = ["query"]
+
+    def universal_search(self, queryset, name, value):
+        return Species.objects.filter(name__icontains=value)
