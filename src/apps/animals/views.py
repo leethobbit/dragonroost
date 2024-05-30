@@ -160,6 +160,7 @@ class SpeciesListView(SingleTableMixin,LoginRequiredMixin, PageTitleViewMixin, L
 
 class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Species
+    title = "Species Detail"
     template_name = "animals/species-detail.html"
     context_object_name = "species"
 

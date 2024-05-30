@@ -7,16 +7,16 @@
   <br></br>
   <h3>What would you like to do?</h3>
   <a href="{% url 'animals:animal-create' %}" class="btn btn-success btn-lg">New Animal</a>
-  <a href="{% url 'people:person-create' %}" class="btn btn-secondary btn-lg">New Person</a>
-  <a href="{% url 'animals:species-create' %}" class="btn btn-primary btn-lg">New Species</a>
-  <a href="{% url 'business:location-create' %}" class="btn btn-light btn-lg">New Location</a>
+  <a href="{% url 'people:person-create' %}" class="btn btn-info btn-lg">New Person</a>
+  <a href="{% url 'animals:species-create' %}" class="btn btn-warning btn-lg">New Species</a>
+  <a href="{% url 'business:location-create' %}" class="btn btn-primary btn-lg">New Location</a>
 </div>
 <br></br>
 <div class="card border-secondary mb-3" style="max-width: 30rem;">
-  <h3 class="card-header text-center text-light">Shelter Stats</h3>
+  <h3 class="card-header text-center">Shelter Stats</h3>
   <div class="card-body">
-    <h4 class="card-title">Animals at the rescue: <span class="text-light">{{ animal_count }}</span></h4>
-    <h4 class="card-text">Adoptions this month: <span class="text-light">{{ adopted_past_30_days }}</span></h4>
+    <h4 class="card-title">Animals at the rescue: <span class="text-info">{{ animal_count }}</span></h4>
+    <h4 class="card-text">Adoptions this month: <span class="text-info">{{ adopted_past_30_days }}</span></h4>
     <h4 class="card-text">Adoption income this year: <span class="text-success">${{ donation_total_365_days }}</span></h4>
   </div>
 </div>

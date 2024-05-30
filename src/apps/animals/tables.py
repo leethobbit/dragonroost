@@ -53,4 +53,4 @@ class SpeciesListTable(tables.Table):
     )
     class Meta:
         model = Species
-        fields = ("name", "description", "diet", "class_name")
+        fields = ("name", "diet", "class_name", "description")

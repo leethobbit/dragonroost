@@ -148,5 +148,15 @@ BOOTSTRAP5 = {
     "error_css_class": "django_bootstrap5-error",
     "required_css_class": "django_bootstrap5-required",
     "javascript_in_head": True,
-    "theme_url": "https://bootswatch.com/5/darkly/bootstrap.css",  # Other options are minty, quartz, solar
+    "theme_url": "https://bootswatch.com/5/yeti/bootstrap.css",  # Other options are minty, quartz, solar
 }
+
+# Settings for django_tables2
+DJANGO_TABLES2_TABLE_ATTRS = {
+    'class': 'table table-hover',
+    'thead': {
+        'class': 'table-secondary',
+    },
+}
+
+DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap5.html"
