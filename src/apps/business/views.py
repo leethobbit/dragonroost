@@ -68,13 +68,7 @@ class MeetingCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     fields = ("title", "minutes")
 
     def get_success_url(self):
-        return reverse_lazy("business:meeting-detail", kwargs={"pk": self.object.id})
-
-class MeetingDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
-    model = Meeting
-    title = "Meeting Detail"
-    template_name = "business/meeting-detail.html"
-    context_object_name = "meeting"
+        return reverse_lazy("business:meeting-list")
 
 class MeetingUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Meeting
@@ -83,7 +77,7 @@ class MeetingUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     fields = ("title", "minutes")
 
     def get_success_url(self):
-        return reverse_lazy("business:meeting-detail", kwargs={"pk": self.object.id})
+        return reverse_lazy("business:meeting-list")
 
 class MeetingDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Meeting

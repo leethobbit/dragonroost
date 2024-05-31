@@ -18,6 +18,7 @@ Icon
 dev_db_data/
 prod_db_data/
 deployment.yaml
+src/media/meetings/
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100

@@ -13,7 +13,7 @@ class LocationListTable(tables.Table):
 
 class MeetingListTable(tables.Table):
     title = tables.TemplateColumn(
-        "<a href=\"{% url 'business:meeting-detail' record.id %}\">{{record.title}}</a>",
+        "<a href=\"{% url 'business:meeting-update' record.id %}\">{{record.title}}</a>",
     )
     class Meta:
         model = Meeting
