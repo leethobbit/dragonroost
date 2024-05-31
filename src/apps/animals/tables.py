@@ -49,7 +49,7 @@ class AnimalHTMxTable(tables.Table):
 
 class SpeciesListTable(tables.Table):
     name = tables.TemplateColumn(
-        "<a href=\"{% url 'animals:species-detail' record.id %}\">{{record.name}}</a>"
+        "<a href=\"{% url 'animals:species-detail' record.id %}\">{{record.name}}</a>",
     )
     class Meta:
         model = Species

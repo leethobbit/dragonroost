@@ -3,15 +3,19 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django_tables2 import SingleTableMixin
 
 from dragonroost.mixins import PageTitleViewMixin
 
 from .models import Person
+from .tables import PersonListTable
 
 
 # Create your views here.
-class PersonListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
+class PersonListView(SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView):
     model = Person
+    table_class = PersonListTable
+    queryset = Person.objects.all().order_by("first_name")
     template_name = "people/person-list.html"
     title = "People List"
     context_object_name = "people"

@@ -151,7 +151,7 @@ class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
 class SpeciesListView(SingleTableMixin,LoginRequiredMixin, PageTitleViewMixin, ListView):
     model = Species
     table_class = SpeciesListTable
-    queryset = Species.objects.all()
+    queryset = Species.objects.all().order_by("name")
     filterset_class = SpeciesFilter
     template_name = "animals/species-list.html"
     title = "Species List"
@@ -167,6 +167,7 @@ class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 
 class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Species
+    title = "Create Species"
     template_name = "animals/species-form.html"
     fields = ("name", "diet", "class_name", "description")
 
@@ -176,6 +177,7 @@ class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 
 class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Species
+    title = "Edit Species"
     template_name = "animals/species-form.html"
     fields = ("name", "diet", "class_name", "description")
 

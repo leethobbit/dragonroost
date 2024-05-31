@@ -69,6 +69,7 @@
   fields:
     name: Foster
     description: A person who fosters animals for the rescue.
+    
 # Animal initial data
 - model: animals.animal
   pk: 1

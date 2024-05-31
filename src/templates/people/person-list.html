@@ -1,9 +1,11 @@
 {% extends "base.html" %}
+{% load django_tables2 %}
+
 {% block content %}
 <a href="{% url 'people:person-create' %}" class="btn btn-primary btn-sm">Add New Person</a>
+
 <br></br>
-{% include "people/_person-table.html" %}
-<br></br>
+{% render_table table %}
 <div class="container mt-4">
     <div class="card">
     <div class="card-header">

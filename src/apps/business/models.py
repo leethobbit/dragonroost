@@ -14,6 +14,14 @@ class Location(models.Model):
         """
         return self.name
 
+# class Meeting
+class Meeting(models.Model):
+    title = models.CharField(max_length=120, unique=True)
+    date = models.DateField(auto_now_add=True)
+    minutes = models.FileField(upload_to="meetings/%Y")
+
+    def __str__(self) -> str:
+        return self.title
 
 # class Donation
 class Donation(models.Model):

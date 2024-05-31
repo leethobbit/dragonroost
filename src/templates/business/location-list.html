@@ -1,15 +1,8 @@
 {% extends "base.html" %}
+{% load django_tables2 %}
+
 {% block content %}
 <a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
-<h1>Location List</h1>
-<ul>
-{% for location in locations %}
-<li>
-<a href="{% url 'business:location-detail' location.id %}">{{ location.name }}
-</a>
-</li>
-{% empty %}
-<li>No locations available.</li>
-{% endfor %}
-</ul>
+<br></br>
+{% render_table table %}
 {% endblock %}
