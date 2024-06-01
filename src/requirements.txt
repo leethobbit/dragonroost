@@ -9,7 +9,7 @@ colorama==0.4.6
 crashtest==0.4.1
 distlib==0.3.8
 Django==5.0.2
-dulwich==0.21.7
+dulwich==0.22.1
 et-xmlfile==1.1.0
 fastapi==0.92.0
 fastjsonschema==2.19.1
