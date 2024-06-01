@@ -11,7 +11,7 @@ distlib==0.3.8
 Django==5.0.2
 dulwich==0.21.7
 et-xmlfile==1.1.0
-fastapi==0.92.0
+fastapi==0.111.0
 fastjsonschema==2.19.1
 filelock==3.13.1
 idna==3.4
