@@ -14,8 +14,13 @@ class Location(models.Model):
         """
         return self.name
 
+
 # class Meeting
 class Meeting(models.Model):
+    """
+    Model for staff meetings
+    """
+
     title = models.CharField(max_length=120, unique=True)
     date = models.DateField(auto_now_add=True)
     minutes = models.FileField(upload_to="meetings/%Y")
@@ -23,8 +28,13 @@ class Meeting(models.Model):
     def __str__(self) -> str:
         return self.title
 
+
 # class Donation
 class Donation(models.Model):
+    """
+    Possible model for donations - not in use currently
+    """
+
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     donor = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
     is_sponsorship = models.BooleanField(default=False)

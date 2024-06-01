@@ -12,7 +12,9 @@ from .tables import PersonListTable
 
 
 # Create your views here.
-class PersonListView(SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView):
+class PersonListView(
+    SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView
+):
     model = Person
     table_class = PersonListTable
     queryset = Person.objects.all().order_by("first_name")

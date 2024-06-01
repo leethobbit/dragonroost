@@ -153,9 +153,9 @@ BOOTSTRAP5 = {
 
 # Settings for django_tables2
 DJANGO_TABLES2_TABLE_ATTRS = {
-    'class': 'table table-hover',
-    'thead': {
-        'class': 'table-secondary',
+    "class": "table table-hover",
+    "thead": {
+        "class": "table-secondary",
     },
 }
 

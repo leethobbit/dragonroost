@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -39,17 +39,6 @@ class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
         data["medical_records"] = medical_records
         data["medical_record_form"] = MedicalRecordForm(instance=self.get_object())
         return data
-
-    def post(self, request, *args, **kwargs):
-        new_medical_record = MedicalRecord(
-            animal=self.get_object(),
-            notes=request.POST.get("notes"),
-            created=request.POST.get("created"),
-            initials=request.POST.get("initials"),
-            is_vet_cleared=request.POST.get("is_vet_cleared") == "on",
-        )
-        new_medical_record.save()
-        return self.get(self, request, *args, **kwargs)
 
 
 class AnimalCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
@@ -138,17 +127,9 @@ class AnimalDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     success_url = reverse_lazy("animals:animal-list")
 
 
-class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
-    model = MedicalRecord
-    template_name = "animals/record-confirm-delete.html"
-
-    def get_success_url(self):
-        return reverse_lazy(
-            "animals:animal-detail", kwargs={"pk": self.object.animal.id}
-        )
-
-
-class SpeciesListView(SingleTableMixin,LoginRequiredMixin, PageTitleViewMixin, ListView):
+class SpeciesListView(
+    SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView
+):
     model = Species
     table_class = SpeciesListTable
     queryset = Species.objects.all().order_by("name")
@@ -168,7 +149,7 @@ class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Species
     title = "Create Species"
-    template_name = "animals/species-form.html"
+    template_name = "animals/base-form.html"
     fields = ("name", "diet", "class_name", "description")
 
     def get_success_url(self):
@@ -178,7 +159,7 @@ class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Species
     title = "Edit Species"
-    template_name = "animals/species-form.html"
+    template_name = "animals/base-form.html"
     fields = ("name", "diet", "class_name", "description")
 
     def get_success_url(self):
@@ -205,3 +186,46 @@ class AnimalHTMxTableView(SingleTableMixin, PageTitleViewMixin, FilterView):
             template_name = "animals/animal-table-htmx.html"
 
         return template_name
+
+
+class MedicalRecordCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
+    model = MedicalRecord
+    form_class = MedicalRecordForm
+    template_name = "animals/base-form.html"
+
+    def get_success_url(self):
+        print("Reached success redirect url function, yay!")
+        print(self.object.animal.id)
+        return reverse_lazy(
+            "animals:animal-detail", kwargs={"pk": self.object.animal.id}
+        )
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(MedicalRecordCreateView, self).get_context_data(**kwargs)
+    #     context["animal_id"] = self.kwargs["pk"]
+    def post(self, request, *args, **kwargs):
+        pk = self.kwargs["pk"]
+        new_medical_record = MedicalRecord(
+            animal_id=self.kwargs["pk"],
+            notes=request.POST.get("notes"),
+            created=request.POST.get("created"),
+            q_volunteer_id=request.POST.get("q_volunteer"),
+            bowel_movement=request.POST.get("bowel_movement") == "on",
+            current_weight=request.POST.get("current_weight"),
+            treatments=request.POST.get("treatments"),
+        )
+        new_medical_record.save()
+        return redirect("animals:animal-detail", pk=pk)
+
+    # def __init__(self, *args, **kwargs):
+    #     animal_id = kwargs.pop("animal.id")
+
+
+class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
+    model = MedicalRecord
+    template_name = "animals/record-confirm-delete.html"
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "animals:animal-detail", kwargs={"pk": self.object.animal.id}
+        )

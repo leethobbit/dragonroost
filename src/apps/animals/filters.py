@@ -29,6 +29,7 @@ class AnimalFilter(django_filters.FilterSet):
             | Q(status__icontains=value)
         )
 
+
 class SpeciesFilter(django_filters.FilterSet):
     query = django_filters.CharFilter(method="universal_search", label="")
 

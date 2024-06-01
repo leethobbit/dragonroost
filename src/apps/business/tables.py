@@ -3,18 +3,22 @@ from django.utils.html import format_html
 
 from apps.business.models import Location, Meeting
 
+
 class LocationListTable(tables.Table):
     name = tables.TemplateColumn(
         "<a href=\"{% url 'business:location-detail' record.id %}\">{{record.name}}</a>",
     )
+
     class Meta:
         model = Location
         fields = ("name", "description")
+
 
 class MeetingListTable(tables.Table):
     title = tables.TemplateColumn(
         "<a href=\"{% url 'business:meeting-update' record.id %}\">{{record.title}}</a>",
     )
+
     class Meta:
         model = Meeting
         fields = ("title", "date", "minutes")

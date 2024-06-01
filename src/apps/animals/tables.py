@@ -47,10 +47,12 @@ class AnimalHTMxTable(tables.Table):
         )
         template_name = "tables/_animal-table-htmx.html"
 
+
 class SpeciesListTable(tables.Table):
     name = tables.TemplateColumn(
         "<a href=\"{% url 'animals:species-detail' record.id %}\">{{record.name}}</a>",
     )
+
     class Meta:
         model = Species
         fields = ("name", "diet", "class_name", "description")

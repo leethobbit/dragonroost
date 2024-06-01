@@ -9,6 +9,7 @@ from apps.animals.views import (
     AnimalListView,
     AnimalOutcomeView,
     AnimalUpdateView,
+    MedicalRecordCreateView,
     MedicalRecordDeleteView,
     SpeciesCreateView,
     SpeciesDeleteView,
@@ -35,6 +36,11 @@ urlpatterns = [
     path("species/<int:pk>/edit/", SpeciesUpdateView.as_view(), name="species-update"),
     path(
         "species/<int:pk>/delete/", SpeciesDeleteView.as_view(), name="species-delete"
+    ),
+    path(
+        "<int:pk>/records/new/",
+        MedicalRecordCreateView.as_view(),
+        name="medical-record-create",
     ),
     path(
         "medical-records/<int:pk>/delete/",

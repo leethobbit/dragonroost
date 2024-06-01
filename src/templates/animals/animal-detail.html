@@ -11,19 +11,12 @@
 <p>Description: {{ animal.description }}</p>
 <p>Diet: {{ animal.species.get_diet_display }}</p>
 {% endif %}
+<div><a href="{% url 'animals:medical-record-create' animal.id %}" class="btn btn-primary btn-sm">New Medical Record</a></div>
 <a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a>
 <a href="{% url 'animals:animal-update' animal.id %}">Edit</a>
 <a href="{% url 'animals:animal-delete' animal.id %}">Delete</a>
 <br></br>
-<form class="align-items-center flex-column" method="post">
-  <h3 class="text-secondary">New Medical Record</h3>
-  {% csrf_token %}
 
-  {% bootstrap_form medical_record_form %}
-
-  {% bootstrap_button button_type="submit" content="OK" %}
-  {% bootstrap_button button_type="reset" content="Cancel" %}
-</form>
 <br></br>
 {% if medical_records %}
 <h3 class="text-secondary">{{ object.number_of_medical_records }} Medical Record{{ object.number_of_medical_records|pluralize }}</h3>
@@ -33,7 +26,7 @@
   <div class="card border-success mb-3" style="max-width: 60rem;">
     <h5 class="card-header">Notes: {{ record.notes }}</h5>
     <div class="card-body">
-      <p class="card-title text-secondary">{{ record.initials }} - {{ record.created }}</p>
+      <p class="card-title text-secondary">{{ record.q_volunteer }} - {{ record.created|date:"Y-m-d" }}</p>
     </div>
   </div>
   {% endfor %}

@@ -12,13 +12,16 @@ from .tables import LocationListTable, MeetingListTable
 
 
 # Create your views here.
-class LocationListView(SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView):
+class LocationListView(
+    SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView
+):
     model = Location
     table_class = LocationListTable
     queryset = Location.objects.all().order_by("name")
     template_name = "business/location-list.html"
     title = "Location List"
     context_object_name = "locations"
+
 
 class LocationDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Location
@@ -53,13 +56,17 @@ class LocationDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     template_name = "business/location-confirm-delete.html"
     success_url = reverse_lazy("business:location-list")
 
-class MeetingListView(SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView):
+
+class MeetingListView(
+    SingleTableMixin, LoginRequiredMixin, PageTitleViewMixin, ListView
+):
     model = Meeting
     table_class = MeetingListTable
     queryset = Meeting.objects.all().order_by("-date")
     template_name = "business/meeting-list.html"
     title = "Meeting List"
     context_object_name = "meetings"
+
 
 class MeetingCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Meeting
@@ -70,6 +77,7 @@ class MeetingCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy("business:meeting-list")
 
+
 class MeetingUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Meeting
     template_name = "business/business-form.html"
@@ -78,6 +86,7 @@ class MeetingUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("business:meeting-list")
+
 
 class MeetingDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Meeting
