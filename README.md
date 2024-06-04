@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Dragonroost is under heavy development and is very feature-light right now. You can currently add/edit/delete animals (and their associated species, status, and location) and add basic person entries.
+# Dragonroost is under heavy development - there will be bugs and half-finished features!
 
 [![Build status](https://github.com/leethobbit/dragonroost/workflows/build/badge.svg?branch=master&event=push)](https://github.com/leethobbit/dragonroost/actions?query=workflow%3Abuild)
 [![Python Version](https://img.shields.io/pypi/pyversions/dragonroost.svg)](https://pypi.org/project/dragonroost/)
@@ -20,6 +20,16 @@
 Dragonroost is an animal shelter/rescue management app, written in Python using the Django web framework.
 
 </div>
+
+## Disclaimer
+- ⚠ Dragonroost is under heavy development.
+- ⚠ Expect bugs and breaking changes.
+
+## Current features
+- Dragonroost currently has the following features
+  - Animal module - Create/edit/delete Animal and Species entries.  Medical records can be generated for each Animal but this is a work-in-progress and will change!
+  - Business Module - Create/edit/delete Locations and Meetings.
+  - People Module - Create/edit/delete People, who can be Adopters, Donors, Volunteers, or Fosters.
 
 ## Roadmap
 
