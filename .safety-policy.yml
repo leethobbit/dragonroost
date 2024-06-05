@@ -7,5 +7,8 @@ security: # configuration for the `safety check` command
         67599:
           reason: This is intended design for PIP, must use --extra-index-url carefully
           expires: '2025-05-26'
+        70612:
+          reason: from_string is not in use in this repository
+          expires: '2025-05-26'
     continue-on-vulnerability-error: False # Suppress non-zero exit codes when vulnerabilities are found. Enable this in pipelines and CI/CD processes if you want to pass builds that have vulnerabilities
 

@@ -28,7 +28,7 @@ class AnimalHTMxTable(tables.Table):
         "<a href=\"{% url 'animals:species-detail' record.species.id %}\">{{record.species.name}}</a>"
     )
     location = tables.TemplateColumn(
-        "<a href=\"{% url 'business:location-detail' record.location.id %}\">{{record.location.name}}</a>"
+        "<a href=\"{% url 'business:location_detail' record.location.id %}\">{{record.location.name}}</a>"
     )
 
     class Meta:

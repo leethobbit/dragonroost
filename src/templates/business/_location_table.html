@@ -6,7 +6,7 @@
     </thead>
     {% for location in locations %}
     <tbody>
-        <td><a href="{% url 'business:location-detail' location.id %}">{{ location.name }}</a></td>
+        <td><a href="{% url 'business:location_detail' location.id %}">{{ location.name }}</a></td>
         <td>{{ location.description }}</td>
     </tbody>
     {% endfor %}

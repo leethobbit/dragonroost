@@ -12,7 +12,7 @@ from tests.factories import LocationFactory
 def test_location_detail_view(client, admin_user):
     test_object = LocationFactory()
     assert Location.objects.count() == 1
-    uri = reverse("business:location-detail", kwargs={"pk": test_object.id})
+    uri = reverse("business:location_detail", kwargs={"pk": test_object.id})
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)

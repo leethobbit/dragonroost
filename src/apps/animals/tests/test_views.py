@@ -191,4 +191,4 @@ def test_species_delete_view(client, admin_user):
     post_response = client.post(
         reverse("animals:species-delete", kwargs={"pk": species.id})
     )
-    assertRedirects(post_response, reverse("home-list"), status_code=302)
+    assertRedirects(post_response, reverse("home_list"), status_code=302)

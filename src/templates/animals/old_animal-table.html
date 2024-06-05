@@ -30,7 +30,7 @@
         {% endif %}
         <td style="text-align: center; vertical-align: middle;">{{ animal.get_status_display }}</td>
         <td style="text-align: center; vertical-align: middle;">{{ animal.description }}</td>
-        <td style="text-align: center; vertical-align: middle;"><a href="{% url 'business:location-detail' animal.location.id %}">{{ animal.location.name }}</a></td>
+        <td style="text-align: center; vertical-align: middle;"><a href="{% url 'business:location_detail' animal.location.id %}">{{ animal.location.name }}</a></td>
         <td style="text-align: center; vertical-align: middle;">${{ animal.donation_fee }}</td>
         <td style="text-align: center; vertical-align: middle;">{{ animal.intake_date|date:"Y-m-d" }}</td>
     </tbody>

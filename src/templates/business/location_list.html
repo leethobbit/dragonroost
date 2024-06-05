@@ -2,7 +2,7 @@
 {% load django_tables2 %}
 
 {% block content %}
-<a href="{% url 'business:location-create' %}" class="btn btn-primary btn-sm">Add New Location</a>
+<a href="{% url 'business:location_create' %}" class="btn btn-primary btn-sm">Add New Location</a>
 <br></br>
 {% render_table table %}
 {% endblock %}

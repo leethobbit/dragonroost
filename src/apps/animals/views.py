@@ -169,7 +169,7 @@ class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
 class SpeciesDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Species
     template_name = "animals/species-confirm-delete.html"
-    success_url = reverse_lazy("home-list")
+    success_url = reverse_lazy("home_list")
 
 
 class AnimalHTMxTableView(SingleTableMixin, PageTitleViewMixin, FilterView):

@@ -131,6 +131,10 @@ class Animal(models.Model):
 
 
 class MedicalRecord(models.Model):
+    """
+    This model is used to hold medical records for animals. 
+    Each animal can have any number of Medical Records attached.
+    """
     created = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(max_length=500, blank=True, null=False, default="")
     current_weight = models.IntegerField(default=0)

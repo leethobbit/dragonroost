@@ -6,7 +6,7 @@ from apps.business.models import Location, Meeting
 
 class LocationListTable(tables.Table):
     name = tables.TemplateColumn(
-        "<a href=\"{% url 'business:location-detail' record.id %}\">{{record.name}}</a>",
+        "<a href=\"{% url 'business:location_detail' record.id %}\">{{record.name}}</a>",
     )
 
     class Meta:
@@ -16,7 +16,7 @@ class LocationListTable(tables.Table):
 
 class MeetingListTable(tables.Table):
     title = tables.TemplateColumn(
-        "<a href=\"{% url 'business:meeting-update' record.id %}\">{{record.title}}</a>",
+        "<a href=\"{% url 'business:meeting_update' record.id %}\">{{record.title}}</a>",
     )
 
     class Meta:

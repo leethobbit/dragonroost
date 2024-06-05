@@ -25,7 +25,7 @@ from .views import HomeListView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", HomeListView.as_view(), name="home-list"),
+    path("", HomeListView.as_view(), name="home_list"),
     path("accounts/", include("apps.accounts.urls")),
     path("animals/", include("apps.animals.urls", namespace="animals")),
     path("business/", include("apps.business.urls", namespace="business")),

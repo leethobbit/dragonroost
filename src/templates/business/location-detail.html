@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>{{ location.name }} - Detail</h1>
-<p>{{ location.description }}</p>
-<a href="{% url 'business:location-update' location.id %}">Edit</a>
-<a href="{% url 'business:location-delete' location.id %}">Delete</a>
-{% endblock %}

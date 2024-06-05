@@ -16,27 +16,27 @@ from apps.business.views import (
 app_name = "business"  # This is for namespacing the URLs later
 
 urlpatterns = [
-    path("locations/", LocationListView.as_view(), name="location-list"),
-    path("locations/new/", LocationCreateView.as_view(), name="location-create"),
+    path("locations/", LocationListView.as_view(), name="location_list"),
+    path("locations/new/", LocationCreateView.as_view(), name="location_create"),
     path(
         "locations/<int:pk>/detail/",
         LocationDetailView.as_view(),
-        name="location-detail",
+        name="location_detail",
     ),
     path(
-        "locations/<int:pk>/edit/", LocationUpdateView.as_view(), name="location-update"
+        "locations/<int:pk>/edit/", LocationUpdateView.as_view(), name="location_update"
     ),
     path(
         "locations/<int:pk>/delete/",
         LocationDeleteView.as_view(),
-        name="location-delete",
+        name="location_delete",
     ),
-    path("meetings/", MeetingListView.as_view(), name="meeting-list"),
-    path("meetings/new/", MeetingCreateView.as_view(), name="meeting-create"),
-    path("meetings/<int:pk>/edit/", MeetingUpdateView.as_view(), name="meeting-update"),
+    path("meetings/", MeetingListView.as_view(), name="meeting_list"),
+    path("meetings/new/", MeetingCreateView.as_view(), name="meeting_create"),
+    path("meetings/<int:pk>/edit/", MeetingUpdateView.as_view(), name="meeting_update"),
     path(
         "meetings/<int:pk>/delete/",
         MeetingDeleteView.as_view(),
-        name="meeting-delete",
+        name="meeting_delete",
     ),
 ]
