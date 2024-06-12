@@ -1,16 +1,22 @@
 from decimal import Decimal
+
+import django_filters
 from django.db.models import Q
 from django.forms import TextInput
 
-import django_filters
-
 from apps.people.models import Person
+
 
 class PeopleSearchInput(TextInput):
     input_type = "search"
 
+
 class PersonFilter(django_filters.FilterSet):
-    query = django_filters.CharFilter(method="universal_search", label="", widget=PeopleSearchInput(attrs={"placeholder": "Search..."}))
+    query = django_filters.CharFilter(
+        method="universal_search",
+        label="",
+        widget=PeopleSearchInput(attrs={"placeholder": "Search..."}),
+    )
 
     class Meta:
         model = Person

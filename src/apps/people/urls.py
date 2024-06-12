@@ -5,9 +5,9 @@ from apps.people.views import (
     PersonCreateView,
     PersonDeleteView,
     PersonDetailView,
+    PersonHTMxView,
     PersonListView,
     PersonUpdateView,
-    PersonHTMxView,
 )
 
 app_name = "people"  # This is for namespacing the URLs later

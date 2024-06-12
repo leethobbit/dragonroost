@@ -20,14 +20,14 @@ from .models import Animal, MedicalRecord, Species
 # Create your views here.
 class AnimalListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
     model = Animal
-    template_name = "animals/animal-list.html"
+    template_name = "animals/animal_list.html"
     title = "Recent Intakes"
     context_object_name = "animals"
 
 
 class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Animal
-    template_name = "animals/animal-detail.html"
+    template_name = "animals/animal_detail.html"
     title = "Animal Details"
     context_object_name = "animal"
 
@@ -43,7 +43,7 @@ class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 
 class AnimalCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Animal
-    template_name = "animals/animal-form.html"
+    template_name = "animals/animal_form.html"
     title = "Create Animal"
     fields = (
         "name",
@@ -66,7 +66,7 @@ class AnimalCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 
 class AnimalUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Animal
-    template_name = "animals/animal-form.html"
+    template_name = "animals/animal_form.html"
     title = "Edit Animal"
     fields = (
         "name",
@@ -113,7 +113,7 @@ class AnimalOutcomeForm(forms.ModelForm):
 class AnimalOutcomeView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     form_class = AnimalOutcomeForm
     model = Animal
-    template_name = "animals/animal-form.html"
+    template_name = "animals/animal_form.html"
     title = "Animal Outcome"
 
     def get_success_url(self):
@@ -122,7 +122,7 @@ class AnimalOutcomeView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
 
 class AnimalDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Animal
-    template_name = "animals/animal-confirm-delete.html"
+    template_name = "animals/animal_confirm_delete.html"
     title = "Animal Delete Confirmation"
     success_url = reverse_lazy("animals:animal-list")
 
@@ -134,7 +134,7 @@ class SpeciesListView(
     table_class = SpeciesListTable
     queryset = Species.objects.all().order_by("name")
     filterset_class = SpeciesFilter
-    template_name = "animals/species-list.html"
+    template_name = "animals/species_list.html"
     title = "Species List"
     context_object_name = "species"
 
@@ -142,14 +142,14 @@ class SpeciesListView(
 class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Species
     title = "Species Detail"
-    template_name = "animals/species-detail.html"
+    template_name = "animals/species_detail.html"
     context_object_name = "species"
 
 
 class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Species
     title = "Create Species"
-    template_name = "animals/base-form.html"
+    template_name = "animals/base_form.html"
     fields = ("name", "diet", "class_name", "description")
 
     def get_success_url(self):
@@ -159,7 +159,7 @@ class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Species
     title = "Edit Species"
-    template_name = "animals/base-form.html"
+    template_name = "animals/base_form.html"
     fields = ("name", "diet", "class_name", "description")
 
     def get_success_url(self):
@@ -168,7 +168,7 @@ class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
 
 class SpeciesDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Species
-    template_name = "animals/species-confirm-delete.html"
+    template_name = "animals/species_confirm_delete.html"
     success_url = reverse_lazy("home_list")
 
 
@@ -181,9 +181,9 @@ class AnimalHTMxTableView(SingleTableMixin, PageTitleViewMixin, FilterView):
 
     def get_template_names(self):
         if self.request.htmx:
-            template_name = "animals/animal-table-partial.html"
+            template_name = "animals/animal_table_partial.html"
         else:
-            template_name = "animals/animal-table-htmx.html"
+            template_name = "animals/animal_table_htmx.html"
 
         return template_name
 
@@ -191,7 +191,7 @@ class AnimalHTMxTableView(SingleTableMixin, PageTitleViewMixin, FilterView):
 class MedicalRecordCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = MedicalRecord
     form_class = MedicalRecordForm
-    template_name = "animals/base-form.html"
+    template_name = "animals/base_form.html"
 
     def get_success_url(self):
         print("Reached success redirect url function, yay!")
@@ -223,7 +223,7 @@ class MedicalRecordCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView
 
 class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
     model = MedicalRecord
-    template_name = "animals/record-confirm-delete.html"
+    template_name = "animals/medical_record_confirm_delete.html"
 
     def get_success_url(self):
         return reverse_lazy(

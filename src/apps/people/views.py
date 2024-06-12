@@ -3,14 +3,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django_tables2 import SingleTableMixin
 from django_filters.views import FilterView
+from django_tables2 import SingleTableMixin
 
 from dragonroost.mixins import PageTitleViewMixin
 
+from .filters import PersonFilter
 from .models import Person
 from .tables import PersonHTMxTable
-from .filters import PersonFilter
 
 
 # Create your views here.
@@ -26,24 +26,32 @@ class PersonListView(
 
     def get_context_data(self, **kwargs):
         context = super(PersonListView, self).get_context_data(**kwargs)
-        context["volunteers"] = Person.objects.filter(roles__name="VOLUNTEER").order_by("first_name")
-        context["adopters"] = Person.objects.filter(roles__name="ADOPTER").order_by("first_name")
-        context["donors"] = Person.objects.filter(roles__name="DONOR").order_by("first_name")
-        context["fosters"] = Person.objects.filter(roles__name="FOSTER").order_by("first_name")
+        context["volunteers"] = Person.objects.filter(roles__name="VOLUNTEER").order_by(
+            "first_name"
+        )
+        context["adopters"] = Person.objects.filter(roles__name="ADOPTER").order_by(
+            "first_name"
+        )
+        context["donors"] = Person.objects.filter(roles__name="DONOR").order_by(
+            "first_name"
+        )
+        context["fosters"] = Person.objects.filter(roles__name="FOSTER").order_by(
+            "first_name"
+        )
 
         return context
 
 
 class PersonDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Person
-    template_name = "people/person-detail.html"
+    template_name = "people/person_detail.html"
     title = "Person Details"
     context_object_name = "person"
 
 
 class PersonCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Person
-    template_name = "people/person-form.html"
+    template_name = "people/person_form.html"
     title = "Add Person"
     fields = (
         "first_name",
@@ -62,7 +70,7 @@ class PersonCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 
 class PersonUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Person
-    template_name = "people/person-form.html"
+    template_name = "people/person_form.html"
     title = "Edit Person"
     fields = (
         "first_name",
@@ -81,9 +89,10 @@ class PersonUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
 
 class PersonDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Person
-    template_name = "people/person-confirm-delete.html"
+    template_name = "people/person_confirm_delete.html"
     title = "Delete Person"
     success_url = reverse_lazy("people:person-list")
+
 
 class PersonHTMxView(SingleTableMixin, PageTitleViewMixin, FilterView):
     table_class = PersonHTMxTable
