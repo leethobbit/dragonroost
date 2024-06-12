@@ -45,7 +45,7 @@ class AnimalHTMxTable(tables.Table):
             "status",
             "intake_date",
         )
-        template_name = "tables/_animal-table-htmx.html"
+        template_name = "tables/bootstrap_htmx.html"
 
 
 class SpeciesListTable(tables.Table):

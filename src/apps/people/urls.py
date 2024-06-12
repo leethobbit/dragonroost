@@ -7,6 +7,7 @@ from apps.people.views import (
     PersonDetailView,
     PersonListView,
     PersonUpdateView,
+    PersonHTMxView,
 )
 
 app_name = "people"  # This is for namespacing the URLs later
@@ -17,4 +18,5 @@ urlpatterns = [
     path("<int:pk>/detail/", PersonDetailView.as_view(), name="person-detail"),
     path("<int:pk>/edit/", PersonUpdateView.as_view(), name="person-update"),
     path("<int:pk>/delete/", PersonDeleteView.as_view(), name="person-delete"),
+    path("search/", PersonHTMxView.as_view(), name="person-table"),
 ]

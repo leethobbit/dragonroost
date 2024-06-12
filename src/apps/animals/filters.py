@@ -1,14 +1,17 @@
 # Animals/filters.py
 from decimal import Decimal
+from django.db.models import Q
+from django.forms import TextInput
 
 import django_filters
-from django.db.models import Q
 
 from apps.animals.models import Animal, Species
 
 
+class AnimalSearchInput(TextInput):
+    input_type = "search"
 class AnimalFilter(django_filters.FilterSet):
-    query = django_filters.CharFilter(method="universal_search", label="")
+    query = django_filters.CharFilter(method="universal_search", label="", widget=AnimalSearchInput(attrs={"placeholder": "Search..."}))
 
     class Meta:
         model = Animal
