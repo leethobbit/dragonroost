@@ -8,7 +8,8 @@ def get_status_attr(record):
     """
     Returns a different styling based on the animal status.
     """
-    match record.status:
+    status = record.status
+    match status:
         case "ADOPTED":
             return "bg-secondary"
         case "PENDING":
@@ -19,6 +20,7 @@ def get_status_attr(record):
             return "bg-warning"
         case _:
             return "bg-secondary"
+
 
 class AnimalImageColumn(tables.Column):
     def render(self, value):
