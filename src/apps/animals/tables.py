@@ -4,6 +4,22 @@ from django.utils.html import format_html
 from apps.animals.models import Animal, Species
 
 
+def get_status_attr(record):
+    """
+    Returns a different styling based on the animal status.
+    """
+    match record.status:
+        case "ADOPTED":
+            return "bg-secondary"
+        case "PENDING":
+            return "bg-info"
+        case "ADOPTABLE":
+            return "bg-success"
+        case "MEDICAL_HOLD":
+            return "bg-warning"
+        case _:
+            return "bg-secondary"
+
 class AnimalImageColumn(tables.Column):
     def render(self, value):
         return format_html(
@@ -29,6 +45,10 @@ class AnimalHTMxTable(tables.Table):
     )
     location = tables.TemplateColumn(
         "<a href=\"{% url 'business:location_detail' record.location.id %}\">{{record.location.name}}</a>"
+    )
+
+    status = tables.Column(
+        attrs={"td": {"class": get_status_attr}}, verbose_name="Status"
     )
 
     class Meta:
