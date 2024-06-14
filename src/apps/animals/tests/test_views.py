@@ -74,7 +74,7 @@ def test_animal_detail_view(client, admin_user):
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert f"Detail" in content
+    assert test_animal.name in content
 
 
 @pytest.mark.django_db
@@ -153,7 +153,7 @@ def test_species_detail_view(client, admin_user):
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert f"animals:species-detail" in content
+    assert test_object.name in content
 
 
 @pytest.mark.django_db
