@@ -48,6 +48,7 @@ class Animal(models.Model):
         ("MEDICAL_HOLD", "Medical Hold"),
         ("ADOPTED", "Adopted"),
         ("DECEASED", "Deceased"),
+        ("AMBASSADOR", "Ambassador"),
     ]
     INTAKE_CHOICES = [
         ("UNKNOWN", "Unknown"),
