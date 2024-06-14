@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+{% if animal.animal_photo %}
+<div>
+<img width="25%" height="25%" src="{{ animal.animal_photo.url }}">
+</div>
+<p>Description: {{ animal.description }}</p>
+<p>Diet: {{ animal.species.get_diet_display }}</p>
+{% endif %}
+<div><a href="{% url 'animals:medical-record-create' animal.id %}" class="btn btn-primary btn-sm">New Medical Record</a></div>
+<a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a>
+<a href="{% url 'animals:animal-update' animal.id %}">Edit</a>
+<a href="{% url 'animals:animal-delete' animal.id %}">Delete</a>
+<br></br>
+
+<br></br>
+{% if medical_records %}
+<h3 class="text-secondary">{{ object.number_of_medical_records }} Medical Record{{ object.number_of_medical_records|pluralize }}</h3>
+<hr>
+<ul>
+  {% for record in medical_records %}
+  <div class="card border-success mb-3" style="max-width: 60rem;">
+    <h5 class="card-header">Notes: {{ record.notes }}</h5>
+    <div class="card-body">
+      <p class="card-title text-secondary">{{ record.q_volunteer }} - {{ record.created|date:"Y-m-d" }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</ul>
+{% else %}
+  <strong class="text-secondary">No records yet...</strong>
+{% endif %}
+</div>
+{% endblock %}

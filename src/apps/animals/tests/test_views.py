@@ -26,7 +26,7 @@ def test_animal_list_view_success(client, admin_user):
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert "Recent Intakes" in content
+    assert "animals:animal-list" in content
 
 
 def test_animal_list_view_fail(client):
@@ -153,7 +153,7 @@ def test_species_detail_view(client, admin_user):
     client.force_login(admin_user)
     resp = client.get(uri)
     content = resp.content.decode(resp.charset)
-    assert f"Detail" in content
+    assert f"animals:species-detail" in content
 
 
 @pytest.mark.django_db

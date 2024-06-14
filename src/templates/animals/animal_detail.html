@@ -4,18 +4,140 @@
 
 {% block content %}
 
-{% if animal.animal_photo %}
-<div>
-<img width="25%" height="25%" src="{{ animal.animal_photo.url }}">
-</div>
-<p>Description: {{ animal.description }}</p>
-<p>Diet: {{ animal.species.get_diet_display }}</p>
-{% endif %}
-<div><a href="{% url 'animals:medical-record-create' animal.id %}" class="btn btn-primary btn-sm">New Medical Record</a></div>
-<a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a>
-<a href="{% url 'animals:animal-update' animal.id %}">Edit</a>
-<a href="{% url 'animals:animal-delete' animal.id %}">Delete</a>
+<!-- <section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'home_list' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'animals:animal-list' %}">Animals</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ animal.animal_name }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+{% block breadcrumbs %}
+<h3>
+    <div class="breadcrumbs">
+        <a href="{% url 'home_list' %}">Home</a>
+        <a href="{% url 'animals:animal-list' %}">&rsaquo; Animals</a>
+{% if title %} &rsaquo; {{ title }}{% endif %}
+    </div>
+</h3>
+{% endblock %}
 <br></br>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                {% if animal.animal_photo %}
+                <img src="{{ animal.animal_photo.url }}" alt="..." style="width: 150px; height: 150px" class="rounded-circle object-fit-cover">
+                {% else %}
+                <p>No Photo Found</p>
+                {% endif %}
+                <h5 class="my-3"><b>{{ animal.name }}</b></h5>
+                <a href="{% url 'animals:species-detail' animal.species.id %}">{{ animal.species }}</a>
+                <p class="text-muted mb-4">{{ animal.get_status_display }}</p>
+                <div class="d-flex justify-content-center mb-2">
+                    <a href="{% url 'animals:animal-update' animal.id %}"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Edit</button></a>
+                    <a href="{% url 'animals:animal-delete' animal.id %}"><button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger ms-4">Delete</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush rounded-3">
+                    <li class="list-group-item d-flex justify-content-center p-3">
+                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                        <p class="mb-0"><b>Description:</b> {{ animal.description }}</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-center p-3">
+                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                        <p class="mb-0"><b>Current Weight:</b> TODO: Get current_weight from most recent medical_record</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-center p-3">
+                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                        <p class="mb-0"><b>Starting Weight:</b> {{ animal.starting_weight }}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Additional Details</b></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Intake Date</b></p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{ animal.intake_date|date }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Current Condition</b></p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{ animal.get_current_condition_display }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Sex</b></p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{ animal.get_sex_display }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Age</b></p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{ animal.age }} years old</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Location</b></p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{ animal.location.name }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"><b>Donation Fee</b></p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">${{ animal.donation_fee }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br></br>
+<div><a href="{% url 'animals:medical-record-create' animal.id %}" class="btn btn-primary btn-sm">New Medical Record</a></div>
+<!-- <a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a> -->
 
 <br></br>
 {% if medical_records %}
@@ -24,9 +146,11 @@
 <ul>
   {% for record in medical_records %}
   <div class="card border-success mb-3" style="max-width: 60rem;">
-    <h5 class="card-header">Notes: {{ record.notes }}</h5>
+    <h5 class="card-header text-secondary"><b>{{ record.created|date:"Y-m-d" }} - {{ record.q_volunteer }}</b></h5>
     <div class="card-body">
-      <p class="card-title text-secondary">{{ record.q_volunteer }} - {{ record.created|date:"Y-m-d" }}</p>
+      <p class="card-title text-secondary"><b>Weight</b> {{ record.current_weight }} - <b>BM?</b> {{ record.bowel_movement }}</p>
+      <p class="card-text"><b>Notes:</b> {{ record.notes }}</p>
+      <p class="card-text"><b>Treatments:</b> {{ record.treatments }}</p>
     </div>
   </div>
   {% endfor %}

@@ -22,7 +22,7 @@
   {% include 'navbar.html' %}
     <div class="container" style="padding-top: 20px">
         <br></br>
-        <h2 class="text-center">{% block title %}Dragonroost - {{ title }}{% endblock %}</h2>
+        <title>{% block title %}Dragonroost{% endblock %}</title>
 
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
         
