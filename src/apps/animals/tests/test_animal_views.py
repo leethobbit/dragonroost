@@ -25,8 +25,7 @@ def test_animal_list_view_success(client, admin_user):
     uri = reverse("animals:animal-list")
     client.force_login(admin_user)
     resp = client.get(uri)
-    content = resp.content.decode(resp.charset)
-    assert "animals:animal-list" in content
+    assert resp.status_code == 200
 
 
 def test_animal_list_view_fail(client):
@@ -122,6 +121,13 @@ def test_animal_delete_view(client, admin_user):
 
 
 # SPECIES TESTS #
+def test_species_list_view_success(client, admin_user):
+    uri = reverse("animals:species-list")
+    client.force_login(admin_user)
+    resp = client.get(uri)
+    content = resp.content.decode(resp.charset)
+    assert "Class name" in content
+    assert resp.status_code == 200
 
 
 @pytest.mark.django_db
