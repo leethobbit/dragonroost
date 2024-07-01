@@ -957,13 +957,13 @@ tablib = ["tablib"]
 
 [[package]]
 name = "django-viewflow"
-version = "2.0.2"
+version = "2.1.2"
 description = "Reusable library to build business applications fast"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "django-viewflow-2.0.2.tar.gz", hash = "sha256:56e6010c4c86bda9fcc99857cac335fe8c02f3381e0bb1917364410292da3984"},
-    {file = "django_viewflow-2.0.2-py3-none-any.whl", hash = "sha256:581f94424d969274c75c895ac92489e3e0c1b8148b5e46fa04b60d7f8cbdd88d"},
+    {file = "django-viewflow-2.1.2.tar.gz", hash = "sha256:d76fca04ab94feeb6a90eb1f0f030df44ba13c773807e5b685e5edab6573c9d9"},
+    {file = "django_viewflow-2.1.2-py3-none-any.whl", hash = "sha256:5df6f190f7fadc22c3dcd975e334f49a760edf30060b8eabeb7caee290c4e3f5"},
 ]
 
 [package.dependencies]
@@ -3375,4 +3375,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "a0b267b70301846f478564fd8ddd838a7ebdc779967a0a3f767a5dfbc7078ecf"
+content-hash = "d48d191a6013032648174b66f8ba6884e7c5cb2faa13ca18f46fe784b5239934"
