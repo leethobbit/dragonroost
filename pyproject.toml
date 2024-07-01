@@ -48,7 +48,7 @@ django-crispy-forms = "^2.1"
 crispy-bootstrap5 = "^2024.2"
 crispy-bootstrap4 = "^2024.1"
 django-viewflow = {version = "^2.0.0b8", allow-prereleases = true}
-dash = "^2.16.1"
+dash = "^2.17.1"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^4.3.0"
