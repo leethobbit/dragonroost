@@ -44,7 +44,7 @@ django-tables2 = "^2.7.0"
 django-filter = "^24.1"
 django-htmx = "^1.17.3"
 django-bootstrap5 = "^23.4"
-django-crispy-forms = "^2.1"
+django-crispy-forms = "^2.2"
 crispy-bootstrap5 = "^2024.2"
 crispy-bootstrap4 = "^2024.1"
 django-viewflow = {version = "^2.0.0b8", allow-prereleases = true}
