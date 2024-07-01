@@ -23,7 +23,7 @@ keyring==24.3.0
 more-itertools==10.2.0
 msgpack==1.0.7
 openpyxl==3.0.10
-packaging==23.2
+packaging==24.1
 pexpect==4.9.0
 pkginfo==1.9.6
 platformdirs==4.2.0
