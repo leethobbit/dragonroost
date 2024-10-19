@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=dragonroost_ng
+POSTGRES_USER=ZGpvJWfReKDZrRIjSLbKieFgZAaJhXtt
+POSTGRES_PASSWORD=MFkCCANfU0UaOpjNHahUizbZ42kgf6CV8dvvmB11WCwsmg1iwAxzvBytIjLy6jCK
