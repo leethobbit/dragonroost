@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ person.first_name }} {{ person.last_name }} - Detail</h1>
+  <p>{{ person.notes }}</p>
+  <a href="{% url 'people:person-update' person.id %}">Edit</a>
+  <a href="{% url 'people:person-delete' person.id %}">Delete</a>
+{% endblock content %}

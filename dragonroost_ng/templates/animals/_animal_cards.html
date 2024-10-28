@@ -1,0 +1,44 @@
+{% load status_filters %}
+
+{# djlint:off #}
+
+<div class="row row-cols-1 row-cols-md-5 g-1">
+  {% for animal in animals|dictsortreversed:"intake_date"|slice:":5" %}
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <div class="card h-100">
+          {% if animal.animal_photo %}
+            <img src="{{ animal.animal_photo.url }}"
+                 class="card-img-top"
+                 style="height: 20vh;
+                        object-fit: cover"
+                 alt="No Photo" />
+          {% else %}
+            <img src=""
+                 class="card-img-top"
+                 style="height: 20vh;
+                        width: 20vh;
+                        object-fit: cover"
+                 alt="No Photo" />
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'animals:animal-detail' animal.id %}">{{ animal.name }}</a>
+          </h5>
+          <a href="{% url 'animals:species-detail' animal.species.id %}"
+             class="text-secondary">{{ animal.species.name }}</a>
+          <p class="card-text">{{ animal.get_status_display }}</p>
+          <a href="{% url 'business:location_detail' animal.location.id %}"
+             class="btn btn-primary">{{ animal.location.name }}</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<br />
+</br />
+<h4 class="text-secondary">Testing Adoption Counts</h4>
+<p>{{ animals|percent_adopted }}% adopted</p>
+
+{# djlint:on #}

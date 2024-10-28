@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- for testing: animals:species-detail -->
+  <h1>
+    <a href="{% url 'animals:species-list' %}">Species</a> - {{ species.name }}
+  </h1>
+  <p>{{ species.description }}</p>
+  <a href="{% url 'animals:species-update' species.id %}">Edit</a>
+  <a href="{% url 'animals:species-delete' species.id %}">Delete</a>
+  <br />
+</br />
+<h2>All {{ species.name }}s</h2>
+{% for animal in species.animals.all %}
+  <a href="{% url 'animals:animal-detail' animal.id %}">{{ animal.name }}</a>
+  <br />
+</br />
+{% endfor %}
+{% endblock content %}

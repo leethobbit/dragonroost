@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete Medical Record</h1>
+  <p>Are you sure you want to delete the record "{{ record.id }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+  </form>
+  <a href="{% url 'animals:animal-list' %}">No, take me
+  back</a>
+{% endblock content %}

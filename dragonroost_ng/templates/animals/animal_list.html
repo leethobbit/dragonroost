@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <!-- for testing: animals:animal-list -->
+  <br />
+</br />
+{% include "animals/_animal_cards.html" %}
+<br />
+</br />
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">Help Page</div>
+    <div class="card-body">
+      <h5 class="card-title">What is a shelter manager?</h5>
+      <p class="card-text">A shelter management app helps manage intakes, adoptions, medical treatments, etc.</p>
+      <a href="{% url 'animals:animal-list' %}" class="btn btn-primary">Go Home</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,115 @@
+# Species initial data
+- model: animals.species
+  pk: 1
+  fields:
+    name: Cat
+    class_name: MAMMAL
+    description: Kitty cat
+- model: animals.species
+  pk: 2
+  fields:
+    name: Bearded Dragon
+    class_name: REPTILE
+    description: Little beardie!
+- model: animals.species
+  pk: 3
+  fields:
+    name: Chameleon
+    class_name: REPTILE
+    description: Chameleon
+- model: animals.species
+  pk: 4
+  fields:
+    name: Parrot
+    class_name: BIRD
+    description: Parrot
+- model: animals.species
+  pk: 5
+  fields:
+    name: Savannah Monitor
+    class_name: REPTILE
+    description: Savannah monitor
+
+# Location initial data
+- model: business.location
+  pk: 1
+  fields:
+    name: Sales Floor
+    description: Basically the whole first floor.
+- model: business.location
+  pk: 2
+  fields:
+    name: Q Room
+    description: Quarantine room for sick and/or new animals.
+
+  # Medical record initial data
+- model: medical.medicalrecord
+  pk: 1
+  fields:
+    name: Temp Record
+
+# Base roles for people
+- model: people.role
+  pk: 1
+  fields:
+    name: Volunteer
+    description: A person who volunteers for the rescue.
+- model: people.role
+  pk: 2
+  fields:
+    name: Adopter
+    description: A person who adopts animals from the rescue.
+- model: people.role
+  pk: 3
+  fields:
+    name: Donor
+    description: A person who makes donations to the rescue.
+- model: people.role
+  pk: 4
+  fields:
+    name: Foster
+    description: A person who fosters animals for the rescue.
+
+# Animal initial data
+- model: animals.animal
+  pk: 1
+  fields:
+    name: Zorg
+    description: Zorg the destroyer
+    donation_fee: 6.75
+    intake_date: 2023-01-13 07:25:17.808062+00:00
+    updated_at: 2023-04-13 07:25:17.808062+00:00
+    color: Black
+    sex: MALE
+    age: 24
+    species: 1
+    location: 2
+    status: "PENDING"
+- model: animals.animal
+  pk: 2
+  fields:
+    name: Bonk
+    description: Bonk the wizard
+    donation_fee: 13.21
+    intake_date: 2023-01-13 07:25:17.808062+00:00
+    updated_at: 2023-07-13 07:25:17.808062+00:00
+    color: White
+    sex: FEMALE
+    age: 9
+    species: 4
+    location: 1
+    status: "ADOPTABLE"
+- model: animals.animal
+  pk: 3
+  fields:
+    name: Inanna
+    description: The healing cat wonder!
+    donation_fee: 47.99
+    intake_date: 2024-01-13 07:25:17.808062+00:00
+    updated_at: 2024-03-13 07:25:17.808062+00:00
+    color: Yellow
+    sex: FEMALE
+    age: 90
+    species: 1
+    location: 2
+    status: "ADOPTABLE"

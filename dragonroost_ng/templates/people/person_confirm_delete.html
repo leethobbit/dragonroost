@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Are you sure you want to delete the species "{{ person.first_name }} {{ person.last_name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+  </form>
+  <a href="{% url 'people:person-detail' person.id %}">No, take me
+  back</a>
+{% endblock content %}

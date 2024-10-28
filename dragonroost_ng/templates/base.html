@@ -38,10 +38,13 @@
               crossorigin="anonymous"
               referrerpolicy="no-referrer"></script>
       <!-- Your stuff: Third-party javascript libraries go here -->
-      <!-- htmx version 1.9.12 -->
-      <script src="{% static 'js/htmx.min.js' %}" defer></script>
+      <!-- htmx -->
+      <script src="{% static 'js/htmx-2.0.3.min.js' %}" defer></script>
+      {% comment %}
+      <script defer src="{% static 'js/htmx.min.js' %}"></script> {% endcomment %}
       <!-- place project specific Javascript in this file -->
-      <script defer src="{% static 'js/project.js' %}"></script>
+      {% comment %}
+      <script defer src="{% static 'js/project.js' %}"></script> {% endcomment %}
     {% endblock javascript %}
   </head>
   <body class="{% block bodyclass %}{% endblock bodyclass %}"
@@ -64,6 +67,18 @@
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'home' %}">Home <span class="visually-hidden">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Animals</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Business</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Medical</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">People</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -94,23 +109,58 @@
           </div>
         </nav>
       </div>
-      <div class="container">
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-              {{ message }}
-              <button type="button"
-                      class="btn-close"
-                      data-bs-dismiss="alert"
-                      aria-label="Close"></button>
+      <div class="container-fluid text-center">
+        <div class="row">
+          <div class="col-2">
+            <div class="row align-items-start">
+              <div class="flex-column">
+                <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+                  <span class="fs-3">Actions</span>
+                </p>
+                <hr />
+                <ul>
+                  <p>Animals</p>
+                  <li>
+                    <a id="animal-table"
+                       hx-get="{% url 'animals:animal-table' %}"
+                       hx-push-url="true"
+                       hx-target="#testing"
+                       hx-swap="innerHTML"
+                       href="{% url 'animals:animal-table' %}">Manage Animals</a>
+                  </li>
+                  <li>
+                    <a id="species-table"
+                       hx-get="{% url 'animals:species-table' %}"
+                       hx-push-url="true"
+                       hx-target="#testing"
+                       hx-swap="innerHTML"
+                       href="{% url 'animals:species-table' %}">Manage Species</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          {% endfor %}
-        {% endif %}
-        {% block main %}
-          {% block content %}
-            <p>Use this document as a way to quick start any new project.</p>
-          {% endblock content %}
-        {% endblock main %}
+          </div>
+          <div class="col-md-9">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                  {{ message }}
+                  <button type="button"
+                          class="btn-close"
+                          data-bs-dismiss="alert"
+                          aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% block main %}
+              <div id="testing">
+                {% block content %}
+                  Click a link on the left sidebar to get started.
+                {% endblock content %}
+              </div>
+            {% endblock main %}
+          </div>
+        </div>
       </div>
     {% endblock body %}
     <!-- /container -->
@@ -118,13 +168,13 @@
     {% endblock modal %}
     {% block inline_javascript %}
       {% comment %}
-    Script tags with only code, no src (defer by default). To run
-    with a "defer" so that you run inline code:
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        /* Run whatever you want */
-      });
-    </script>
+  Script tags with only code, no src (defer by default). To run
+  with a "defer" so that you run inline code:
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      /* Run whatever you want */
+    });
+  </script>
       {% endcomment %}
     {% endblock inline_javascript %}
   </body>

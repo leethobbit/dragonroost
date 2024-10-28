@@ -14,7 +14,8 @@ SECRET_KEY = env(
     default="xpebiD53RQjWk5lC9CddwF3ygsehpnMzoyA4lEWpa8QvJol1JzW6Dds3CAqGhxrE",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
+ALLOWED_HOSTS = ["*", "localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
+CSRF_TRUSTED_ORIGINS = ["https://herps.ddrev.org"]
 
 # CACHES
 # ------------------------------------------------------------------------------

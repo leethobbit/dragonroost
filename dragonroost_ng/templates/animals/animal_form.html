@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+  <form class="align-items-center flex-column"
+        method="post"
+        enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form layout='floating' %}
+    {% bootstrap_button button_type="submit" content="Save" %}
+    {% bootstrap_button button_type="reset" content="Cancel" %}
+  </form>
+{% endblock content %}

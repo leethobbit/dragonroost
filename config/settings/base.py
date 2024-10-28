@@ -78,10 +78,17 @@ THIRD_PARTY_APPS = [
     "allauth.mfa",
     "allauth.socialaccount",
     "django_htmx",
+    "django_tables2",
+    "django_bootstrap5",
+    "django_filters",
 ]
 
 LOCAL_APPS = [
     "dragonroost_ng.users",
+    "dragonroost_ng.animals",
+    "dragonroost_ng.business",
+    "dragonroost_ng.medical",
+    "dragonroost_ng.people",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -265,9 +272,9 @@ ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_ADAPTER = "dragonroost_ng.users.adapters.AccountAdapter"
 # https://docs.allauth.org/en/latest/account/forms.html

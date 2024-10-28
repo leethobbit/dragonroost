@@ -1,0 +1,26 @@
+{# dragonroost/animals/templates/animal_table_htmx.html #}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+  <a href="{% url 'animals:animal-create' %}"
+     class="btn btn-primary btn-sm">Add New Animal</a>
+  <a href="{% url 'animals:species-create' %}"
+     class="btn btn-primary btn-sm">Add New Species</a>
+  <br />
+</br />
+{# Search form #}
+<form hx-get="{% url 'animals:get_animal_list' %}"
+      hx-target="div.table-container"
+      hx-swap="outerHTML"
+      hx-indicator=".progress"
+      class="form-inline">
+  {% crispy filter.form %}
+</form>
+{# Progress indicator #}
+<div class="progress">
+  <div class="indeterminate"></div>
+</div>
+{# The actual table #}
+{% render_table table %}
+{% endblock content %}
