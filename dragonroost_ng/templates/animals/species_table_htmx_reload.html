@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load django_tables2 %}
+
+{% block content %}
+  <br />
+</br />
+<a href="{% url 'animals:species-create' %}"
+   class="btn btn-primary btn-sm">Add New Species</a>
+<br />
+</br />
+{% render_table table %}
+{% endblock content %}

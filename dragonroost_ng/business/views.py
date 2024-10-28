@@ -25,9 +25,15 @@ class LocationListView(
     model = Location
     table_class = LocationListTable
     queryset = Location.objects.all().order_by("name")
-    template_name = "business/location_list.html"
     title = "Location List"
     context_object_name = "locations"
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "business/partials/location_table_htmx.html"
+        else:
+            template_name = "business/location_table_htmx_reload.html"
+        return template_name
 
 
 class LocationDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
@@ -44,7 +50,7 @@ class LocationCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     fields = ("name", "description")
 
     def get_success_url(self):
-        return reverse_lazy("business:location_detail", kwargs={"pk": self.object.id})
+        return reverse_lazy("business:location-detail", kwargs={"pk": self.object.id})
 
 
 class LocationUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
@@ -54,14 +60,14 @@ class LocationUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     fields = ("name", "description")
 
     def get_success_url(self):
-        return reverse_lazy("business:location_detail", kwargs={"pk": self.object.id})
+        return reverse_lazy("business:location-detail", kwargs={"pk": self.object.id})
 
 
 class LocationDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Location
     title = "Delete Location"
     template_name = "business/location_confirm_delete.html"
-    success_url = reverse_lazy("business:location_list")
+    success_url = reverse_lazy("business:location-list")
 
 
 class MeetingListView(
@@ -73,33 +79,39 @@ class MeetingListView(
     model = Meeting
     table_class = MeetingListTable
     queryset = Meeting.objects.all().order_by("-date")
-    template_name = "business/meeting_list.html"
     title = "Meeting List"
     context_object_name = "meetings"
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "business/partials/meeting_table_htmx.html"
+        else:
+            template_name = "business/meeting_table_htmx_reload.html"
+        return template_name
 
 
 class MeetingCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Meeting
     title = "Create Meeting"
     template_name = "business/business_form.html"
-    fields = ("title", "minutes")
+    fields = ("title", "meeting_url", "minutes")
 
     def get_success_url(self):
-        return reverse_lazy("business:meeting_list")
+        return reverse_lazy("business:meeting-table")
 
 
 class MeetingUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Meeting
     template_name = "business/business_form.html"
     title = "Edit Meeting"
-    fields = ("title", "minutes")
+    fields = ("title", "meeting_url", "minutes")
 
     def get_success_url(self):
-        return reverse_lazy("business:meeting_list")
+        return reverse_lazy("business:meeting-table")
 
 
 class MeetingDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Meeting
     title = "Delete Meeting"
     template_name = "business/meeting_confirm_delete.html"
-    success_url = reverse_lazy("business:meeting_list")
+    success_url = reverse_lazy("business:meeting-table")

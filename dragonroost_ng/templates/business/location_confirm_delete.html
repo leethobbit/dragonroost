@@ -10,6 +10,6 @@
     {% csrf_token %}
     <button type="submit">Yes, delete</button>
   </form>
-  <a href="{% url 'business:location_detail' location.id %}">No, take me
+  <a href="{% url 'business:location-detail' location.id %}">No, take me
   back</a>
 {% endblock content %}

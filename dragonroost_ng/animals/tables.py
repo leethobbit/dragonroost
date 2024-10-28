@@ -40,7 +40,7 @@ class CustomNameColumn(tables.Column):
         )
 
 
-class AnimalHTMxTable(tables.Table):
+class AnimalTable(tables.Table):
     animal_photo = AnimalImageColumn("Photo")
 
     id = tables.TemplateColumn(
@@ -58,7 +58,7 @@ class AnimalHTMxTable(tables.Table):
         """,
     )
     location = tables.TemplateColumn(
-        """<a href=\"{% url 'business:location_detail' record.location.id %}\">
+        """<a href=\"{% url 'business:location-detail' record.location.id %}\">
         {{record.location.name}}
         </a>
         """,
@@ -86,7 +86,7 @@ class AnimalHTMxTable(tables.Table):
         template_name = "tables/bootstrap_htmx.html"
 
 
-class SpeciesListTable(tables.Table):
+class SpeciesTable(tables.Table):
     name = tables.TemplateColumn(
         """
         <a href=\"{% url 'animals:species-detail' record.id %}\">{{record.name}}</a>
@@ -96,3 +96,4 @@ class SpeciesListTable(tables.Table):
     class Meta:
         model = Species
         fields = ("name", "diet", "class_name", "description")
+        template_name = "tables/bootstrap_htmx.html"

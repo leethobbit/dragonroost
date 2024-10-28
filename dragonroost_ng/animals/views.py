@@ -18,8 +18,8 @@ from dragonroost_ng.animals.forms import MedicalRecordForm
 from dragonroost_ng.animals.models import Animal
 from dragonroost_ng.animals.models import MedicalRecord
 from dragonroost_ng.animals.models import Species
-from dragonroost_ng.animals.tables import AnimalHTMxTable
-from dragonroost_ng.animals.tables import SpeciesListTable
+from dragonroost_ng.animals.tables import AnimalTable
+from dragonroost_ng.animals.tables import SpeciesTable
 from dragonroost_ng.mixins import PageTitleViewMixin
 
 
@@ -34,7 +34,7 @@ class HTMxAnimalTableDisplayView(
     or via reload.
     """
 
-    table_class = AnimalHTMxTable
+    table_class = AnimalTable
     queryset = Animal.objects.all().order_by("name")
     filterset_class = AnimalFilter
     paginate_by = 15
@@ -54,7 +54,7 @@ class HTMxAnimalTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView
     This view only handles the small partial for reloading the table data specifically.
     """
 
-    table_class = AnimalHTMxTable
+    table_class = AnimalTable
     queryset = Animal.objects.all().order_by("name")
     filterset_class = AnimalFilter
     paginate_by = 15
@@ -62,13 +62,6 @@ class HTMxAnimalTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView
 
 
 # Old views to update / remove / etc
-class AnimalListView(LoginRequiredMixin, PageTitleViewMixin, ListView):
-    model = Animal
-    template_name = "animals/animal_list.html"
-    title = "Recent Intakes"
-    context_object_name = "animals"
-
-
 class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Animal
     template_name = "animals/animal_detail.html"
@@ -179,12 +172,19 @@ class SpeciesListView(
     ListView,
 ):
     model = Species
-    table_class = SpeciesListTable
+    table_class = SpeciesTable
     queryset = Species.objects.all().order_by("name")
     filterset_class = SpeciesFilter
-    template_name = "animals/species_list.html"
     title = "Species List"
     context_object_name = "species"
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "animals/species_table_htmx.html"
+        else:
+            template_name = "animals/species_table_htmx_reload.html"
+
+        return template_name
 
 
 class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):

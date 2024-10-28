@@ -3,7 +3,7 @@
 {% block content %}
   <!-- for testing: animals:species-detail -->
   <h1>
-    <a href="{% url 'animals:species-list' %}">Species</a> - {{ species.name }}
+    <a href="{% url 'animals:species-table' %}">Species</a> - {{ species.name }}
   </h1>
   <p>{{ species.description }}</p>
   <a href="{% url 'animals:species-update' species.id %}">Edit</a>

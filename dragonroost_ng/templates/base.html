@@ -109,12 +109,12 @@
           </div>
         </nav>
       </div>
-      <div class="container-fluid text-center">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-2">
+          <div class="col-2 border">
             <div class="row align-items-start">
               <div class="flex-column">
-                <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+                <p class="d-flex mb-3 mb-md-0 me-md-auto">
                   <span class="fs-3">Actions</span>
                 </p>
                 <hr />
@@ -122,7 +122,7 @@
                   <p>Animals</p>
                   <li>
                     <a id="animal-table"
-                       hx-get="{% url 'animals:animal-table' %}"
+                       hx-boost="true"
                        hx-push-url="true"
                        hx-target="#testing"
                        hx-swap="innerHTML"
@@ -130,44 +130,82 @@
                   </li>
                   <li>
                     <a id="species-table"
-                       hx-get="{% url 'animals:species-table' %}"
+                       hx-boost="true"
                        hx-push-url="true"
                        hx-target="#testing"
                        hx-swap="innerHTML"
                        href="{% url 'animals:species-table' %}">Manage Species</a>
                   </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            {% if messages %}
-              {% for message in messages %}
-                <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-                  {{ message }}
-                  <button type="button"
-                          class="btn-close"
-                          data-bs-dismiss="alert"
-                          aria-label="Close"></button>
-                </div>
-              {% endfor %}
-            {% endif %}
-            {% block main %}
-              <div id="testing">
-                {% block content %}
-                  Click a link on the left sidebar to get started.
-                {% endblock content %}
-              </div>
-            {% endblock main %}
-          </div>
+                </br />
+                <p>Business</p>
+                <li>
+                  <a id="location-table"
+                     hx-boost="true"
+                     hx-push-url="true"
+                     hx-target="#testing"
+                     hx-swap="innerHTML"
+                     href="{% url 'business:location-table' %}">Manage Locations</a>
+                </li>
+                <li>
+                  <a id="meeting-table"
+                     hx-boost="true"
+                     hx-push-url="true"
+                     hx-target="#testing"
+                     hx-swap="innerHTML"
+                     href="{% url 'business:meeting-table' %}">Manage Meetings</a>
+                </li>
+              </br />
+              <p>People</p>
+              <li>
+                <a id="person-table"
+                   hx-boost="true"
+                   hx-push-url="true"
+                   hx-target="#testing"
+                   hx-swap="innerHTML"
+                   href="{% url 'people:person-table' %}">Manage People</a>
+              </li>
+            </br />
+            <p>Medical</p>
+            <li>
+              <a id="medical-updates-table"
+                 hx-boost="true"
+                 hx-push-url="true"
+                 hx-target="#testing"
+                 hx-swap="innerHTML"
+                 href="{% url 'home' %}">TODO Manage Medical Updates</a>
+            </li>
+          </ul>
         </div>
       </div>
-    {% endblock body %}
-    <!-- /container -->
-    {% block modal %}
-    {% endblock modal %}
-    {% block inline_javascript %}
-      {% comment %}
+    </div>
+    <div class="col-md-9">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% block main %}
+        <div id="testing" class="text-center">
+          {% block content %}
+            Click a link on the left sidebar to get started.
+          {% endblock content %}
+        </div>
+      {% endblock main %}
+    </div>
+  </div>
+</div>
+{% endblock body %}
+<!-- /container -->
+{% block modal %}
+{% endblock modal %}
+{% block inline_javascript %}
+  {% comment %}
   Script tags with only code, no src (defer by default). To run
   with a "defer" so that you run inline code:
   <script>
@@ -175,7 +213,7 @@
       /* Run whatever you want */
     });
   </script>
-      {% endcomment %}
-    {% endblock inline_javascript %}
-  </body>
+  {% endcomment %}
+{% endblock inline_javascript %}
+</body>
 </html>

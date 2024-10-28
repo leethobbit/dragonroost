@@ -9,7 +9,11 @@
     <h3>
       <div class="breadcrumbs">
         <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'animals:animal-table' %}">&rsaquo; Animals</a>
+        <a href="{% url 'animals:animal-table' %}"
+           hx-boost="true"
+           hx-push-url="true"
+           hx-target="#testing"
+           hx-swap="innerHTML">&rsaquo; Animals</a>
         {% if title %}&rsaquo; {{ title }}{% endif %}
       </div>
     </h3>

@@ -22,6 +22,8 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path("animals/", include("dragonroost_ng.animals.urls", namespace="animals")),
     path("business/", include("dragonroost_ng.business.urls", namespace="business")),
+    path("medical", include("dragonroost_ng.medical.urls", namespace="medical")),
+    path("people/", include("dragonroost_ng.people.urls", namespace="people")),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
