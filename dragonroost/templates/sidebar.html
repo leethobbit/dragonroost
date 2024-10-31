@@ -1,0 +1,67 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 rounded border bg-info-subtle">
+  <p class="mb-3 mb-md-0 me-md-auto">
+    <span class="fs-3 lead">Shelter Actions</span>
+  </p>
+  <hr />
+  <ul class="nav nav-pills flex-column mb-auto">
+    <h5>Animals</h5>
+    <li class="nav-item mb-1">
+      <a id="animal-table"
+         hx-boost="true"
+         hx-push-url="true"
+         hx-target="#testing"
+         hx-swap="innerHTML"
+         href="{% url 'animals:animal-table' %}">Manage Animals</a>
+    </li>
+    <li class="nav-item mb-1">
+      <a id="species-table"
+         hx-boost="true"
+         hx-push-url="true"
+         hx-target="#testing"
+         hx-swap="innerHTML"
+         href="{% url 'animals:species-table' %}">Manage Species</a>
+    </li>
+    <hr />
+    <h5>Business</h5>
+    <li class="nav-item mb-1">
+      <a id="location-table"
+         hx-boost="true"
+         hx-push-url="true"
+         hx-target="#testing"
+         hx-swap="innerHTML"
+         href="{% url 'business:location-table' %}">Manage Locations</a>
+    </li>
+    <li class="nav-item">
+      <a id="meeting-table"
+         hx-boost="true"
+         hx-push-url="true"
+         hx-target="#testing"
+         hx-swap="innerHTML"
+         href="{% url 'business:meeting-table' %}">Manage Meetings</a>
+    </li>
+    <hr />
+    <h5>People</h5>
+    <li class="nav-item">
+      <a id="person-table"
+         hx-boost="true"
+         hx-push-url="true"
+         hx-target="#testing"
+         hx-swap="innerHTML"
+         href="{% url 'people:person-table' %}">Manage People</a>
+    </li>
+    <hr />
+    <h5>Medical</h5>
+    <li class="nav-item">
+      <a id="medical-updates-table"
+         hx-boost="true"
+         hx-push-url="true"
+         hx-target="#testing"
+         hx-swap="innerHTML"
+         href="{% url 'home' %}">TODO Manage Medical Updates</a>
+    </li>
+  </ul>
+  <hr />
+  <div class="bottom-0">
+    <a class="d-flex align-items-center" href="{% url 'home' %}">TODO Feedback</a>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ medical_update.title }} - Detail</h1>
+  <p>{{ medical_update.notes }}</p>
+  <p>{{ medical_update.q_staff }}</p>
+  <a href="{% url 'medical:medical-update-update' medical_update.id %}">Edit</a>
+  <a href="{% url 'medical:medical-update-delete' medical_update.id %}">Delete</a>
+{% endblock content %}

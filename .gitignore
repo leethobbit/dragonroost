@@ -271,7 +271,7 @@ tags
 dump.rdb
 
 ### Project template
-dragonroost_ng/media/
+dragonroost/media/
 
 .pytest_cache/
 .ipython/

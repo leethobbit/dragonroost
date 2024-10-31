@@ -25,8 +25,8 @@ if __name__ == "__main__":
         raise
 
     # This allows easy placement of apps within the interior
-    # dragonroost_ng directory.
+    # dragonroost directory.
     current_path = Path(__file__).parent.resolve()
-    sys.path.append(str(current_path / "dragonroost_ng"))
+    sys.path.append(str(current_path / "dragonroost"))
 
     execute_from_command_line(sys.argv)

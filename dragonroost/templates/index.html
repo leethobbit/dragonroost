@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static i18n %}
+
+{% include "navbar.html" %}
+<div class="d-flex flex-nowrap h-100">
+  {% include "sidebar.html" %}
+  <div class="d-flex flex-column p-2">
+    <div id="testing" class="text-center">
+      {% block content %}
+        Click a link on the left sidebar to get started.
+      {% endblock content %}
+    </div>
+  </div>
+</div>

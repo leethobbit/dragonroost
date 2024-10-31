@@ -1,6 +1,6 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
-    "name": "dragonroost_ng_dev",
+    "name": "dragonroost_dev",
     "dockerComposeFile": [
         "../docker-compose.local.yml"
     ],

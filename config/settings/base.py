@@ -6,8 +6,8 @@ from pathlib import Path
 import environ
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# dragonroost_ng/
-APPS_DIR = BASE_DIR / "dragonroost_ng"
+# dragonroost/
+APPS_DIR = BASE_DIR / "dragonroost"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -84,11 +84,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "dragonroost_ng.users",
-    "dragonroost_ng.animals",
-    "dragonroost_ng.business",
-    "dragonroost_ng.medical",
-    "dragonroost_ng.people",
+    "dragonroost.users",
+    "dragonroost.animals",
+    "dragonroost.business",
+    "dragonroost.medical",
+    "dragonroost.people",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -97,7 +97,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "dragonroost_ng.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "dragonroost.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "dragonroost_ng.users.context_processors.allauth_settings",
+                "dragonroost.users.context_processors.allauth_settings",
             ],
         },
     },
@@ -276,14 +276,20 @@ ACCOUNT_EMAIL_REQUIRED = False
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_ADAPTER = "dragonroost_ng.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "dragonroost.users.adapters.AccountAdapter"
 # https://docs.allauth.org/en/latest/account/forms.html
-ACCOUNT_FORMS = {"signup": "dragonroost_ng.users.forms.UserSignupForm"}
+ACCOUNT_FORMS = {"signup": "dragonroost.users.forms.UserSignupForm"}
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_ADAPTER = "dragonroost_ng.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "dragonroost.users.adapters.SocialAccountAdapter"
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_FORMS = {"signup": "dragonroost_ng.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_FORMS = {"signup": "dragonroost.users.forms.UserSocialSignupForm"}
 
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+BOOTSTRAP5 = {
+    "error_css_class": "django_bootstrap5-error",
+    "required_css_class": "django_bootstrap5-required",
+    "javascript_in_head": True,
+    "theme_url": "https://bootswatch.com/5/minty/bootstrap.css",  # Other options are minty, quartz, solar
+}

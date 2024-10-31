@@ -1,6 +1,6 @@
 volumes:
-  dragonroost_ng_local_postgres_data: {}
-  dragonroost_ng_local_postgres_data_backups: {}
+  dragonroost_local_postgres_data: {}
+  dragonroost_local_postgres_data_backups: {}
 
 
 services:
@@ -8,8 +8,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: dragonroost_ng_local_django
-    container_name: dragonroost_ng_local_django
+    image: dragonroost_local_django:develop
+    container_name: dragonroost_local_django
     depends_on:
       - postgres
     volumes:
@@ -25,10 +25,10 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: dragonroost_ng_production_postgres
-    container_name: dragonroost_ng_local_postgres
+    image: dragonroost_production_postgres:latest
+    container_name: dragonroost_local_postgres
     volumes:
-      - dragonroost_ng_local_postgres_data:/var/lib/postgresql/data
-      - dragonroost_ng_local_postgres_data_backups:/backups
+      - dragonroost_local_postgres_data:/var/lib/postgresql/data
+      - dragonroost_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres

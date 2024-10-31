@@ -17,13 +17,13 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("users/", include("dragonroost_ng.users.urls", namespace="users")),
+    path("users/", include("dragonroost.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path("animals/", include("dragonroost_ng.animals.urls", namespace="animals")),
-    path("business/", include("dragonroost_ng.business.urls", namespace="business")),
-    path("medical", include("dragonroost_ng.medical.urls", namespace="medical")),
-    path("people/", include("dragonroost_ng.people.urls", namespace="people")),
+    path("animals/", include("dragonroost.animals.urls", namespace="animals")),
+    path("business/", include("dragonroost.business.urls", namespace="business")),
+    path("medical", include("dragonroost.medical.urls", namespace="medical")),
+    path("people/", include("dragonroost.people.urls", namespace="people")),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

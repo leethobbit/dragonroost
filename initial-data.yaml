@@ -42,12 +42,6 @@
     name: Q Room
     description: Quarantine room for sick and/or new animals.
 
-  # Medical record initial data
-- model: medical.medicalrecord
-  pk: 1
-  fields:
-    name: Temp Record
-
 # Base roles for people
 - model: people.role
   pk: 1

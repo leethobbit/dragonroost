@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Are you sure you want to delete the medical update "{{ medical_update.title }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+  </form>
+  <a href="{% url 'medical:medical-update-detail' medical_update.id %}">No, take me
+  back</a>
+{% endblock content %}
