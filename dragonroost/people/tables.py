@@ -14,4 +14,4 @@ class PersonHTMxTable(tables.Table):
     class Meta:
         model = Person
         template_name = "tables/bootstrap_htmx.html"
-        fields = ("first_name", "last_name", "roles", "phone_number")
+        fields = ("first_name", "last_name", "roles", "phone_number", "notes")

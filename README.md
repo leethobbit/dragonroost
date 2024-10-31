@@ -1,11 +1,22 @@
-# Dragonroost NG
+# Dragonroost is under heavy development - expect bugs and half-completed features
 
-An animal shelter / rescue management application, written in Python!
+An animal shelter / rescue management application, written in Python using Django and htmx!
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 License: MIT
+
+## Screenshots (current as of October 30 2024)
+
+![Dragonroost Homepage](example/screenshots/dragonroost-dashboard.png)
+![Dragonroost Animal Detail Page](example/screenshots/dragonroost-animal-detail.png)
+![Dragonroost Species List Page](example/screenshots/dragonroost-species-list.png)
+![Dragonroost People List Page](example/screenshots/dragonroost-people-list.png)
+
+## Roadmap
+
+This app is in the early stages of development.  For a general idea of what is planned, please check out the [roadmap](ROADMAP.md).
 
 ## Settings
 
@@ -19,7 +30,7 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 - To create a **superuser account**, use this command:
 
-      $ python manage.py createsuperuser
+      python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
@@ -27,19 +38,19 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy dragonroost
+    mypy dragonroost
 
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+    coverage run -m pytest
+    coverage html
+    open htmlcov/index.html
 
 #### Running tests with pytest
 
-    $ pytest
+    pytest
 
 ### Live reloading and Sass CSS compilation
 
