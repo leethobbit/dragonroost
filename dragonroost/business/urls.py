@@ -1,5 +1,6 @@
 from django.urls import path
 
+from dragonroost.business.views import FeedbackCreateView
 from dragonroost.business.views import LocationCreateView
 from dragonroost.business.views import LocationDeleteView
 from dragonroost.business.views import LocationDetailView
@@ -38,4 +39,5 @@ urlpatterns = [
         MeetingDeleteView.as_view(),
         name="meeting-delete",
     ),
+    path("feedback/new/", FeedbackCreateView.as_view(), name="feedback-create"),
 ]

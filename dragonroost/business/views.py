@@ -9,6 +9,7 @@ from django_tables2 import SingleTableMixin
 
 from dragonroost.mixins import PageTitleViewMixin
 
+from .models import Feedback
 from .models import Location
 from .models import Meeting
 from .tables import LocationListTable
@@ -115,3 +116,10 @@ class MeetingDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     title = "Delete Meeting"
     template_name = "business/meeting_confirm_delete.html"
     success_url = reverse_lazy("business:meeting-table")
+
+
+class FeedbackCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
+    model = Feedback
+    title = "Submit Feedback"
+    template_name = "business/feedback_form.html"
+    fields = ("name", "email_address", "feedback_type", "feedback")

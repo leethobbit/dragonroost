@@ -6,12 +6,12 @@ The full span of functionality that Dragonroost will eventually encompass.
 
 This project started out just using normal Django generic Class-based Views (CBVs) - but the constant full page reloads felt archaic, so I decided to pull in htmx (I had been wanting an excuse to learn it, anyways)
 
-- [/] **Htmx conversion**: Most of the main pages use htmx now, including the dashboard which loads all content in as partials. However, some urls for forms and other bits are not fully converted just yet.
+- [ ] **Htmx conversion**: Most of the main pages use htmx now, including the dashboard which loads all content in as partials. However, some urls for forms and other bits are not fully converted just yet.
 - [ ] **Htmx Reporting Module**: Instead of generating dashboards for each main module, an htmx-driven reporting section will be added instead. The goal is to be able to visualize (and interact with) trends over time for much of the application - animal intakes, adoptions, species trends, volunteer signups, donations over time... basically anything useful for the average small rescue.
 
 ## Ongoing work
 
-- [/] **Frontend styling**: I find frontend UI/UX work to be the most difficult, and so the UI is going to be constantly upgraded over time as I get more comfortable with these skills. I plan to move from Bootstrap 5 to something like Tailwind eventually, but for now, the focus is on building the core functionality.
+- [ ] **Frontend styling**: I find frontend UI/UX work to be the most difficult, and so the UI is going to be constantly upgraded over time as I get more comfortable with these skills. I plan to move from Bootstrap 5 to something like Tailwind eventually, but for now, the focus is on building the core functionality.
 
 ## Modules
 
@@ -19,7 +19,7 @@ These are the core application modules that will be available on the 1.0.0 relea
 
 - [X] **Animals**: The core module - management of animals and their related traits and information.
 - [X] **People**: Management of volunteers, donors, fosters, and adopters.
-- [/] **Business**: Location management, donation tracking, and more.
+- [ ] **Business**: Location management, donation tracking, and more.
 - [ ] **Medical**: Medical staff updates, Reporting, vaccine calendar, and more.
 
 Some site-wide features that are planned for 1.0.0
@@ -34,7 +34,7 @@ The animal module will feature the following items:
 
 - [X] **Animal records**
 - [X] **Species records**
-- [/] **Medical records**: These are specifically tied to individual animals.
+- [ ] **Medical records**: These are specifically tied to individual animals.
 - [ ] **Dashboard**: With intake/outcome stats, counts for animals, and more.
 
 ## Business Module

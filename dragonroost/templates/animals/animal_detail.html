@@ -163,13 +163,12 @@
 </br />
 <div>
   <a href="{% url 'animals:medical-record-create' animal.id %}"
-     class="btn btn-primary btn-sm">New Medical Record</a>
+     class="btn btn-primary btn-lg">New Medical Record</a>
 </div>
 <!-- <a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a> -->
-<br />
 </br />
 {% if medical_records %}
-  <h3 class="text-secondary">
+  <h3 class="text-secondary text-start">
     {{ object.number_of_medical_records }} Medical Record{{ object.number_of_medical_records|pluralize }}
   </h3>
   <hr />

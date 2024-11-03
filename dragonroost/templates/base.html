@@ -39,7 +39,7 @@ crossorigin="anonymous"></script>
       <!-- htmx -->
       <script src="{% static 'js/htmx-2.0.3.min.js' %}" defer></script>
       <!-- place project specific Javascript in this file -->
-      {% comment %}<script defer src="{% static 'js/project.js' %}"></script> {% endcomment %}
+      <script defer src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
   </head>
   <body class="{% block bodyclass %}{% endblock bodyclass %} h-100"
@@ -67,7 +67,7 @@ crossorigin="anonymous"></script>
                   <a class="nav-link" href="{% url 'home' %}">Animals</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">Business</a>
+                  <a class="nav-link" href="admin/">Admin</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'home' %}">Medical</a>
@@ -168,15 +168,10 @@ crossorigin="anonymous"></script>
             </li>
           </ul>
           <hr />
-          <div class="">
-            <h5>Miscellaneous</h5>
-            <a id="feedback"
-            hx-boost="true"
-            hx-push-url="true"
-            hx-target="#testing"
-            hx-swap="innerHTML"
-            href="{% url 'home' %}">Send Feedback</a>
-          </div>
+          <button class="btn btn-primary" hx-get="{% url 'business:feedback-create' %}" hx-target="#dialog">
+            Send Feedback
+          </button>
+
         </div>
         <div class="flex-column p-2 flex-fill bg-light">
           {% if messages %}
@@ -194,6 +189,8 @@ crossorigin="anonymous"></script>
             <div id="testing" class="text-center m-5">
               {% block content %}
                 Click a link on the left sidebar to get started.
+                <br>
+                {% include "animals/_animal_cards.html" %}
               {% endblock content %}
             </div>
           {% endblock main %}
@@ -214,6 +211,9 @@ crossorigin="anonymous"></script>
 </script>
 {% endcomment %}
     {% endblock inline_javascript %}
+    <div id="modal" class="modal fade">
+      <div id="dialog" class="modal-dialog" hx-target="this"></div>
+    </div>
   </body>
 </html>
 

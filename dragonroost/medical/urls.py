@@ -9,9 +9,21 @@ from .views import MedicalUpdateUpdateView
 app_name = "medical"
 
 urlpatterns = [
-    path("", MedicalUpdateTableView.as_view(), name="person-table"),
-    path("new/", MedicalUpdateCreateView.as_view(), name="person-create"),
-    path("<int:pk>/detail/", MedicalUpdateDetailView.as_view(), name="person-detail"),
-    path("<int:pk>/edit/", MedicalUpdateUpdateView.as_view(), name="person-update"),
-    path("<int:pk>/delete/", MedicalUpdateDeleteView.as_view(), name="person-delete"),
+    path("", MedicalUpdateTableView.as_view(), name="medical-update-table"),
+    path("new/", MedicalUpdateCreateView.as_view(), name="medical-update-create"),
+    path(
+        "<int:pk>/detail/",
+        MedicalUpdateDetailView.as_view(),
+        name="medical-update-detail",
+    ),
+    path(
+        "<int:pk>/edit/",
+        MedicalUpdateUpdateView.as_view(),
+        name="medical-update-update",
+    ),
+    path(
+        "<int:pk>/delete/",
+        MedicalUpdateDeleteView.as_view(),
+        name="medical-update-delete",
+    ),
 ]

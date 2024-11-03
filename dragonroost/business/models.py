@@ -12,6 +12,7 @@ class Feedback(models.Model):
     ]
 
     name = models.CharField(max_length=80, null=False, blank=True, default="")
+    date = models.DateTimeField(auto_now_add=True)
     email_address = models.EmailField(blank=True)
     feedback_type = models.CharField(
         max_length=80,
