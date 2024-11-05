@@ -3,16 +3,17 @@
 
 /* Code from https://blog.benoitblanchon.fr/django-htmx-modal-form/
 to help with doing forms inside of modals */
-const modal = new bootstrap.Modal(document.getElementById("modal"))
+; (function () {
+  const modal = new bootstrap.Modal(document.getElementById("modal"))
 
-htmx.on("htmx:afterSwap", (e) => {
+  htmx.on("htmx:afterSwap", (e) => {
     // Response targeting #dialog => show the modal
     if (e.detail.target.id == "dialog") {
-        modal.show()
+      modal.show()
     }
-})
+  })
 
-htmx.on("htmx:beforeSwap", (e) => {
+  htmx.on("htmx:beforeSwap", (e) => {
     // Empty response targeting #dialog => hide the modal
     if (e.detail.target.id == "dialog" && !e.detail.xhr.response) {
       modal.hide()
@@ -20,6 +21,8 @@ htmx.on("htmx:beforeSwap", (e) => {
     }
   })
 
+  // Remove dialog content after hiding
   htmx.on("hidden.bs.modal", () => {
     document.getElementById("dialog").innerHTML = ""
   })
+})()

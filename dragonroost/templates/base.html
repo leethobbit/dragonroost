@@ -46,7 +46,7 @@ crossorigin="anonymous"></script>
         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% block body %}
       <div class="mb-2">
-        <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
           <div class="container-fluid">
             <button class="navbar-toggler navbar-toggler-right"
                     type="button"
@@ -59,21 +59,9 @@ crossorigin="anonymous"></script>
             </button>
             <a class="navbar-brand" href="{% url 'home' %}">Dragonroost</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home' %}">Home <span class="visually-hidden">(current)</span></a>
-                </li>
+              <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">Animals</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="admin/">Admin</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">Medical</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">People</a>
+                  <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -104,7 +92,7 @@ crossorigin="anonymous"></script>
           </div>
         </nav>
       </div>
-      <div class="d-flex flex-nowrap h-100" >
+      <div class="d-flex flex-nowrap" >
         <div class="d-flex flex-column flex-shrink-0 p-3 rounded border bg-info-subtle">
           <h2 class="mb-3 mb-md-0 text-center display-6">
             <span class="fs-2 text-bold">Shelter Actions</span>

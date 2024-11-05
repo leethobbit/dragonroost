@@ -1,4 +1,8 @@
+import logging
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic import ListView
@@ -9,11 +13,14 @@ from django_tables2 import SingleTableMixin
 
 from dragonroost.mixins import PageTitleViewMixin
 
+from .forms import FeedbackForm
 from .models import Feedback
 from .models import Location
 from .models import Meeting
 from .tables import LocationListTable
 from .tables import MeetingListTable
+
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.
@@ -123,3 +130,10 @@ class FeedbackCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     title = "Submit Feedback"
     template_name = "business/feedback_form.html"
     fields = ("name", "email_address", "feedback_type", "feedback")
+
+    def post(self, request, *args, **kwargs):
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204)
+        return render(request, "business/feedback_form.html", {"form": form})
