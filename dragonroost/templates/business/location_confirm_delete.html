@@ -8,8 +8,9 @@
   </p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
+    <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
   </form>
-  <a href="{% url 'business:location-detail' location.id %}">No, take me
+  <a class="btn btn-primary m-2"
+     href="{% url 'business:location-detail' location.id %}">No, take me
   back</a>
 {% endblock content %}

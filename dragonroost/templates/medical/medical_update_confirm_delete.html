@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>Are you sure you want to delete the medical update "{{ medical_update.title }}"?</p>
+  <p>Are you sure you want to delete the medical update "{{ medicalupdate.title }}"?</p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
+    <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
   </form>
-  <a href="{% url 'medical:medical-update-detail' medical_update.id %}">No, take me
+  <a class="btn btn-primary m-2"
+     href="{% url 'medical:medical-update-detail' medicalupdate.id %}">No, take me
   back</a>
 {% endblock content %}

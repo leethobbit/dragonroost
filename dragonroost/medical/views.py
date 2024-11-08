@@ -27,6 +27,22 @@ class MedicalUpdateTableView(
     paginate_by = 15
     title = "Medical Updates List"
 
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "medical/partials/medical_update_table_htmx.html"
+        else:
+            template_name = "medical/medical_update_table_htmx_reload.html"
+
+        return template_name
+
+
+class MedicalUpdateTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView):
+    table_class = MedicalUpdateTable
+    queryset = MedicalUpdate.objects.all()
+    filterset_class = MedicalUpdateFilter
+    paginate_by = 15
+    template_name = "medical/partials/medical_update_table.html"
+
 
 class MedicalUpdateDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = MedicalUpdate
@@ -65,4 +81,4 @@ class MedicalUpdateDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView
     model = MedicalUpdate
     template_name = "medical/medical_update_confirm_delete.html"
     title = "Delete Medical Update"
-    success_url = reverse_lazy("medical:medical-update-list")
+    success_url = reverse_lazy("medical:medical-update-table")

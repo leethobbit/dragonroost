@@ -147,12 +147,12 @@ crossorigin="anonymous"></script>
             <hr />
             <h5>Medical</h5>
             <li class="nav-item">
-              <a id="medical-updates-table"
+              <a id="medical-update-table"
                  hx-boost="true"
                  hx-push-url="true"
                  hx-target="#testing"
                  hx-swap="innerHTML"
-                 href="{% url 'home' %}">TODO Manage Medical Updates</a>
+                 href="{% url 'medical:medical-update-table' %}">Manage Medical Updates</a>
             </li>
           </ul>
           <hr />
