@@ -10,6 +10,10 @@
     {% csrf_token %}
     {% bootstrap_form form layout='floating' %}
     {% bootstrap_button button_type="submit" content="Save" %}
-    {% bootstrap_button button_type="reset" content="Cancel" %}
+    {% url 'animals:animal-table' as animal_table %}
+    {% bootstrap_button content="Cancel" button_type="link" button_class="btn-outline-danger" href=animal_table %}
+    {% comment %} {% if edit %}
+      {% bootstrap_button button_type="link" href="{% url 'animals:animal-detail' object.id %}" content="Cancel" %}
+    {% endif edit %} {% endcomment %}
   </form>
 {% endblock content %}

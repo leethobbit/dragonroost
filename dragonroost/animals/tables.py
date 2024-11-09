@@ -35,7 +35,12 @@ class CustomNameColumn(tables.Column):
     def render(self, value):
         return format_html(
             """
-            <a href="{% url 'animals:animal-detail' value.id %}">{{ animal.name }}</a>
+            <a id="animal-detail"
+               hx-boost="true"
+               hx-push-url="true"
+               hx-target="#testing"
+               hx-swap="innerHTML"
+               href="{% url 'animals:animal-detail' value.id %}">{{ animal.name }}</a>
             """,
         )
 
@@ -45,7 +50,12 @@ class AnimalTable(tables.Table):
 
     id = tables.TemplateColumn(
         """
-        <a href=\"{% url 'animals:animal-detail' record.id %}\">
+        <a id='animal-detail'
+            hx-boost='true'
+            hx-push-url='true'
+            hx-target='#testing'
+            hx-swap='innerHTML'
+           href=\"{% url 'animals:animal-detail' record.id %}\">
         {{record.animal_tag}}
         </a>
         """,

@@ -64,9 +64,16 @@ class HTMxAnimalTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView
 # Old views to update / remove / etc
 class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
     model = Animal
-    template_name = "animals/animal_detail.html"
     title = "Animal Details"
     context_object_name = "animal"
+
+    def get_template_names(self):
+        if self.request.htmx:
+            template_name = "animals/partials/animal_detail.html"
+        else:
+            template_name = "animals/animal_detail_full.html"
+
+        return template_name
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)

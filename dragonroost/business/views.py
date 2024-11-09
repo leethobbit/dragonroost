@@ -126,6 +126,11 @@ class MeetingDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
 
 
 class FeedbackCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
+    """
+    Form for sending feedback to the database for the admin to view.
+    TODO: Fix the form showing blank if the browser's back button is used.
+    """
+
     model = Feedback
     title = "Submit Feedback"
     template_name = "business/feedback_form.html"
