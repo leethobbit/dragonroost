@@ -1,10 +1,11 @@
-<p align="center">
-    ![Dragonroost Logo](dragonroost/static/images/favicons/dinosaur-egg-256.png)
+<div align="center">
+    <img src=".dragonroost/static/images/favicons/dinosaur-egg-256.png" width="auto" alt="Dragonroost Logo">
 
-    # Dragonroost
+    <h1>Dragonroost</h1>
 
-    Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
-</p>
+    <h3>Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.</h3>
+</div>
+
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
