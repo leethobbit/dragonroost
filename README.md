@@ -1,10 +1,10 @@
 <div align="center">
     <img src="dragonroost/static/images/favicons/dinosaur-egg-256.png" width="auto" alt="Dragonroost Logo">
 </div>
-<h1>
+<h1 align="center">
     Dragonroost
 </h1>
-<h3>
+<h3 align="center">
     Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
 </h3>
 
