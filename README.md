@@ -1,9 +1,10 @@
-![Dragonroost Logo](dragonroost/static/images/favicons/dinosaur-egg-256.png)
+<p align="center">
+    ![Dragonroost Logo](dragonroost/static/images/favicons/dinosaur-egg-256.png)
 
-# Dragonroost
+    # Dragonroost
 
-Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
-
+    Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
+</p>
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
