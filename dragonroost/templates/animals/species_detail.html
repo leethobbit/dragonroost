@@ -1,19 +1,26 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <!-- for testing: animals:species-detail -->
-  <h1>
-    <a href="{% url 'animals:species-table' %}">Species</a> - {{ species.name }}
-  </h1>
-  <p>{{ species.description }}</p>
-  <a href="{% url 'animals:species-update' species.id %}">Edit</a>
-  <a href="{% url 'animals:species-delete' species.id %}">Delete</a>
-  <br />
-</br />
-<h2>All {{ species.name }}s</h2>
-{% for animal in species.animals.all %}
-  <a href="{% url 'animals:animal-detail' animal.id %}">{{ animal.name }}</a>
-  <br />
-</br />
-{% endfor %}
-{% endblock content %}
+<!-- for testing: animals:species-detail -->
+{% comment %} <div class="">
+  <div class="card-header">
+    Species Detail
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{% url 'animals:species-table' %}">Species</a> - {{ species.name }}
+    </h5>
+    <p class="card-text">Description: {{ species.description }}</p>
+    <a href="{% url 'animals:species-update' species.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'animals:species-delete' species.id %}" class="btn btn-outline-danger">Delete</a>
+  </div>
+</div> {% endcomment %}
+<div class="modal modal-content">
+  <div class="modal-header">
+    <h5>Species - {{ species.name }}</h5>
+  </div>
+  <div class="modal-body">
+    <p class="card-text">Description: {{ species.description }}</p>
+    <a href="{% url 'animals:species-update' species.id %}"
+       class="btn btn-primary">Edit</a>
+    <a href="{% url 'animals:species-delete' species.id %}"
+       class="btn btn-outline-danger">Delete</a>
+  </div>
+</div>

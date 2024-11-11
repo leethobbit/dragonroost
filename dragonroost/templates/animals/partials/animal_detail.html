@@ -39,14 +39,10 @@
         <div class="d-flex justify-content-center mb-2">
           <a href="{% url 'animals:animal-update' animal.id %}">
             <button type="button"
-                    data-mdb-button-init
-                    data-mdb-ripple-init
                     class="btn btn-primary">Edit</button>
           </a>
           <a href="{% url 'animals:animal-delete' animal.id %}">
             <button type="button"
-                    data-mdb-button-init
-                    data-mdb-ripple-init
                     class="btn btn-outline-danger ms-4">Delete</button>
           </a>
         </div>
@@ -186,6 +182,16 @@
           <p class="card-text">
             <b>Treatments:</b> {{ record.treatments }}
           </p>
+          <div class="d-flex justify-content-center mb-2">
+            <a href="{% url 'animals:medical-record-update' record.id %}">
+              <button type="button"
+                      class="btn btn-primary">Edit</button>
+            </a>
+            <a href="{% url 'animals:medical-record-delete' record.id %}">
+              <button type="button"
+                      class="btn btn-outline-danger ms-4">Delete</button>
+            </a>
+          </div>
         </div>
       </div>
     {% endfor %}

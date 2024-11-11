@@ -4,23 +4,27 @@
 
 {% block content %}
   <a href="{% url 'animals:animal-create' %}"
-     class="btn btn-primary btn-sm">Add New Animal</a>
+     class="btn btn-lg mb-4 me-3 btn-info"
+     hx-target="#dialog"
+     hx-boost="true"
+     hx-push-url="false">Add New Animal</a>
   <a href="{% url 'animals:species-create' %}"
-     class="btn btn-primary btn-sm">Add New Species</a>
-  <br />
-</br />
-{# Search form #}
-<form hx-get="{% url 'animals:get-animal-list' %}"
-      hx-target="div.table-container"
-      hx-swap="outerHTML"
-      hx-indicator=".progress"
-      class="form-inline">
-  {% crispy filter.form %}
-</form>
-{# Progress indicator #}
-<div class="progress">
-  <div class="indeterminate"></div>
-</div>
-{# The actual table #}
-{% render_table table %}
+     class="btn btn-lg mb-4 btn-info"
+     hx-target="#dialog"
+     hx-boost="true"
+     hx-push-url="false">Add New Species</a>
+  {# Search form #}
+  <form hx-get="{% url 'animals:get-animal-list' %}"
+        hx-target="div.table-container"
+        hx-swap="outerHTML"
+        hx-indicator=".progress"
+        class="form-inline">
+    {% crispy filter.form %}
+  </form>
+  {# Progress indicator #}
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+  {# The actual table #}
+  {% render_table table %}
 {% endblock content %}

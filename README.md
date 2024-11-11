@@ -1,6 +1,8 @@
-# Dragonroost is under heavy development - expect bugs and half-completed features
+![Dragonroost Logo](dragonroost/static/images/favicons/dinosaur-egg-256.png)
 
-An animal shelter / rescue management application, written in Python using Django and htmx!
+# Dragonroost
+
+Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -16,7 +18,7 @@ License: MIT
 
 ## Roadmap
 
-This app is in the early stages of development.  For a general idea of what is planned, please check out the [roadmap](ROADMAP.md).
+Dragonroost is under heavy development - expect bugs and half-written features. For a general idea of what is planned, please check out the [roadmap](ROADMAP.md).
 
 ## Settings
 
@@ -63,3 +65,7 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+### Attributions
+
+[Favicon created by max.icons - Flaticon](https://www.flaticon.com/free-icons/dino)

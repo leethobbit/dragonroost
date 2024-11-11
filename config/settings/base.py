@@ -299,3 +299,7 @@ BOOTSTRAP5 = {
     "javascript_in_head": True,
     "theme_url": "https://bootswatch.com/5/minty/bootstrap.css",  # Other options are minty, quartz, solar
 }
+
+DJANGO_TABLES2_TABLE_ATTRS = {
+    "class": "table table-hover table-bordered border-dark-subtle",
+}

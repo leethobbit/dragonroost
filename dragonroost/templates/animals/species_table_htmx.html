@@ -1,11 +1,13 @@
 {% load django_tables2 %}
 
 {% block content %}
-  <br />
-</br />
-<a href="{% url 'animals:species-create' %}"
-   class="btn btn-primary btn-sm">Add New Species</a>
-<br />
-</br />
-{% render_table table %}
+  <a href="{% url 'animals:species-create' %}"
+     class="btn btn-primary btn-lg mb-4 btn-info text-start"
+     hx-target="#dialog"
+     hx-boost="true"
+     hx-push-url="false">Add New Species</a>
+  <div class="text-center"
+       hx-trigger="species_table_update from:body"
+       hx-get="{% url 'animals:species-table-partial' %}"
+       hx-target="this">{% render_table table %}</div>
 {% endblock content %}

@@ -57,7 +57,10 @@ crossorigin="anonymous"></script>
                     aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Dragonroost</a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <img src="{% static 'images/favicons/favicon.ico' %}" alt="" width="32" height="32">
+              Dragonroost
+            </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
@@ -174,7 +177,7 @@ crossorigin="anonymous"></script>
             {% endfor %}
           {% endif %}
           {% block main %}
-            <div id="testing" class="text-center m-5">
+            <div id="testing" class="m-5">
               {% block content %}
                 Click a link on the left sidebar to get started.
                 <br>
