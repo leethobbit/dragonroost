@@ -1,14 +1,12 @@
-{% extends "base.html" %}
-
-{% load django_bootstrap5 %}
-
-{% block content %}
-  <form class="align-items-center flex-column"
-        method="post"
-        enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="Save" %}
-    {% bootstrap_button button_type="reset" content="Cancel" %}
-  </form>
-{% endblock content %}
+<form hx-post="{{ request.path }}"
+      hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+      class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ title }}</h5>
+  </div>
+  <div class="modal-body">{{ form.as_p }}</div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancel</button>
+  </div>
+</form>

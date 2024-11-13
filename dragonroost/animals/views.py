@@ -10,7 +10,6 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import DetailView
-from django.views.generic import ListView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
@@ -19,6 +18,8 @@ from dragonroost.mixins import PageTitleViewMixin
 
 from .filters import AnimalFilter
 from .filters import SpeciesFilter
+from .forms import AnimalCreateForm
+from .forms import AnimalUpdateForm
 from .forms import MedicalRecordForm
 from .forms import SpeciesForm
 from .models import Animal
@@ -28,7 +29,7 @@ from .tables import AnimalTable
 from .tables import SpeciesTable
 
 
-class HTMxAnimalTableDisplayView(
+class AnimalTableView(
     LoginRequiredMixin,
     SingleTableMixin,
     PageTitleViewMixin,
@@ -54,7 +55,7 @@ class HTMxAnimalTableDisplayView(
         return template_name
 
 
-class HTMxAnimalTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView):
+class AnimalTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView):
     """
     This view only handles the small partial for reloading the table data specifically.
     """
@@ -92,47 +93,44 @@ class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 
 class AnimalCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Animal
+    form_class = AnimalCreateForm
     template_name = "animals/animal_form.html"
     title = "Create Animal"
-    fields = (
-        "name",
-        "animal_photo",
-        "description",
-        "intake_type",
-        "intake_condition",
-        "donation_fee",
-        "color",
-        "sex",
-        "age",
-        "species",
-        "location",
-        "status",
-    )
 
-    def get_success_url(self):
-        return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
+    def post(self, request, *args, **kwargs):
+        form = AnimalCreateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={"HX-Trigger": "animal_table_update"},
+            )
+        return render(request, "animals/animal_form.html", {"form": form})
 
 
 class AnimalUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Animal
+    form_class = AnimalUpdateForm
     template_name = "animals/animal_form.html"
     title = "Edit Animal"
-    fields = (
-        "name",
-        "animal_photo",
-        "description",
-        "current_condition",
-        "donation_fee",
-        "color",
-        "sex",
-        "age",
-        "species",
-        "location",
-        "status",
-    )
 
-    def get_success_url(self):
-        return reverse_lazy("animals:animal-detail", kwargs={"pk": self.object.id})
+    def post(self, request, *args, **kwargs):
+        animal = get_object_or_404(Animal, pk=self.kwargs["pk"])
+        form = AnimalUpdateForm(request.POST, request.FILES, instance=animal)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={"HX-Trigger": "animal_detail_update"},
+            )
+        return render(
+            request,
+            "animals/animal_form.html",
+            {
+                "form": form,
+                "animal": animal,
+            },
+        )
 
 
 class AnimalOutcomeForm(forms.ModelForm):
@@ -175,14 +173,22 @@ class AnimalDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Animal
     template_name = "animals/animal_confirm_delete.html"
     title = "Animal Delete Confirmation"
-    success_url = reverse_lazy("animals:animal-list")
+
+    def post(self, request, *args, **kwargs):
+        animal = get_object_or_404(Animal, pk=self.kwargs["pk"])
+        animal.delete()
+
+        return HttpResponse(
+            status=204,
+            headers={"HX-Trigger": "animal_table_update"},
+        )
 
 
 class SpeciesListView(
     SingleTableMixin,
     LoginRequiredMixin,
     PageTitleViewMixin,
-    ListView,
+    FilterView,
 ):
     model = Species
     table_class = SpeciesTable
@@ -221,9 +227,9 @@ class SpeciesDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 
 class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Species
+    form_class = SpeciesForm
     title = "Create Species"
     template_name = "animals/species_form.html"
-    fields = ("name", "diet", "class_name", "description")
 
     def post(self, request, *args, **kwargs):
         form = SpeciesForm(request.POST)
@@ -238,9 +244,9 @@ class SpeciesCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
 
 class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Species
+    form_class = SpeciesForm
     title = "Edit Species"
     template_name = "animals/species_form.html"
-    fields = ("name", "diet", "class_name", "description")
 
     def post(self, request, *args, **kwargs):
         species = get_object_or_404(Species, pk=self.kwargs["pk"])
@@ -264,7 +270,15 @@ class SpeciesUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
 class SpeciesDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Species
     template_name = "animals/species_confirm_delete.html"
-    success_url = reverse_lazy("animals:species-list")
+
+    def post(self, request, *args, **kwargs):
+        species = get_object_or_404(Species, pk=self.kwargs["pk"])
+        species.delete()
+
+        return HttpResponse(
+            status=204,
+            headers={"HX-Trigger": "species_table_update"},
+        )
 
 
 class MedicalRecordCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):

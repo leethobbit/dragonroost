@@ -4,9 +4,9 @@ from dragonroost.animals.views import AnimalCreateView
 from dragonroost.animals.views import AnimalDeleteView
 from dragonroost.animals.views import AnimalDetailView
 from dragonroost.animals.views import AnimalOutcomeView
+from dragonroost.animals.views import AnimalTableSearchView
+from dragonroost.animals.views import AnimalTableView
 from dragonroost.animals.views import AnimalUpdateView
-from dragonroost.animals.views import HTMxAnimalTableDisplayView
-from dragonroost.animals.views import HTMxAnimalTableSearchView
 from dragonroost.animals.views import MedicalRecordCreateView
 from dragonroost.animals.views import MedicalRecordDeleteView
 from dragonroost.animals.views import MedicalRecordUpdateView
@@ -25,8 +25,8 @@ urlpatterns = [
     path("<int:pk>/edit/", AnimalUpdateView.as_view(), name="animal-update"),
     path("<int:pk>/outcome/", AnimalOutcomeView.as_view(), name="animal-outcome"),
     path("<int:pk>/delete/", AnimalDeleteView.as_view(), name="animal-delete"),
-    path("table/", HTMxAnimalTableDisplayView.as_view(), name="animal-table"),
-    path("table/search/", HTMxAnimalTableSearchView.as_view(), name="get-animal-list"),
+    path("table/", AnimalTableView.as_view(), name="animal-table"),
+    path("table/search/", AnimalTableSearchView.as_view(), name="get-animal-list"),
     path("species/", SpeciesListView.as_view(), name="species-table"),
     path("species/new/", SpeciesCreateView.as_view(), name="species-create"),
     path(

@@ -1,26 +1,25 @@
 <!-- for testing: animals:species-detail -->
-{% comment %} <div class="">
-  <div class="card-header">
-    Species Detail
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">
-      <a href="{% url 'animals:species-table' %}">Species</a> - {{ species.name }}
-    </h5>
-    <p class="card-text">Description: {{ species.description }}</p>
-    <a href="{% url 'animals:species-update' species.id %}" class="btn btn-primary">Edit</a>
-    <a href="{% url 'animals:species-delete' species.id %}" class="btn btn-outline-danger">Delete</a>
-  </div>
-</div> {% endcomment %}
 <div class="modal modal-content">
   <div class="modal-header">
     <h5>Species - {{ species.name }}</h5>
   </div>
   <div class="modal-body">
+    {% if species.is_ohio_native %}
+      <span class="badge rounded-pill text-bg-warning">Warning: This animal is an Ohio native!</span>
+    {% endif %}
     <p class="card-text">Description: {{ species.description }}</p>
+    <p class="card-text">Diet: {{ species.diet }}</p>
     <a href="{% url 'animals:species-update' species.id %}"
+       hx-boost="true"
+       hx-push-url="false"
+       hx-target="#dialog"
+       hx-swap="innerHTML"
        class="btn btn-primary">Edit</a>
     <a href="{% url 'animals:species-delete' species.id %}"
+       hx-boost="true"
+       hx-push-url="false"
+       hx-target="#dialog"
+       hx-swap="innerHTML"
        class="btn btn-outline-danger">Delete</a>
   </div>
 </div>
