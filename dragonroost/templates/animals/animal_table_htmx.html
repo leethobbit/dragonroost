@@ -27,7 +27,7 @@
   </div>
   {# The actual table #}
   <div class="text-center"
-       hx-trigger="animal_table_update from:body"
+       hx-trigger="animal_table_update from:body, animal_detail_update from:body"
        hx-get="{% url 'animals:get-animal-list' %}"
        hx-target="this">{% render_table table %}</div>
 {% endblock content %}

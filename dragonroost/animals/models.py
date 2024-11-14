@@ -45,9 +45,9 @@ class Animal(models.Model):
 
     SEX_CHOICES = [("MALE", "Male"), ("FEMALE", "Female"), ("UNKNOWN", "Unknown")]
     STATUS_CHOICES = [
-        ("PENDING", "Pending"),
-        ("ADOPTABLE", "Adoptable"),
-        ("QUARANTINED", "Quarantined"),
+        ("ON_HOLD", "On Hold"),
+        ("AVAILABLE", "Available"),
+        ("QUARANTINE", "Quarantine"),
         ("FOSTERED", "Fostered"),
         ("MEDICAL_HOLD", "Medical Hold"),
         ("ADOPTED", "Adopted"),
@@ -151,6 +151,10 @@ class Animal(models.Model):
         return MedicalRecord.objects.filter(animal=self).count()
 
     @property
+    def latest_medical_record(self):
+        return MedicalRecord.objects.filter(animal=self).latest("created")
+
+    @property
     def is_recently_cleared(self):
         """
         Track all recently vet cleared animals. Recent means in the last 14 days.
@@ -184,6 +188,7 @@ class MedicalRecord(models.Model):
 
     class Meta:
         db_table_comment = "Table holds medical record entries."
+        ordering = ["created"]
 
     def __str__(self):
         return self.notes

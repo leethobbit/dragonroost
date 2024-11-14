@@ -1,16 +1,12 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <h1>Delete Location</h1>
-  <p>
-    Are you sure you want to delete the location "{{ location.name
-    }}"?
-  </p>
-  <form method="post">
-    {% csrf_token %}
-    <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
-  </form>
-  <a class="btn btn-primary m-2"
-     href="{% url 'business:location-detail' location.id %}">No, take me
-  back</a>
-{% endblock content %}
+<form hx-post="{{ request.path }}"
+      hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+      class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ title }}</h5>
+  </div>
+  <div class="modal-body">Are you sure you want to delete location "{{ location.name }}"?</div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-danger" type="submit">Delete</button>
+    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button>
+  </div>
+</form>

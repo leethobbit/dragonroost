@@ -14,6 +14,7 @@ class AnimalCreateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.label_class = "text-dark"
+        self.helper.form_tag = False
 
         # Layout
         self.helper.layout = Layout(
@@ -64,6 +65,30 @@ class AnimalCreateForm(forms.ModelForm):
 
 
 class AnimalUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.label_class = "text-dark"
+        self.helper.form_tag = False
+
+        # Layout
+        self.helper.layout = Layout(
+            Row(
+                FloatingField("name", wrapper_class="form-group col-md-6 mb-0"),
+                FloatingField("donation_fee", wrapper_class="form-group col-md-6 mb-0"),
+            ),
+            "animal_photo",
+            FloatingField("description"),
+            Row(
+                FloatingField("sex", wrapper_class="form-group col-md-4 mb-0"),
+                FloatingField("age", wrapper_class="form-group col-md-4 mb-0"),
+                FloatingField("color", wrapper_class="form-group col-md-4 mb-0"),
+            ),
+            FloatingField("species"),
+            FloatingField("location"),
+            FloatingField("status"),
+        )
+
     class Meta:
         model = Animal
         fields = [
@@ -81,6 +106,12 @@ class AnimalUpdateForm(forms.ModelForm):
 
 
 class SpeciesForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.label_class = "text-dark"
+        self.helper.form_tag = False
+
     class Meta:
         model = Species
         fields = [
@@ -93,6 +124,12 @@ class SpeciesForm(forms.ModelForm):
 
 
 class MedicalRecordForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.label_class = "text-dark"
+        self.helper.form_tag = False
+
     class Meta:
         model = MedicalRecord
         fields = [

@@ -13,14 +13,16 @@ def get_status_attr(record):
     match status:
         case "ADOPTED":
             return "bg-secondary"
-        case "PENDING":
-            return "bg-info"
-        case "ADOPTABLE":
+        case "AVAILABLE":
             return "bg-success"
+        case "ON_HOLD":
+            return "bg-info"
+        case "QUARANTINE":
+            return "bg-warning"
         case "MEDICAL_HOLD":
             return "bg-warning"
         case _:
-            return "bg-secondary"
+            return "bg-light"
 
 
 class AnimalImageColumn(tables.Column):

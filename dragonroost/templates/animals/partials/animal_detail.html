@@ -23,10 +23,10 @@
             <b>{{ animal.name }}</b>
           </h5>
           <a href="{% url 'animals:species-detail' animal.species.id %}"
-             hx-boost="true"
-             hx-push-url="false"
-             hx-target="#dialog"
-             hx-swap="innerHTML">{{ animal.species }}</a>
+            hx-boost="true"
+            hx-push-url="false"
+            hx-target="#dialog"
+            hx-swap="innerHTML">{{ animal.species }}</a>
           <p class="text-muted mb-4">{{ animal.get_status_display }}</p>
           <div class="d-flex justify-content-center mb-2">
             <a href="{% url 'animals:animal-update' animal.id %}"
@@ -34,7 +34,7 @@
               hx-push-url="false"
               hx-target="#dialog"
               hx-swap="innerHTML"
-              class="btn btn-primary">Edit</a>
+              class="btn btn-primary me-4">Edit</a>
             <a href="{% url 'animals:animal-delete' animal.id %}"
               hx-boost="true"
               hx-push-url="false"
@@ -47,22 +47,17 @@
       <div class="card mb-4 mb-lg-0">
         <div class="card-body p-0">
           <ul class="list-group list-group-flush rounded-3">
+            <li class="list-group-item d-flex justify-content-around p-3">
+              <p class="mb-0">
+                <b>Last Weight:</b> {{ animal.latest_medical_record.current_weight }}
+              </p>
+              <p class="mb-0">
+                <b>Date Taken:</b> {{ animal.latest_medical_record.created|date:'Y-m-d' }}
+              </p>
+            </li>
             <li class="list-group-item d-flex justify-content-center p-3">
-              <i class="fab fa-github fa-lg" style="color: #333333;"></i>
               <p class="mb-0">
                 <b>Description:</b> {{ animal.description }}
-              </p>
-            </li>
-            <li class="list-group-item d-flex justify-content-center p-3">
-              <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-              <p class="mb-0">
-                <b>Current Weight:</b> TODO: Get current_weight from most recent medical_record
-              </p>
-            </li>
-            <li class="list-group-item d-flex justify-content-center p-3">
-              <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-              <p class="mb-0">
-                <b>Starting Weight:</b> {{ animal.starting_weight }}
               </p>
             </li>
           </ul>
@@ -70,7 +65,7 @@
       </div>
     </div>
     <div class="col-lg-8">
-      <div class="card mb-4">
+      <div class="card h-100">
         <div class="card-body">
           <div class="row justify-content-center">
             <div class="col-sm-3">
@@ -145,15 +140,28 @@
               <p class="text-muted mb-0">${{ animal.donation_fee }}</p>
             </div>
           </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">
+                <b>Weight at intake:</b>
+              </p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{ animal.starting_weight }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <br />
-  </br />
   <div>
     <a href="{% url 'animals:medical-record-create' animal.id %}"
-      class="btn btn-primary btn-lg">New Medical Record</a>
+       hx-boost="true"
+       hx-push-url="false"
+       hx-target="#dialog"
+       hx-swap="innerHTML"
+       class="btn btn-primary btn-lg mt-4">New Medical Record</a>
   </div>
   <!-- <a href="{% url 'animals:animal-outcome' animal.id %}">Outcome Event</a> -->
   </br />
@@ -179,11 +187,19 @@
               <b>Treatments:</b> {{ record.treatments }}
             </p>
             <div class="d-flex justify-content-center mb-2">
-              <a href="{% url 'animals:medical-record-update' record.id %}">
+              <a href="{% url 'animals:medical-record-update' record.id %}"
+                 hx-boost="true"
+                 hx-push-url="false"
+                 hx-target="#dialog"
+                 hx-swap="innerHTML">
                 <button type="button"
                         class="btn btn-primary">Edit</button>
               </a>
-              <a href="{% url 'animals:medical-record-delete' record.id %}">
+              <a href="{% url 'animals:medical-record-delete' record.id %}"
+                 hx-boost="true"
+                 hx-push-url="false"
+                 hx-target="#dialog"
+                 hx-swap="innerHTML">
                 <button type="button"
                         class="btn btn-outline-danger ms-4">Delete</button>
               </a>
@@ -195,7 +211,7 @@
   {% else %}
     <strong class="text-secondary">No records yet...</strong>
   {% endif %}
-  </div>
+</div>
 {% endblock content %}
 
 {# djlint:on #}

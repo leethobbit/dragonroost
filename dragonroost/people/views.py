@@ -1,6 +1,8 @@
 # Create your views here.
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -12,6 +14,7 @@ from django_tables2 import SingleTableMixin
 from dragonroost.mixins import PageTitleViewMixin
 
 from .filters import PersonFilter
+from .forms import PersonForm
 from .models import Person
 from .tables import PersonHTMxTable
 
@@ -57,47 +60,59 @@ class PersonDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
 
 class PersonCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView):
     model = Person
+    form_class = PersonForm
     template_name = "people/person_form.html"
     title = "Add Person"
-    fields = (
-        "first_name",
-        "last_name",
-        "email",
-        "phone_number",
-        "roles",
-        "address",
-        "zip_code",
-        "notes",
-    )
 
-    def get_success_url(self):
-        return reverse_lazy("people:person-detail", kwargs={"pk": self.object.id})
+    def post(self, request, *args, **kwargs):
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={"HX-Trigger": "person_table_update"},
+            )
+        return render(request, "people/person_form.html", {"form": form})
 
 
 class PersonUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
     model = Person
+    form_class = PersonForm
     template_name = "people/person_form.html"
     title = "Edit Person"
-    fields = (
-        "first_name",
-        "last_name",
-        "email",
-        "phone_number",
-        "roles",
-        "address",
-        "zip_code",
-        "notes",
-    )
 
-    def get_success_url(self):
-        return reverse_lazy("people:person-detail", kwargs={"pk": self.object.id})
+    def post(self, request, *args, **kwargs):
+        person = get_object_or_404(Person, pk=self.kwargs["pk"])
+        form = PersonForm(request.POST, instance=person)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={"HX-Trigger": "person_table_update"},
+            )
+        return render(
+            request,
+            "people/person_form.html",
+            {
+                "form": form,
+                "person": person,
+            },
+        )
 
 
 class PersonDeleteView(LoginRequiredMixin, PageTitleViewMixin, DeleteView):
     model = Person
     template_name = "people/person_confirm_delete.html"
     title = "Delete Person"
-    success_url = reverse_lazy("people:person-list")
+
+    def post(self, request, *args, **kwargs):
+        person = get_object_or_404(Person, pk=self.kwargs["pk"])
+        person.delete()
+
+        return HttpResponse(
+            status=204,
+            headers={"HX-Trigger": "person_table_update"},
+        )
 
 
 class PersonHTMxView(SingleTableMixin, PageTitleViewMixin, FilterView):
@@ -114,3 +129,11 @@ class PersonHTMxView(SingleTableMixin, PageTitleViewMixin, FilterView):
             template_name = "people/person_table_htmx_reload.html"
 
         return template_name
+
+
+class PersonTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView):
+    table_class = PersonHTMxTable
+    queryset = Person.objects.all()
+    filterset_class = PersonFilter
+    paginate_by = 15
+    template_name = "people/partials/person_table.html"

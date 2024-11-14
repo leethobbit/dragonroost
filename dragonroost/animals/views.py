@@ -1,10 +1,10 @@
+import logging
 from datetime import datetime
 
 from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -27,6 +27,8 @@ from .models import MedicalRecord
 from .models import Species
 from .tables import AnimalTable
 from .tables import SpeciesTable
+
+logger = logging.getLogger(__name__)
 
 
 class AnimalTableView(
@@ -285,26 +287,19 @@ class MedicalRecordCreateView(LoginRequiredMixin, PageTitleViewMixin, CreateView
     model = MedicalRecord
     form_class = MedicalRecordForm
     template_name = "animals/base_form.html"
-
-    def get_success_url(self):
-        return reverse_lazy(
-            "animals:animal-detail",
-            kwargs={"pk": self.object.animal.id},
-        )
+    title = "Add Medical Record"
 
     def post(self, request, *args, **kwargs):
-        pk = self.kwargs["pk"]
-        new_medical_record = MedicalRecord(
-            animal_id=self.kwargs["pk"],
-            notes=request.POST.get("notes"),
-            created=request.POST.get("created"),
-            q_volunteer_id=request.POST.get("q_volunteer"),
-            bowel_movement=request.POST.get("bowel_movement") == "on",
-            current_weight=request.POST.get("current_weight"),
-            treatments=request.POST.get("treatments"),
-        )
-        new_medical_record.save()
-        return redirect("animals:animal-detail", pk=pk)
+        form = MedicalRecordForm(request.POST)
+        form.instance.animal = get_object_or_404(Animal, pk=self.kwargs["pk"])
+        if form.is_valid():
+            logger.debug("Form is valid so far")
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={"HX-Trigger": "animal_detail_update"},
+            )
+        return render(request, "animals/base_form.html", {"form": form})
 
 
 class MedicalRecordUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView):
@@ -313,10 +308,22 @@ class MedicalRecordUpdateView(LoginRequiredMixin, PageTitleViewMixin, UpdateView
     title = "Edit Record"
     template_name = "animals/base_form.html"
 
-    def get_success_url(self):
-        return reverse_lazy(
-            "animals:animal-detail",
-            kwargs={"pk": self.object.animal.id},
+    def post(self, request, *args, **kwargs):
+        medical_record = get_object_or_404(MedicalRecord, pk=self.kwargs["pk"])
+        form = MedicalRecordForm(request.POST, instance=medical_record)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(
+                status=204,
+                headers={"HX-Trigger": "animal_detail_update"},
+            )
+        return render(
+            request,
+            "animals/base_form.html",
+            {
+                "form": form,
+                "medical_record": medical_record,
+            },
         )
 
 
@@ -324,8 +331,11 @@ class MedicalRecordDeleteView(LoginRequiredMixin, DeleteView):
     model = MedicalRecord
     template_name = "animals/medical_record_confirm_delete.html"
 
-    def get_success_url(self):
-        return reverse_lazy(
-            "animals:animal-detail",
-            kwargs={"pk": self.object.animal.id},
+    def post(self, request, *args, **kwargs):
+        medical_record = get_object_or_404(MedicalRecord, pk=self.kwargs["pk"])
+        medical_record.delete()
+
+        return HttpResponse(
+            status=204,
+            headers={"HX-Trigger": "animal_detail_update"},
         )
