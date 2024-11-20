@@ -51,7 +51,7 @@
           <ul class="list-group list-group-flush rounded-3">
             <li class="list-group-item d-flex justify-content-around p-3">
               <p class="mb-0">
-                <b>Last Weight:</b> {{ animal.latest_medical_record.current_weight }}
+                <b>Last Weight:</b> {{ animal.latest_medical_record.current_weight.lb }} lbs
               </p>
               <p class="mb-0">
                 <b>Date Taken:</b> {{ animal.latest_medical_record.created|date:'m-d-Y' }}
@@ -150,7 +150,7 @@
               </p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ animal.starting_weight }}</p>
+              <p class="text-muted mb-0">{{ animal.starting_weight.lb }} lbs</p>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@
           </h5>
           <div class="card-body">
             <p class="card-title text-secondary">
-              <b>Weight</b> {{ record.current_weight }} - <b>BM?</b> {{ record.bowel_movement }}
+              <b>Weight</b> {{ record.current_weight.lb }} lbs - <b>BM?</b> {{ record.bowel_movement }}
             </p>
             <p class="card-text">
               <b>Notes:</b> {{ record.notes }}

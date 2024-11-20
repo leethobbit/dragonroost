@@ -76,6 +76,10 @@ class AnimalTable(tables.Table):
         verbose_name="Status",
     )
 
+    donation_fee = tables.TemplateColumn(
+        """${{ record.donation_fee }}""",
+    )
+
     intake_date = tables.TemplateColumn(
         """
         {{ record.intake_date|date:'m-d-Y' }}

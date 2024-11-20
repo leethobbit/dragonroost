@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
 {% load render_table from django_tables2 %}
+{% load django_bootstrap5 %}
 
 {% block content %}
   <div class="container-fluid">
@@ -24,7 +25,7 @@
       </div>
     </div>
     <div class="row flex-fill">
-      <div class="col-9">
+      <div class="col-10">
         {# The actual table #}
         <div class="text-center"
              hx-trigger="animal_table_update from:body, animal_detail_update from:body"
@@ -32,7 +33,9 @@
              hx-target="this">{% render_table table %}</div>
       </div>
       {# Search form #}
-      <div class="col-3">
+      <div class="col-2">
+        <span class="fs-2 text-bold">Search Filters</span>
+        <hr />
         <form hx-get="{% url 'animals:get-animal-list' %}"
               hx-target="div.table-container"
               hx-swap="outerHTML"
@@ -40,11 +43,12 @@
               hx-trigger="input delay:500ms, search"
               class="form-inline">
           {% render_field filter.form.query|as_crispy_field %}
-          {% render_field filter.form.start_intake_date|as_crispy_field %}
-          {% render_field filter.form.end_intake_date|as_crispy_field %}
           {% render_field filter.form.status|as_crispy_field %}
           {% render_field filter.form.location|as_crispy_field %}
-          <button class="btn btn-primary" type="submit">Submit</button>
+          {% render_field filter.form.start_intake_date|as_crispy_field %}
+          {% render_field filter.form.end_intake_date|as_crispy_field %}
+          {% bootstrap_button button_type="submit" content="Submit" %}
+          {% bootstrap_button button_type="reset" button_class="btn-danger" content="Clear" %}
         </form>
       </div>
     </div>

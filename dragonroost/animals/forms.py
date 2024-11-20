@@ -3,6 +3,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout
 from crispy_forms.layout import Row
 from django import forms
+from django_measurement.forms import MeasurementField
+from measurement.measures import Weight
 
 from dragonroost.animals.models import Animal
 from dragonroost.animals.models import MedicalRecord
@@ -10,6 +12,11 @@ from dragonroost.animals.models import Species
 
 
 class AnimalCreateForm(forms.ModelForm):
+    starting_weight = MeasurementField(
+        measurement=Weight,
+        unit_choices=(("lb", "lb"), ("kg", "kg"), ("g", "g")),
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)

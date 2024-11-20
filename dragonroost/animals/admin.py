@@ -11,4 +11,4 @@ admin.site.register(MedicalRecord)
 
 @admin.register(Animal)
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ["name", "species", "location"]
+    list_display = ["name", "starting_weight", "species", "location"]

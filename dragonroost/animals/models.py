@@ -7,6 +7,8 @@ from pathlib import Path
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django_measurement.models import MeasurementField
+from measurement.measures import Weight
 
 from dragonroost.business.models import Location
 from dragonroost.people.models import Person
@@ -127,7 +129,7 @@ class Animal(models.Model):
     color = models.CharField(max_length=80, null=False, default="None")
     sex = models.CharField(max_length=20, choices=SEX_CHOICES, default="UNKNOWN")
     age = models.IntegerField(default=0)
-    starting_weight = models.IntegerField(default=0)
+    starting_weight = MeasurementField(measurement=Weight)
     species = models.ForeignKey(
         Species,
         on_delete=models.SET_NULL,
@@ -196,7 +198,7 @@ class MedicalRecord(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(max_length=500, blank=True, null=False, default="")
-    current_weight = models.IntegerField(default=0)
+    current_weight = MeasurementField(measurement=Weight)
     bowel_movement = models.BooleanField(default=True)
     problem_list = models.TextField(max_length=500, blank=True, null=False, default="")
     findings = models.TextField(max_length=500, blank=True, null=False, default="")

@@ -3,6 +3,7 @@ import secrets
 
 from django.core.management.base import BaseCommand
 from faker import Faker
+from measurement.measures import Weight
 
 from dragonroost.animals.models import Animal
 from dragonroost.animals.models import MedicalRecord
@@ -84,7 +85,7 @@ class Command(BaseCommand):
                 color=fake.color(),
                 donation_fee=random.uniform(5.00, 350.00),  # noqa: S311
                 age=random.uniform(1, 50),  # noqa: S311
-                starting_weight=random.uniform(1, 200),  # noqa: S311
+                starting_weight=Weight(lb=random.randint(5, 35)),  # noqa: S311
                 status=secrets.choice(statuses),
             )
             animal.save()
@@ -94,7 +95,7 @@ class Command(BaseCommand):
                     animal=animal,
                     notes=fake.text(max_nb_chars=50),
                     treatments=fake.text(max_nb_chars=75),
-                    current_weight=random.uniform(1, 200),  # noqa: S311
+                    current_weight=Weight(lb=random.randint(7, 40)),  # noqa: S311
                     bowel_movement=fake.boolean(chance_of_getting_true=50),
                     q_volunteer=secrets.choice(people),
                 )
