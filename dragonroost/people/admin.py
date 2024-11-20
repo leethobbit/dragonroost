@@ -12,4 +12,4 @@ class RoleAdmin(admin.ModelAdmin):
 
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ["first_name", "last_name", "roles", "notes"]
+    list_display = ["first_name", "last_name", "notes"]
