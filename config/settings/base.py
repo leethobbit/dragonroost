@@ -81,6 +81,7 @@ THIRD_PARTY_APPS = [
     "django_tables2",
     "django_bootstrap5",
     "django_filters",
+    "widget_tweaks",
 ]
 
 LOCAL_APPS = [
@@ -301,5 +302,5 @@ BOOTSTRAP5 = {
 }
 
 DJANGO_TABLES2_TABLE_ATTRS = {
-    "class": "table table-hover table-bordered border-dark-subtle",
+    "class": "table table-hover table-bordered border-dark-subtle align-middle",
 }

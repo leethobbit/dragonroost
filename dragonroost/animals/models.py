@@ -63,14 +63,14 @@ class Animal(models.Model):
 
     SEX_CHOICES = [("MALE", "Male"), ("FEMALE", "Female"), ("UNKNOWN", "Unknown")]
     STATUS_CHOICES = [
-        ("ON_HOLD", "On Hold"),
+        ("ADOPTED", "Adopted"),
+        ("AMBASSADOR", "Ambassador"),
         ("AVAILABLE", "Available"),
-        ("QUARANTINE", "Quarantine"),
+        ("DECEASED", "Deceased"),
         ("FOSTERED", "Fostered"),
         ("MEDICAL_HOLD", "Medical Hold"),
-        ("ADOPTED", "Adopted"),
-        ("DECEASED", "Deceased"),
-        ("AMBASSADOR", "Ambassador"),
+        ("ON_HOLD", "On Hold"),
+        ("QUARANTINE", "Quarantine"),
     ]
     INTAKE_CHOICES = [
         ("UNKNOWN", "Unknown"),

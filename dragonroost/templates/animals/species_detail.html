@@ -5,7 +5,7 @@
   </div>
   <div class="modal-body">
     {% if species.is_ohio_native %}
-      <span class="badge rounded-pill text-bg-warning">Warning: This animal is an Ohio native!</span>
+      <h3 class="badge rounded-pill bg-warning text-dark">Warning: This animal is an Ohio native!</h3>
     {% endif %}
     <p class="card-text">Description: {{ species.description }}</p>
     <p class="card-text">Diet: {{ species.diet }}</p>

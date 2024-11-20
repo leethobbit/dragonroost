@@ -11,15 +11,13 @@ def get_status_attr(record):
     """
     status = record.status
     match status:
-        case "ADOPTED":
+        case "ADOPTED" | "DECEASED":
             return "bg-secondary"
         case "AVAILABLE":
             return "bg-success"
         case "ON_HOLD":
             return "bg-info"
-        case "QUARANTINE":
-            return "bg-warning"
-        case "MEDICAL_HOLD":
+        case "QUARANTINE" | "MEDICAL_HOLD":
             return "bg-warning"
         case _:
             return "bg-light"
@@ -76,6 +74,12 @@ class AnimalTable(tables.Table):
     status = tables.Column(
         attrs={"td": {"class": get_status_attr}},
         verbose_name="Status",
+    )
+
+    intake_date = tables.TemplateColumn(
+        """
+        {{ record.intake_date|date:'m-d-Y' }}
+        """,
     )
 
     edit = tables.TemplateColumn(

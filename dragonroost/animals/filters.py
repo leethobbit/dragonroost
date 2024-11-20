@@ -2,11 +2,25 @@ from decimal import Decimal
 
 import django_filters
 from crispy_forms.helper import FormHelper
+from django import forms
 from django.db.models import Q
 from django.forms import TextInput
 
 from dragonroost.animals.models import Animal
 from dragonroost.animals.models import Species
+from dragonroost.business.models import Location
+
+# These choices are duplicated in the Animal model definition for the time being.
+STATUS_CHOICES = [
+    ("ADOPTED", "Adopted"),
+    ("AMBASSADOR", "Ambassador"),
+    ("AVAILABLE", "Available"),
+    ("DECEASED", "Deceased"),
+    ("FOSTERED", "Fostered"),
+    ("MEDICAL_HOLD", "Medical Hold"),
+    ("ON_HOLD", "On Hold"),
+    ("QUARANTINE", "Quarantine"),
+]
 
 
 class AnimalSearchInput(TextInput):
@@ -20,9 +34,40 @@ class AnimalFilter(django_filters.FilterSet):
         widget=AnimalSearchInput(attrs={"placeholder": "Search..."}),
     )
 
+    start_intake_date = django_filters.DateFilter(
+        field_name="intake_date",
+        lookup_expr="gte",
+        label="Date From",
+        widget=forms.DateInput(attrs={"type": "date"}),
+    )
+
+    end_intake_date = django_filters.DateFilter(
+        field_name="intake_date",
+        lookup_expr="lte",
+        label="Date To",
+        widget=forms.DateInput(attrs={"type": "date"}),
+    )
+
+    status = django_filters.MultipleChoiceFilter(
+        choices=STATUS_CHOICES,
+        widget=forms.CheckboxSelectMultiple(),
+    )
+
+    location = django_filters.ModelMultipleChoiceFilter(
+        queryset=Location.objects.all(),
+        label="Locations",
+        widget=forms.CheckboxSelectMultiple(),
+    )
+
     class Meta:
         model = Animal
-        fields = ["query"]
+        fields = [
+            "query",
+            "start_intake_date",
+            "end_intake_date",
+            "status",
+            "location",
+        ]
 
     def universal_search(self, queryset, name, value):
         if value.replace(".", "", 1).isdigit():
