@@ -1,10 +1,6 @@
 import logging
-import random
 from datetime import timezone
-from os import listdir
-from pathlib import Path
 
-from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django_measurement.models import MeasurementField
@@ -13,18 +9,7 @@ from measurement.measures import Weight
 from dragonroost.business.models import Location
 from dragonroost.people.models import Person
 
-BASE_DIR = settings.MEDIA_ROOT
-
 logger = logging.getLogger(__name__)
-
-
-def random_image():
-    dir_path = Path(BASE_DIR) / "images/"
-    files = [
-        content for content in listdir(dir_path) if Path(dir_path / content).is_file()
-    ]
-    image = random.choice(files)  # noqa: S311
-    return "images/" + str(image)
 
 
 # Create your models here.
@@ -124,7 +109,6 @@ class Animal(models.Model):
         upload_to="images/",
         null=True,
         blank=True,
-        default=random_image,
     )
     color = models.CharField(max_length=80, null=False, default="None")
     sex = models.CharField(max_length=20, choices=SEX_CHOICES, default="UNKNOWN")

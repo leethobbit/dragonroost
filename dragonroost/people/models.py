@@ -27,7 +27,7 @@ class Person(models.Model):
     phone_number = models.CharField(max_length=20, default="555-5555")
     roles = models.ManyToManyField(Role)
     address = models.CharField(max_length=250, default="")
-    zip_code = models.IntegerField(default=44121)
+    zip_code = models.IntegerField(default=90210)
     notes = models.TextField(blank=True, null=False, default="")
 
     def __str__(self):

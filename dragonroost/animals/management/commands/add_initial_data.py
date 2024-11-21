@@ -1,46 +1,39 @@
+import logging
 import random
-import secrets
 
 from django.core.management.base import BaseCommand
 from faker import Faker
-from measurement.measures import Weight
 
-from dragonroost.animals.models import Animal
-from dragonroost.animals.models import MedicalRecord
 from dragonroost.animals.models import Species
 from dragonroost.business.models import Location
 from dragonroost.people.models import Person
+from dragonroost.people.models import Role
 
 fake = Faker()
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
     help = "Create test data for Dragonroost."
 
-    def add_arguments(self, parser):
-        parser.add_argument(
-            "--initial",
-            help="Create initial data before animals can be added.",
-        )
-        parser.add_argument("--animals", type=int, help="Number of animals to create.")
-
     def handle(self, *args, **options):
-        if options["initial"]:
-            """
-            Create all initial data EXCEPT animals.
-            """
-            self.create_species()
-            self.create_locations()
-        if options["animals"]:
-            self.create_animals(options["animals"])
+        self.create_species()
+        self.create_locations()
+        self.create_roles()
+        self.create_people()
         self.stdout.write(self.style.SUCCESS("Test data created successfully!"))
 
-    def create_species():
+    def create_species(self):
+        if Species.objects.all().count() > 0:
+            return
+
         species_names = [
             "Corn Snake",
             "Red-eared Slider",
             "Ball Python",
             "Bearded Dragon",
+            "Reticulated Python",
+            "Russian Tortoise",
         ]
 
         for name in species_names:
@@ -50,7 +43,10 @@ class Command(BaseCommand):
                 is_ohio_native=fake.boolean(chance_of_getting_true=25),
             )
 
-    def create_locations():
+    def create_locations(self):
+        if Location.objects.all().count() > 0:
+            return
+
         location_names = ["Sales Floor", "Q Room", "Upstairs"]
 
         for name in location_names:
@@ -59,44 +55,29 @@ class Command(BaseCommand):
                 description=fake.text(max_nb_chars=20),
             )
 
-    def create_animals(self, count):
-        species = list(Species.objects.all())
-        locations = list(Location.objects.all())
-        people = list(Person.objects.all())
-        names = [fake.unique.first_name() for i in range(200)]
+    def create_roles(self):
+        if Role.objects.all().count() > 0:
+            return
 
-        statuses = [
-            "ADOPTED",
-            "AMBASSADOR",
-            "AVAILABLE",
-            "DECEASED",
-            "FOSTERED",
-            "MEDICAL_HOLD",
-            "ON_HOLD",
-            "QUARANTINE",
-        ]
+        roles = ["Volunteer", "Donor", "Foster", "Adopter"]
 
-        for i in range(count):
-            animal = Animal.objects.create(
-                name=names[i],
+        for role in roles:
+            Role.objects.get_or_create(
+                name=role,
                 description=fake.text(max_nb_chars=50),
-                species=secrets.choice(species),
-                location=secrets.choice(locations),
-                color=fake.color(),
-                donation_fee=random.uniform(5.00, 350.00),  # noqa: S311
-                age=random.uniform(1, 50),  # noqa: S311
-                starting_weight=Weight(lb=random.randint(5, 35)),  # noqa: S311
-                status=secrets.choice(statuses),
             )
-            animal.save()
-            record_count = secrets.randbelow(6)
-            for _i in range(record_count):
-                medical_record = MedicalRecord.objects.create(
-                    animal=animal,
-                    notes=fake.text(max_nb_chars=50),
-                    treatments=fake.text(max_nb_chars=75),
-                    current_weight=Weight(lb=random.randint(7, 40)),  # noqa: S311
-                    bowel_movement=fake.boolean(chance_of_getting_true=50),
-                    q_volunteer=secrets.choice(people),
-                )
-                medical_record.save()
+
+    def create_people(self):
+        person_count = 15
+        roles = list(Role.objects.all())
+
+        for _ in range(person_count):
+            person = Person.objects.create(
+                first_name=fake.first_name(),
+                last_name=fake.last_name(),
+                notes=fake.text(max_nb_chars=50),
+            )
+            person.roles.set(
+                random.sample(roles, k=random.randrange(1, len(roles))),  # noqa: S311
+            )
+            person.save()
