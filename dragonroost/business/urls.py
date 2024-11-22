@@ -5,16 +5,19 @@ from dragonroost.business.views import LocationCreateView
 from dragonroost.business.views import LocationDeleteView
 from dragonroost.business.views import LocationDetailView
 from dragonroost.business.views import LocationListView
+from dragonroost.business.views import LocationTableView
 from dragonroost.business.views import LocationUpdateView
 from dragonroost.business.views import MeetingCreateView
 from dragonroost.business.views import MeetingDeleteView
 from dragonroost.business.views import MeetingListView
+from dragonroost.business.views import MeetingTableView
 from dragonroost.business.views import MeetingUpdateView
 
 app_name = "business"  # This is for namespacing the URLs later
 
 urlpatterns = [
     path("locations/", LocationListView.as_view(), name="location-table"),
+    path("locations/table/", LocationTableView.as_view(), name="get-location-list"),
     path("locations/new/", LocationCreateView.as_view(), name="location-create"),
     path(
         "locations/<int:pk>/detail/",
@@ -32,6 +35,7 @@ urlpatterns = [
         name="location-delete",
     ),
     path("meetings/", MeetingListView.as_view(), name="meeting-table"),
+    path("meetings/table/", MeetingTableView.as_view(), name="get-meeting-list"),
     path("meetings/new/", MeetingCreateView.as_view(), name="meeting-create"),
     path("meetings/<int:pk>/edit/", MeetingUpdateView.as_view(), name="meeting-update"),
     path(

@@ -1,15 +1,15 @@
-{% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% load django_bootstrap5 %}
-{% load i18n %}
-
-{% block content %}
-  <form class="align-items-center flex-column"
-        method="post"
-        enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form form layout='floating' %}
-    {% bootstrap_button button_type="submit" content="Save" %}
-    {% bootstrap_button button_type="reset" content="Cancel" %}
-  </form>
-{% endblock content %}
+<form hx-post="{{ request.path }}"
+      hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+      class="modal-content"
+      enctype="multipart/form-data">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ title }}</h5>
+  </div>
+  <div class="modal-body">{% crispy form %}</div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancel</button>
+  </div>
+</form>

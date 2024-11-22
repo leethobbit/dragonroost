@@ -4,21 +4,25 @@
 
 {% block content %}
   <a href="{% url 'people:person-create' %}"
-     class="btn btn-primary btn-sm">Add New Person</a>
-</br />
-</br />
-{# Search form #}
-<form hx-get="{% url 'people:person-table' %}"
-      hx-target="div.table-container"
-      hx-swap="outerHTML"
-      hx-indicator=".progress"
-      class="form-inline">
-  {% crispy filter.form %}
-</form>
-{# Progress indicator #}
-<div class="progress">
-  <div class="indeterminate"></div>
-</div>
-{# The actual table #}
-{% render_table table %}
+     class="btn btn-lg mb-4 btn-info me-4"
+     hx-target="#dialog"
+     hx-boost="true"
+     hx-push-url="false">Add New Person</a>
+  {# Search form #}
+  <form hx-get="{% url 'people:get-person-list' %}"
+        hx-target="div.table-container"
+        hx-swap="outerHTML"
+        hx-indicator=".progress"
+        class="form-inline">
+    {% crispy filter.form %}
+  </form>
+  {# Progress indicator #}
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+  {# The actual table #}
+  <div class="text-center"
+       hx-trigger="person_table_update from:body, person_detail_update from:body"
+       hx-get="{% url 'people:get-person-list' %}"
+       hx-target="this">{% render_table table %}</div>
 {% endblock content %}

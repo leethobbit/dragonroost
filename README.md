@@ -1,6 +1,14 @@
-# Dragonroost is under heavy development - expect bugs and half-completed features
-
-An animal shelter / rescue management application, written in Python using Django and htmx!
+<div align="center">
+    <img src="dragonroost/static/images/favicons/dinosaur-egg-256.png" width="auto" alt="Dragonroost Logo">
+</div>
+<h1 align="center">
+    Dragonroost
+</h1>
+<h3 align="center">
+    Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
+</h3>
+<br>
+<br>
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -9,14 +17,13 @@ License: MIT
 
 ## Screenshots (current as of October 30 2024)
 
-![Dragonroost Homepage](example/screenshots/dragonroost-dashboard.png)
+![Dragonroost Homepage](example/screenshots/dragonroost-dash-v3.png)
 ![Dragonroost Animal Detail Page](example/screenshots/dragonroost-animal-detail.png)
 ![Dragonroost Species List Page](example/screenshots/dragonroost-species-list.png)
-![Dragonroost People List Page](example/screenshots/dragonroost-people-list.png)
 
 ## Roadmap
 
-This app is in the early stages of development.  For a general idea of what is planned, please check out the [roadmap](ROADMAP.md).
+Dragonroost is under heavy development - expect bugs and half-written features. For a general idea of what is planned, please check out the [roadmap](ROADMAP.md).
 
 ## Settings
 
@@ -63,3 +70,7 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+### Attributions
+
+[Favicon created by max.icons - Flaticon](https://www.flaticon.com/free-icons/dino)

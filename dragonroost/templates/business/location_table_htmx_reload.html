@@ -4,8 +4,12 @@
 
 {% block content %}
   <a href="{% url 'business:location-create' %}"
-     class="btn btn-primary btn-sm">Add New Location</a>
-  <br />
-</br />
-{% render_table table %}
+     class="btn btn-lg mb-4 btn-info me-4"
+     hx-target="#dialog"
+     hx-boost="true"
+     hx-push-url="false">Add New Location</a>
+  <div class="text-center"
+       hx-trigger="location_table_update from:body, location_detail_update from:body"
+       hx-get="{% url 'business:get-location-list' %}"
+       hx-target="this">{% render_table table %}</div>
 {% endblock content %}

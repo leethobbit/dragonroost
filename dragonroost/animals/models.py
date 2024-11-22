@@ -1,10 +1,15 @@
+import logging
 from datetime import timezone
 
 from django.db import models
 from django.urls import reverse
+from django_measurement.models import MeasurementField
+from measurement.measures import Weight
 
 from dragonroost.business.models import Location
 from dragonroost.people.models import Person
+
+logger = logging.getLogger(__name__)
 
 
 # Create your models here.
@@ -45,14 +50,14 @@ class Animal(models.Model):
 
     SEX_CHOICES = [("MALE", "Male"), ("FEMALE", "Female"), ("UNKNOWN", "Unknown")]
     STATUS_CHOICES = [
-        ("PENDING", "Pending"),
-        ("ADOPTABLE", "Adoptable"),
-        ("QUARANTINED", "Quarantined"),
+        ("ADOPTED", "Adopted"),
+        ("AMBASSADOR", "Ambassador"),
+        ("AVAILABLE", "Available"),
+        ("DECEASED", "Deceased"),
         ("FOSTERED", "Fostered"),
         ("MEDICAL_HOLD", "Medical Hold"),
-        ("ADOPTED", "Adopted"),
-        ("DECEASED", "Deceased"),
-        ("AMBASSADOR", "Ambassador"),
+        ("ON_HOLD", "On Hold"),
+        ("QUARANTINE", "Quarantine"),
     ]
     INTAKE_CHOICES = [
         ("UNKNOWN", "Unknown"),
@@ -100,11 +105,15 @@ class Animal(models.Model):
         default="UNKNOWN",
     )
     updated_at = models.DateTimeField(auto_now=True)
-    animal_photo = models.ImageField(upload_to="images/", null=True, blank=True)
+    animal_photo = models.ImageField(
+        upload_to="images/",
+        null=True,
+        blank=True,
+    )
     color = models.CharField(max_length=80, null=False, default="None")
     sex = models.CharField(max_length=20, choices=SEX_CHOICES, default="UNKNOWN")
     age = models.IntegerField(default=0)
-    starting_weight = models.IntegerField(default=0)
+    starting_weight = MeasurementField(measurement=Weight)
     species = models.ForeignKey(
         Species,
         on_delete=models.SET_NULL,
@@ -120,7 +129,7 @@ class Animal(models.Model):
     status = models.CharField(
         max_length=80,
         choices=STATUS_CHOICES,
-        default="ADOPTABLE",
+        default="AVAILABLE",
     )
 
     class Meta:
@@ -151,6 +160,10 @@ class Animal(models.Model):
         return MedicalRecord.objects.filter(animal=self).count()
 
     @property
+    def latest_medical_record(self):
+        return MedicalRecord.objects.filter(animal=self).latest("created")
+
+    @property
     def is_recently_cleared(self):
         """
         Track all recently vet cleared animals. Recent means in the last 14 days.
@@ -169,7 +182,7 @@ class MedicalRecord(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(max_length=500, blank=True, null=False, default="")
-    current_weight = models.IntegerField(default=0)
+    current_weight = MeasurementField(measurement=Weight)
     bowel_movement = models.BooleanField(default=True)
     problem_list = models.TextField(max_length=500, blank=True, null=False, default="")
     findings = models.TextField(max_length=500, blank=True, null=False, default="")
@@ -184,6 +197,7 @@ class MedicalRecord(models.Model):
 
     class Meta:
         db_table_comment = "Table holds medical record entries."
+        ordering = ["created"]
 
     def __str__(self):
         return self.notes

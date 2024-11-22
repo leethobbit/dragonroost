@@ -6,21 +6,25 @@
 
 {% block content %}
   <a href="{% url 'medical:medical-update-create' %}"
-     class="btn btn-primary btn-sm">Add New Medical Update</a>
-</br />
-</br />
-{# Search form #}
-<form hx-get="{% url 'medical:medical-update-table' %}"
-      hx-target="div.table-container"
-      hx-swap="outerHTML"
-      hx-indicator=".progress"
-      class="form-inline">
-  {% crispy filter.form %}
-</form>
-{# Progress indicator #}
-<div class="progress">
-  <div class="indeterminate"></div>
-</div>
-{# The actual table #}
-{% render_table table %}
+     class="btn btn-lg mb-4 btn-info me-4"
+     hx-target="#dialog"
+     hx-boost="true"
+     hx-push-url="false">Add New Medical Update</a>
+  {# Search form #}
+  <form hx-get="{% url 'medical:get-medical-update-results' %}"
+        hx-target="div.table-container"
+        hx-swap="outerHTML"
+        hx-indicator=".progress"
+        class="form-inline">
+    {% crispy filter.form %}
+  </form>
+  {# Progress indicator #}
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+  {# The actual table #}
+  <div class="text-center"
+       hx-trigger="medical_update_table_update from:body, medical_update_detail_update from:body"
+       hx-get="{% url 'medical:get-medical-update-results' %}"
+       hx-target="this">{% render_table table %}</div>
 {% endblock content %}

@@ -1,11 +1,12 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <p>Are you sure you want to delete the medical update "{{ medical_update.title }}"?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes, delete</button>
-  </form>
-  <a href="{% url 'medical:medical-update-detail' medical_update.id %}">No, take me
-  back</a>
-{% endblock content %}
+<form hx-post="{{ request.path }}"
+      hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+      class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ title }}</h5>
+  </div>
+  <div class="modal-body">Are you sure you want to delete medical update "{{ medicalupdate.title }}"?</div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-danger" type="submit">Delete</button>
+    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button>
+  </div>
+</form>
