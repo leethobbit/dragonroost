@@ -1,21 +1,26 @@
 name: Deploy to Test Environment
+run-name: ${{ gitea.actor }} is running a Gitea Actions job on server ${{ runner.os }}
 
 on:
   push:
-    branches: ['main']
+    branches:
+      - main
   pull_request:
-    branches: ['main']
+    branches:
+      - main
 
 jobs:
   build-push-image:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
+      - run: echo "This job was triggered by a ${{ gitea.event_name }} event."
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - run: echo "The ${{ gitea.repository }} has been cloned."
       - name: Build the Docker image
-      - run: echo "Building image now"
-      - run: docker compose -f docker-compose.production.yml build
+        run: docker compose -f docker-compose.production.yml build
+      - run: echo "The Docker image has been created."
       - run: echo "TODO Tag the image and push to Gitea registry"
 
   deploy:
@@ -24,5 +29,5 @@ jobs:
 
     steps:
       - name: Deploy App
-      - run: echo "Deploying app now"
-      - run: docker compose -f docker-compose.production.yml up -d
+        run: docker compose -f docker-compose.production.yml up -d
+      - run: echo "The app is now running."
