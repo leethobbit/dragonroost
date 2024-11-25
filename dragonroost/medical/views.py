@@ -27,7 +27,7 @@ class MedicalUpdateTableView(
     table_class = MedicalUpdateTable
     queryset = MedicalUpdate.objects.all().order_by("-date")
     filterset_class = MedicalUpdateFilter
-    paginate_by = 15
+    paginate_by = 10
     title = "Medical Updates List"
 
     def get_template_names(self):
@@ -43,7 +43,7 @@ class MedicalUpdateTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterV
     table_class = MedicalUpdateTable
     queryset = MedicalUpdate.objects.all().order_by("-date")
     filterset_class = MedicalUpdateFilter
-    paginate_by = 15
+    paginate_by = 10
     template_name = "medical/partials/medical_update_table.html"
 
 

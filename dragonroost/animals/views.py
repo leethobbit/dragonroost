@@ -45,7 +45,7 @@ class AnimalTableView(
     table_class = AnimalTable
     queryset = Animal.objects.all().order_by("name")
     filterset_class = AnimalFilter
-    paginate_by = 15
+    paginate_by = 10
     title = "Manage Animals"
 
     def get_template_names(self):
@@ -65,7 +65,7 @@ class AnimalTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView):
     table_class = AnimalTable
     queryset = Animal.objects.all().order_by("name")
     filterset_class = AnimalFilter
-    paginate_by = 15
+    paginate_by = 10
     template_name = "animals/partials/animal_table.html"
 
 
@@ -216,7 +216,7 @@ class SpeciesTableView(LoginRequiredMixin, SingleTableMixin, FilterView):
     table_class = SpeciesTable
     queryset = Species.objects.all().order_by("name")
     filterset_class = SpeciesFilter
-    paginate_by = 15
+    paginate_by = 10
     template_name = "animals/partials/animal_table.html"
 
 

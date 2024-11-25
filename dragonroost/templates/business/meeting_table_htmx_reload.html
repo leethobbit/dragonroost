@@ -3,13 +3,15 @@
 {% load django_tables2 %}
 
 {% block content %}
-  <a href="{% url 'business:meeting-create' %}"
-     class="btn btn-lg mb-4 btn-info"
-     hx-target="#dialog"
-     hx-boost="true"
-     hx-push-url="false">Add New Meeting</a>
-  <div class="text-center"
-       hx-trigger="meeting_table_update from:body, meeting_detail_update from:body"
-       hx-get="{% url 'business:get-meeting-list' %}"
-       hx-target="this">{% render_table table %}</div>
+  <div class="container-fluid">
+    <a href="{% url 'business:meeting-create' %}"
+       class="btn btn-lg mb-4 btn-info"
+       hx-target="#dialog"
+       hx-boost="true"
+       hx-push-url="false">Add New Meeting</a>
+    <div class="text-center"
+         hx-trigger="meeting_table_update from:body, meeting_detail_update from:body"
+         hx-get="{% url 'business:get-meeting-list' %}"
+         hx-target="this">{% render_table table %}</div>
+  </div>
 {% endblock content %}

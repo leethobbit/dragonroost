@@ -3,13 +3,15 @@
 {% load django_tables2 %}
 
 {% block content %}
-  <a href="{% url 'business:location-create' %}"
-     class="btn btn-lg mb-4 btn-info me-4"
-     hx-target="#dialog"
-     hx-boost="true"
-     hx-push-url="false">Add New Location</a>
-  <div class="text-center"
-       hx-trigger="location_table_update from:body, location_detail_update from:body"
-       hx-get="{% url 'business:get-location-list' %}"
-       hx-target="this">{% render_table table %}</div>
+  <div class="container-fluid">
+    <a href="{% url 'business:location-create' %}"
+       class="btn btn-lg mb-4 btn-info me-4"
+       hx-target="#dialog"
+       hx-boost="true"
+       hx-push-url="false">Add New Location</a>
+    <div class="text-center"
+         hx-trigger="location_table_update from:body, location_detail_update from:body"
+         hx-get="{% url 'business:get-location-list' %}"
+         hx-target="this">{% render_table table %}</div>
+  </div>
 {% endblock content %}

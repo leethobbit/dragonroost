@@ -119,7 +119,7 @@ class PersonHTMxView(SingleTableMixin, PageTitleViewMixin, FilterView):
     table_class = PersonHTMxTable
     queryset = Person.objects.all()
     filterset_class = PersonFilter
-    paginate_by = 15
+    paginate_by = 10
     title = "People Search"
 
     def get_template_names(self) -> list[str]:
@@ -135,5 +135,5 @@ class PersonTableSearchView(LoginRequiredMixin, SingleTableMixin, FilterView):
     table_class = PersonHTMxTable
     queryset = Person.objects.all()
     filterset_class = PersonFilter
-    paginate_by = 15
+    paginate_by = 10
     template_name = "people/partials/person_table.html"

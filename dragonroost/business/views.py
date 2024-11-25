@@ -49,7 +49,7 @@ class LocationListView(
 class LocationTableView(LoginRequiredMixin, SingleTableMixin, ListView):
     table_class = LocationListTable
     queryset = Location.objects.all().order_by("name")
-    paginate_by = 15
+    paginate_by = 10
     template_name = "business/partials/table_partial.html"
 
 
@@ -140,7 +140,7 @@ class MeetingListView(
 class MeetingTableView(LoginRequiredMixin, SingleTableMixin, ListView):
     table_class = MeetingListTable
     queryset = Meeting.objects.all().order_by("-date")
-    paginate_by = 15
+    paginate_by = 10
     template_name = "business/partials/table_partial.html"
 
 
