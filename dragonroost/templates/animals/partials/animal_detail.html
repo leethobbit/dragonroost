@@ -5,7 +5,8 @@
 {% block content %}
 <div hx-trigger="animal_detail_update from:body"
      hx-get="{% url 'animals:animal-detail' animal.id %}"
-     hx-target="this">
+     hx-target="this"
+     class="container-fluid">
   <div class="row">
     <div class="col-lg-4">
       <div class="card mb-4">
