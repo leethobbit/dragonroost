@@ -20,6 +20,7 @@ class Species(models.Model):
         ("BIRD", "Bird"),
         ("AMPHIBIAN", "Amphibian"),
         ("INSECT", "Insect"),
+        ("FISH", "Fish"),
     ]
     DIET_CHOICES = [
         ("VEGGIE", "Veggie"),
@@ -37,12 +38,42 @@ class Species(models.Model):
     description = models.TextField()
     diet = models.CharField(max_length=80, choices=DIET_CHOICES, default="UNKNOWN")
     is_ohio_native = models.BooleanField(default=False)
+    has_breeds = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse("species_detail", args=[str(self.id)])
+
+
+class Breed(models.Model):
+    TEMPERAMENT_CHOICES = [
+        ("ACTIVE", "Active"),
+        ("ENERGETIC", "Energetic"),
+        ("GENTLE", "Gentle"),
+        ("INDEPENDENT", "Independent"),
+    ]
+
+    name = models.CharField(max_length=80, unique=True)
+    origin = models.CharField(max_length=80, blank=True)
+    species = models.ForeignKey(
+        Species,
+        related_name="breeds",
+        on_delete=models.CASCADE,
+        default=1,
+    )
+    temperament = models.CharField(
+        max_length=80,
+        choices=TEMPERAMENT_CHOICES,
+        default="ACTIVE",
+    )
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("breed_detail", args=[str(self.id)])
 
 
 class Animal(models.Model):
@@ -130,6 +161,13 @@ class Animal(models.Model):
         max_length=80,
         choices=STATUS_CHOICES,
         default="AVAILABLE",
+    )
+    breed = models.ForeignKey(
+        Breed,
+        on_delete=models.SET_DEFAULT,
+        related_name="animals",
+        null=True,
+        default=None,
     )
 
     class Meta:

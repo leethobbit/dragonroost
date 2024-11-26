@@ -38,12 +38,14 @@
               hx-target="#dialog"
               hx-swap="innerHTML"
               class="btn btn-primary me-4">Edit</a>
+            <a href="{% url 'animals:animal-detail-pdf' animal.id %}"
+               class="btn btn-outline-info me-4" target='_blank'>Export to PDF</a>
             <a href="{% url 'animals:animal-delete' animal.id %}"
-              hx-boost="true"
-              hx-push-url="false"
-              hx-target="#dialog"
-              hx-swap="innerHTML"
-              class="btn btn-outline-danger">Delete</a>
+               hx-boost="true"
+               hx-push-url="false"
+               hx-target="#dialog"
+               hx-swap="innerHTML"
+               class="btn btn-outline-danger">Delete</a>
             </div>
         </div>
       </div>

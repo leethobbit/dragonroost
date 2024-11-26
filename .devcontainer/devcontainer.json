@@ -54,7 +54,8 @@
                 "ms-python.vscode-pylance",
                 "charliermarsh.ruff",
                 "batisteo.vscode-django",
-                "ecmel.vscode-html-css"
+                "ecmel.vscode-html-css",
+                "Codeium.codeium"
             ]
         }
     },

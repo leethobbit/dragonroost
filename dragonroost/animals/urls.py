@@ -2,6 +2,7 @@ from django.urls import path
 
 from dragonroost.animals.views import AnimalCreateView
 from dragonroost.animals.views import AnimalDeleteView
+from dragonroost.animals.views import AnimalDetailPDFView
 from dragonroost.animals.views import AnimalDetailView
 from dragonroost.animals.views import AnimalOutcomeView
 from dragonroost.animals.views import AnimalTableSearchView
@@ -22,6 +23,11 @@ app_name = "animals"  # This is for namespacing the URLs later
 urlpatterns = [
     path("new/", AnimalCreateView.as_view(), name="animal-create"),
     path("<int:pk>/detail/", AnimalDetailView.as_view(), name="animal-detail"),
+    path(
+        "<int:pk>/detail/pdf/",
+        AnimalDetailPDFView.as_view(),
+        name="animal-detail-pdf",
+    ),
     path("<int:pk>/edit/", AnimalUpdateView.as_view(), name="animal-update"),
     path("<int:pk>/outcome/", AnimalOutcomeView.as_view(), name="animal-outcome"),
     path("<int:pk>/delete/", AnimalDeleteView.as_view(), name="animal-delete"),

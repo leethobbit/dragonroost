@@ -67,6 +67,7 @@ class Command(BaseCommand):
                 description=fake.text(max_nb_chars=50),
                 species=secrets.choice(species),
                 location=secrets.choice(locations),
+                breed=None,
                 color=fake.color(),
                 donation_fee=random.uniform(5.00, 350.00),  # noqa: S311
                 age=random.uniform(1, 50),  # noqa: S311

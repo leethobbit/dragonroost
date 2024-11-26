@@ -13,6 +13,7 @@ from django.views.generic import DetailView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
+from django_xhtml2pdf.views import PdfMixin
 
 from dragonroost.mixins import PageTitleViewMixin
 
@@ -82,6 +83,22 @@ class AnimalDetailView(LoginRequiredMixin, PageTitleViewMixin, DetailView):
             template_name = "animals/animal_detail_full.html"
 
         return template_name
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        medical_records = MedicalRecord.objects.filter(
+            animal=self.get_object(),
+        ).order_by("-created")
+        data["medical_records"] = medical_records
+        data["medical_record_form"] = MedicalRecordForm(instance=self.get_object())
+        return data
+
+
+class AnimalDetailPDFView(PdfMixin, DetailView):
+    model = Animal
+    title = "Animal Details"
+    context_object_name = "animal"
+    template_name = "animals/partials/animal_detail.html"
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)

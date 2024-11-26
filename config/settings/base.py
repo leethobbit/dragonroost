@@ -82,6 +82,7 @@ THIRD_PARTY_APPS = [
     "django_bootstrap5",
     "django_filters",
     "widget_tweaks",
+    "django_xhtml2pdf",
 ]
 
 LOCAL_APPS = [
