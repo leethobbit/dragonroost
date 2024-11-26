@@ -20,7 +20,12 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /app/
+            echo "Removing the old directory."
             sudo rm -rf dragonroost/
+            echo "Cloning the new directory."
             sudo git clone https://github.com/leethobbit/dragonroost.git
             cd dragonroost/
+            echo "Bringing down Docker services."
+            sudo docker compose -f docker-compose.local.yml down -d
+            echo "Bringing up new version of Docker services."
             sudo docker compose -f docker-compose.local.yml up -d
