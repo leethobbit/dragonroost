@@ -9,6 +9,8 @@ from measurement.measures import Weight
 from dragonroost.business.models import Location
 from dragonroost.people.models import Person
 
+from .managers import AnimalQuerySet
+
 logger = logging.getLogger(__name__)
 
 
@@ -170,8 +172,11 @@ class Animal(models.Model):
         default=None,
     )
 
+    objects = AnimalQuerySet.as_manager()
+
     class Meta:
         db_table_comment = "Holds information about animals"
+        ordering = ["-intake_date"]
 
     def __str__(self):
         return self.name

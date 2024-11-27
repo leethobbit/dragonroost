@@ -1,7 +1,5 @@
 from django.db import models
 
-from dragonroost.people.models import Person
-
 
 # Create your models here.
 class Feedback(models.Model):
@@ -67,19 +65,27 @@ class Meeting(models.Model):
         return f"/business/meetings/{self.id}/"
 
 
-# class Donation
-class Donation(models.Model):
-    """
-    Possible model for donations - not in use currently.
-    TODO: Change this to a more generic Transaction model.
-    """
+class TransactionCategory(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+
+class Transaction(models.Model):
+    TRANSACTION_TYPE_CHOICES = [
+        ("INCOME", "Income"),
+        ("EXPENSE", "Expense"),
+    ]
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    donor = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
-    is_sponsorship = models.BooleanField(default=False)
-    donation_date = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(TransactionCategory, on_delete=models.CASCADE)
+    type = models.CharField(max_length=10, choices=TRANSACTION_TYPE_CHOICES)
     description = models.TextField(blank=True, null=False, default="")
+    date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self) -> str:
-        # TODO: Come up with a good string for this return. Maybe donor + amount + date?
-        return self.pk
+    def __str__(self):
+        return f"{self.type} of {self.amount} on {self.date}"
