@@ -25,7 +25,5 @@ jobs:
             echo "Cloning the new directory."
             sudo git clone https://github.com/leethobbit/dragonroost.git
             cd dragonroost/
-            echo "Bringing down Docker services."
-            sudo docker compose -f docker-compose.local.yml down -d
-            echo "Bringing up new version of Docker services."
-            sudo docker compose -f docker-compose.local.yml up -d
+            echo "Rebuilding and restarting Docker services."
+            sudo docker compose -f docker-compose.local.yml down -d && docker compose -f docker-compose.local.yml up -d

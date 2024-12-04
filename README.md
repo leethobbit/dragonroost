@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="dragonroost/static/images/favicons/dragonroost_banner.png" width="auto" alt="Dragonroost Logo">
+    <img src="dragonroost/static/images/favicons/dragonroost_banner_light.png" width="auto" alt="Dragonroost Logo">
 </div>
 <h3 align="center">
     Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
