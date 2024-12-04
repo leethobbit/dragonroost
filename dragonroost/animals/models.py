@@ -46,7 +46,7 @@ class Species(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("species_detail", args=[str(self.id)])
+        return reverse("animals:species-detail", args=[str(self.id)])
 
 
 class Breed(models.Model):
@@ -75,7 +75,7 @@ class Breed(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("breed_detail", args=[str(self.id)])
+        return reverse("animals:breed-detail", args=[str(self.id)])
 
 
 class Animal(models.Model):
@@ -190,7 +190,7 @@ class Animal(models.Model):
 
     @property
     def is_available(self):
-        return self.status != "ADOPTED"
+        return self.status == "AVAILABLE"
 
     @property
     def days_since_intake(self):

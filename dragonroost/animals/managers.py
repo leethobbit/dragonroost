@@ -11,4 +11,4 @@ class AnimalQuerySet(models.QuerySet):
         i.e. where the status is "MEDICAL_HOLD".
         """
 
-        return self.filter(status="MEDICAL_HOLD" / "QUARANTINE")
+        return self.filter(status="QUARANTINE")

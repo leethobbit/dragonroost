@@ -1,8 +1,20 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <h1>{{ location.name }} - Detail</h1>
-  <p>{{ location.description }}</p>
-  <a href="{% url 'business:location-update' location.id %}">Edit</a>
-  <a href="{% url 'business:location-delete' location.id %}">Delete</a>
-{% endblock content %}
+<div class="modal modal-content">
+  <div class="modal-header">
+    <h5>Location - {{ location.name }}</h5>
+  </div>
+  <div class="modal-body">
+    <p class="card-text">Description: {{ location.description }}</p>
+    <a href="{% url 'business:location-update' location.id %}"
+       hx-boost="true"
+       hx-push-url="false"
+       hx-target="#dialog"
+       hx-swap="innerHTML"
+       class="btn btn-primary">Edit</a>
+    <a href="{% url 'business:location-delete' location.id %}"
+       hx-boost="true"
+       hx-push-url="false"
+       hx-target="#dialog"
+       hx-swap="innerHTML"
+       class="btn btn-outline-danger">Delete</a>
+  </div>
+</div>

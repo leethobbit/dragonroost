@@ -131,6 +131,11 @@ class SpeciesForm(forms.ModelForm):
 
 
 class MedicalRecordForm(forms.ModelForm):
+    current_weight = MeasurementField(
+        measurement=Weight,
+        unit_choices=(("lb", "lb"), ("kg", "kg"), ("g", "g")),
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
