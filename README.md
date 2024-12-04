@@ -1,9 +1,6 @@
 <div align="center">
-    <img src="dragonroost/static/images/favicons/dinosaur-egg-256.png" width="auto" alt="Dragonroost Logo">
+    <img src="dragonroost/static/images/favicons/dragonroost_banner.png" width="auto" alt="Dragonroost Logo">
 </div>
-<h1 align="center">
-    Dragonroost
-</h1>
 <h3 align="center">
     Self-hosted Animal Rescue/Shelter Management Software, written in Python with Django and htmx.
 </h3>
@@ -15,7 +12,7 @@
 
 License: MIT
 
-## Screenshots (current as of October 30 2024)
+## Screenshots (current as of December 2024)
 
 ![Dragonroost Homepage](example/screenshots/dragonroost-dash-v3.png)
 ![Dragonroost Animal Detail Page](example/screenshots/dragonroost-animal-detail.png)
@@ -23,7 +20,18 @@ License: MIT
 
 ## Roadmap
 
-Dragonroost is under heavy development - expect bugs and half-written features. For a general idea of what is planned, please check out the [roadmap](ROADMAP.md).
+Dragonroost is under heavy development - expect bugs and half-written features. For a general idea of what is available or planned, please check out the [roadmap](ROADMAP.md).
+
+## Getting Started
+
+Until a proper, simplified deployment is ready, you can use the following to get started testing this application:
+
+- Ensure Docker Desktop and git are installed on your system.
+- Clone the repository with `git clone https://github.com/leethobbit/dragonroost.git` and change directories to the newly created folder from the clone command.
+- Build the local dev images with `docker-compose -f docker-compose.local.yml build`
+- Start the local dev images with `docker-compose -f docker-compose.local.yml up -d`
+
+This project was built with cookiecutter-django, for more information you can view [their documentation](https://cookiecutter-django.readthedocs.io/en/latest/2-local-development/developing-locally-docker.html)
 
 ## Settings
 
