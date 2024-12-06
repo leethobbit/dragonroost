@@ -43,10 +43,11 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          platforms: linux/amd64, linux/arm64
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: user/app:latest
           labels: ${{ steps.meta.outputs.labels }}
 
   # deploy-images:
