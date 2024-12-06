@@ -2,6 +2,7 @@ volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
   production_traefik: {}
+  production_django_media: {}
 
 
 
@@ -12,6 +13,8 @@ services:
       dockerfile: ./compose/production/django/Dockerfile
 
     image: dragonroost_production_django
+    volumes:
+      - production_django_media:/app/dragonroost/media
     depends_on:
       - postgres
       - redis
@@ -48,11 +51,12 @@ services:
     image: docker.io/redis:6
 
 
-  awscli:
+  nginx:
     build:
       context: .
-      dockerfile: ./compose/production/aws/Dockerfile
-    env_file:
-      - ./.envs/.production/.django
+      dockerfile: ./compose/production/nginx/Dockerfile
+    image: dragonroost_production_nginx
+    depends_on:
+      - django
     volumes:
-      - production_postgres_data_backups:/backups:z
+      - production_django_media:/usr/share/nginx/media:ro

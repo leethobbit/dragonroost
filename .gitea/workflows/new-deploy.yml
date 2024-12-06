@@ -8,7 +8,7 @@ on:
       - 'develop'
 
 jobs:
-  build-push-image:
+  build-run-image:
     runs-on: ubuntu-latest
     steps:
       - name: SSH into RPi and deploy Dragonroost.
@@ -26,4 +26,4 @@ jobs:
             sudo git clone https://github.com/leethobbit/dragonroost.git
             cd dragonroost/
             echo "Rebuilding and restarting Docker services."
-            sudo docker compose -f docker-compose.local.yml down -d && docker compose -f docker-compose.local.yml up -d
+            sudo docker compose -f docker-compose.local.yml up --build -d

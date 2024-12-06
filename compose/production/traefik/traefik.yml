@@ -28,7 +28,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: 'Host(`example.com`) || Host(`www.example.com`)'
+      rule: 'Host(`ddrev.org`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -49,7 +49,7 @@ http:
     django:
       loadBalancer:
         servers:
-          - url: http://django:5000
+          - url: http://django:8100
 
 providers:
   # https://doc.traefik.io/traefik/master/providers/file/

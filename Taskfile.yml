@@ -1,0 +1,27 @@
+version: '3'
+
+# These commands were created for Windows.
+# In particular, the docker-compose usage might need to be changed to docker compose (without the dash) on other OSes.
+tasks:
+  run-dev:
+    desc: Builds and runs the development environment.
+    cmds:
+      - docker-compose -f docker-compose.local.yml --build -d
+
+  add-starting-data:
+    desc: Add species and locations data.
+    cmds:
+      - docker-compose -f docker-compose.local.yml run --rm django python manage.py add_initial_data
+
+  add-animals:
+    desc: Add animals (Defaults to creating 50 entries if no amount is specified.)
+    vars:
+      COUNT: '{{.COUNT| default 50}}'
+    cmds:
+      - docker-compose -f docker-compose.local.yml run --rm django python manage.py add_animals --count {{.COUNT}}
+
+  db-migrate:
+    desc: Run migration in the docker prod app.
+    cmds:
+      - docker-compose -f docker-compose.local.yml run --rm django python manage.py makemigrations
+      - docker-compose -f docker-compose.local.yml run --rm django python manage.py migrate

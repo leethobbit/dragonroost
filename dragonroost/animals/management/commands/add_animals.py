@@ -16,11 +16,12 @@ from dragonroost.people.models import Person
 
 fake = Faker()
 
-MEDIA_ROOT = settings.MEDIA_ROOT
+APPS_DIR = settings.APPS_DIR
+IMG_ROOT = str(APPS_DIR / "static")
 
 
 def random_image():
-    dir_path = Path(MEDIA_ROOT) / "images/"
+    dir_path = Path(IMG_ROOT) / "images" / "sample_animal_photos/"
     files = [
         content for content in listdir(dir_path) if Path(dir_path / content).is_file()
     ]
