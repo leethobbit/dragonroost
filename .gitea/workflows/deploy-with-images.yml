@@ -47,8 +47,7 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
+          tags: latest
           labels: ${{ steps.meta.outputs.labels }}
 
   # deploy-images:
