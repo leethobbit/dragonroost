@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: ${{ secrets.REGISTRY_URL }}/${{ secrets.REGISTRY_USERNAME }}/dragonroost:latest
+          - image: ${{ secrets.REGISTRY_URL }}/${{ secrets.REGISTRY_USERNAME }}/dragonroost
             dockerfile: ./compose/local/django/Dockerfile
-          - image: ${{ secrets.REGISTRY_URL }}/${{ secrets.REGISTRY_USERNAME }}/postgres:latest
+          - image: ${{ secrets.REGISTRY_URL }}/${{ secrets.REGISTRY_USERNAME }}/postgres
             dockerfile: ./compose/production/postgres/Dockerfile
     steps:
       - name: Checkout repository
