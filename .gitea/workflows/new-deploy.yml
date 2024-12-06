@@ -1,29 +1,29 @@
-name: Build and deploy Docker images for Dragonroost.
-run-name: ${{ gitea.actor }} is running a Gitea Actions job on server ${{ runner.os }}
+# name: Build and deploy Docker images for Dragonroost.
+# run-name: ${{ gitea.actor }} is running a Gitea Actions job on server ${{ runner.os }}
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - 'develop'
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - 'develop'
 
-jobs:
-  build-run-image:
-    runs-on: ubuntu-latest
-    steps:
-      - name: SSH into RPi and deploy Dragonroost.
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /app/
-            echo "Removing the old directory."
-            sudo rm -rf dragonroost/
-            echo "Cloning the new directory."
-            sudo git clone https://github.com/leethobbit/dragonroost.git
-            cd dragonroost/
-            echo "Rebuilding and restarting Docker services."
-            sudo docker compose -f docker-compose.local.yml up --build -d
+# jobs:
+#   build-run-image:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: SSH into RPi and deploy Dragonroost.
+#         uses: appleboy/ssh-action@v1.2.0
+#         with:
+#           host: ${{ secrets.SSH_HOST }}
+#           username: ${{ secrets.SSH_USERNAME }}
+#           password: ${{ secrets.SSH_PASSWORD }}
+#           port: ${{ secrets.SSH_PORT }}
+#           script: |
+#             cd /app/
+#             echo "Removing the old directory."
+#             sudo rm -rf dragonroost/
+#             echo "Cloning the new directory."
+#             sudo git clone https://github.com/leethobbit/dragonroost.git
+#             cd dragonroost/
+#             echo "Rebuilding and restarting Docker services."
+#             sudo docker compose -f docker-compose.local.yml up --build -d
