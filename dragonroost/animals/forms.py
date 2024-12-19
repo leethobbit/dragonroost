@@ -1,5 +1,6 @@
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Div
 from crispy_forms.layout import Layout
 from crispy_forms.layout import Row
 from django import forms
@@ -26,26 +27,44 @@ class AnimalCreateForm(forms.ModelForm):
         # Layout
         self.helper.layout = Layout(
             Row(
-                FloatingField("name", wrapper_class="form-group col-md-6 mb-0"),
-                FloatingField("donation_fee", wrapper_class="form-group col-md-6 mb-0"),
+                Div(
+                    FloatingField("name"),
+                    css_class="col-md-6",
+                ),
+                Div(
+                    FloatingField("donation_fee"),
+                    css_class="col-md-6",
+                ),
             ),
             "animal_photo",
             FloatingField("description"),
             Row(
-                FloatingField("intake_type", wrapper_class="form-group col-md-4 mb-0"),
-                FloatingField(
-                    "intake_condition",
-                    wrapper_class="form-group col-md-4 mb-0",
+                Div(
+                    FloatingField("intake_type"),
+                    css_class="col-md-4",
                 ),
-                FloatingField(
-                    "starting_weight",
-                    wrapper_class="form-group col-md-4 mb-0",
+                Div(
+                    FloatingField("intake_condition"),
+                    css_class="col-md-4",
+                ),
+                Div(
+                    FloatingField("starting_weight"),
+                    css_class="col-md-4",
                 ),
             ),
             Row(
-                FloatingField("sex", wrapper_class="form-group col-md-4 mb-0"),
-                FloatingField("age", wrapper_class="form-group col-md-4 mb-0"),
-                FloatingField("color", wrapper_class="form-group col-md-4 mb-0"),
+                Div(
+                    FloatingField("sex"),
+                    css_class="col-md-4",
+                ),
+                Div(
+                    FloatingField("age"),
+                    css_class="col-md-4",
+                ),
+                Div(
+                    FloatingField("color"),
+                    css_class="col-md-4",
+                ),
             ),
             FloatingField("species"),
             FloatingField("location"),
