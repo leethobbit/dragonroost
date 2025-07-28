@@ -79,7 +79,7 @@ class Breed(models.Model):
 
 
 class Animal(models.Model):
-    # TODO Decide if Creator of an animal should be tracked via ForeignKey
+    # TODO Decide if creator of an animal should be tracked via ForeignKey
 
     SEX_CHOICES = [("MALE", "Male"), ("FEMALE", "Female"), ("UNKNOWN", "Unknown")]
     STATUS_CHOICES = [
@@ -209,7 +209,7 @@ class Animal(models.Model):
     @property
     def is_recently_cleared(self):
         """
-        Track all recently vet cleared animals. Recent means in the last 14 days.
+        Track all recently vet cleared animals. Recent means in the last 30 days.
         """
         today = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
         vet_cleared_date = self.vet_cleared_date.replace(year=today.year)

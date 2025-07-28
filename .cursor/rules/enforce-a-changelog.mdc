@@ -1,0 +1,6 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+Please keep track of all changes in a changelog file called CHANGELOG.MD
