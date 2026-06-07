@@ -14,7 +14,7 @@ License: MIT
 
 ## Screenshots (current as of December 2024)
 
-![Dragonroost Homepage](example/screenshots/dragonroost-dash-v3.png)
+![Dragonroost Homepage](example/screenshots/dragonroost-dash-v4.png)
 ![Dragonroost Animal Detail Page](example/screenshots/dragonroost-animal-detail.png)
 ![Dragonroost Species List Page](example/screenshots/dragonroost-species-list.png)
 
