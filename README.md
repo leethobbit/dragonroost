@@ -20,7 +20,7 @@ License: MIT
 
 ## Roadmap
 
-Dragonroost is under heavy development - expect bugs and half-written features. For a general idea of what is available or planned, please check out the [roadmap](ROADMAP.md).
+Dragonroost is largely complete and development is paused for now. For a general idea of what is available, please check out the [roadmap](ROADMAP.md).
 
 ## Getting Started
 
