@@ -12,7 +12,7 @@
 
 License: MIT
 
-## Screenshots (current as of December 2024)
+## Screenshots
 
 ![Dragonroost Homepage](example/screenshots/dragonroost-dash-v4.png)
 ![Dragonroost Animal Detail Page](example/screenshots/dragonroost-animal-detail.png)
